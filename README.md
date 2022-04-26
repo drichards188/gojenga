@@ -75,6 +75,12 @@ https://aws.amazon.com/ecr/
 
 ## **Install Instructions**<br>
 
+-install mongodb and golang driver
+https://www.mongodb.com/docs/drivers/go/current/quick-start/#std-label-golang-quickstart
+
+-install opentelemetry golang driver
+https://opentelemetry.io/docs/instrumentation/go/getting-started/
+
 -clone project
 
 -enter directory
