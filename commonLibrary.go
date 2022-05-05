@@ -1,280 +1,262 @@
-package main
+package gojenga
 
 import (
 	"context"
-	"crypto/sha1"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/sdk/resource"
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
-	"log"
 	"strconv"
 	"time"
 )
 
-//works
-//hashHistory should have ledger items it is changing, hash of said ledger, hash of prev hash and current hash, time
-func transaction(jsonResponse Traffic, ctx context.Context) (results string, err error) {
+////works
+////hashHistory should have ledger items it is changing, hash of said ledger, hash of prev hash and current hash, time
+func transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 
-	source, err := findUser(jsonResponse.SourceAccount, ctx)
+	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
-		log.Println(err)
-		return "source findUser failed in transaction", errors.New("source findUser failed in transaction")
+		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
-	destination, err := findUser(jsonResponse.DestinationAccount, ctx)
+	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
 	if err != nil {
-		log.Println(err)
-		return "destination findUser failed in transaction", errors.New("destination findUser failed in transaction")
+		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
 
-	if source == "Account Not Found" {
-		return "Account1 Not Found", errors.New("account1 not found")
-	}
+	Account := jsonResponse.SourceAccount
+	Amount := jsonResponse.Amount
+	Account2 := jsonResponse.DestinationAccount
 
-	if destination == "Account Not Found" {
-		return "Account2 Not Found", errors.New("account2 not found")
-	}
+	//traffic := Traffic{Account: Account2}
 
-	sourceAccount := jsonResponse.SourceAccount
-	transactionAmount := jsonResponse.Amount
-	destinationAccount := jsonResponse.DestinationAccount
-
-	traffic := Traffic{SourceAccount: destinationAccount}
-
-	mongoResult, err := queryMongo(jsonResponse)
-	if err != nil {
-		log.Println(err)
-		return "query error in transaction", errors.New("query error in transaction")
-	}
 	time.Sleep(1 * time.Second)
-	resultMap := mongoResult.Map()
-	mongoResult2, err := queryMongo(traffic)
-	if err != nil {
-		log.Println(err)
-		return "query error in transaction", errors.New("query error in transaction")
-	}
-	resultMap2 := mongoResult2.Map()
-	finalAmount, err := strconv.Atoi(transactionAmount)
-	if err != nil {
-		logger.Error(fmt.Sprintf("%s", err))
-	}
-	SourceAmount, err := strconv.Atoi(resultMap["Amount"].(string))
-	if err != nil {
-		logger.Error(fmt.Sprintf("%s", err))
-	}
-	DestinationAmount, err := strconv.Atoi(resultMap2["Amount"].(string))
-	if err != nil {
-		logger.Error(fmt.Sprintf("%s", err))
-	}
-	finalAmount1 := SourceAmount - finalAmount
-	finalAmount2 := DestinationAmount + finalAmount
 
-	finalSourceAmount := strconv.Itoa(finalAmount1)
-	finalDestinationAmount := strconv.Itoa(finalAmount2)
+	//mongoResult2 := queryMongo(traffic)
+	//resultMap2 := mongoResult2.Map()
+	finalAmount, err := strconv.Atoi(Amount)
+	if err != nil {
+		fmt.Println(err)
+	}
+	Amount1, err := strconv.Atoi(user1["Amount"])
+	if err != nil {
+		fmt.Println(err)
+	}
+	Amount2, err := strconv.Atoi(user2["Amount"])
+	if err != nil {
+		fmt.Println(err)
+	}
+	finalAmount1 := Amount1 - finalAmount
+	finalAmount2 := Amount2 + finalAmount
 
-	data := sourceAccount + destinationAccount + transactionAmount
+	intFinalAmount1 := strconv.Itoa(finalAmount1)
+	intFinalAmount2 := strconv.Itoa(finalAmount2)
+
+	//data := Account + Account2 + Amount
 	tr := otel.Tracer("crypto-trace")
 	ctx, span := tr.Start(ctx, "handle-transaction")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+	//lakeResponse := acceptTransaction(jsonResponse, ctx)
+	////lakeResponse := lakeTransaction(jsonResponse)
+	//return lakeResponse
 
-	_, err = hashLedger(data)
+	//hashLedger(data)
+
+	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1})
 	if err != nil {
-		log.Println(err)
-		return "hashLedger fail in transaction", errors.New("hashLedger fail in transaction")
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	}
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2})
+	if err != nil {
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
-	if resultMap["message"] != "No Match" {
-		updateMongo(sourceAccount, finalSourceAmount)
-		updateMongo(destinationAccount, finalDestinationAmount)
-
-		return "Transaction Successful", nil
-	} else {
-		return "Transaction Failed", errors.New("transaction Failed")
-	}
+	return "Transaction Successful", errors.New("Transaction Succesful")
 }
 
-//works
-func findUser(Account string, ctx context.Context) (results string, err error) {
-
+////works
+func findUser(Account string, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	ctx, span := tr.Start(ctx, "findUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+	//response := lakeFindUser(Account, ctx)
+	//fmt.Println("-->data ping results: " + results)
+	//return response
+	//traffic := Traffic{Account: Account}
 
-	traffic := Traffic{SourceAccount: Account}
-
-	mongoResult, err := queryMongo(traffic)
+	//mongoResult := queryMongo(traffic)
+	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: Account})
 	if err != nil {
-		log.Println(err)
-		return "query error in findUser", errors.New("query error in findUser")
-	}
-
-	var resultMap primitive.M
-
-	resultMap = mongoResult.Map()
-
-	msg := resultMap["message"]
-	if msg == "No Match" {
-		return "account Not Found", errors.New("account not found")
-	}
-
-	theAccount := resultMap["Account"].(string)
-	theAmount := resultMap["Amount"].(string)
-
-	mapD := map[string]string{"Account": theAccount, "Amount": theAmount}
-	mapB, _ := json.Marshal(mapD)
-
-	logger.Debug(string(mapB))
-
-	//c.Write([]byte(mapB))
-
-	logger.Debug(theAccount)
-
-	return string(mapB), nil
-}
-
-func findUserAccount(Account string, ctx context.Context) (results string, err error) {
-	tr := otel.Tracer("crypto-trace")
-	ctx, span := tr.Start(ctx, "findUser")
-	span.SetAttributes(attribute.Key("testset").String("value"))
-	defer span.End()
-
-	traffic := Traffic{SourceAccount: Account, Role: "USER"}
-
-	mongoResult, err := queryMongo(traffic)
-	if err != nil {
-		log.Println(err)
-		return "query error in findAccount", errors.New("query error in findAccount")
+		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
 
 	//if mongoResult["message"] == "No Match" {
 	//	return "Account Not Found"
 	//}
 
-	//fmt.Print("Your query result ")
-	var resultMap primitive.M
-
-	resultMap = mongoResult.Map()
+	fmt.Print("Your query result ")
+	//var resultMap primitive.M
+	//
+	//resultMap = mongoResult.Map()
 
 	msg := resultMap["message"]
 	if msg == "No Match" {
-		return "account not found", errors.New("account not found")
+		return "Account Not Found", errors.New("Account Not Found")
 	}
 
-	theAccount := resultMap["Account"].(string)
-	theAmount := resultMap["Password"].(string)
+	theAccount := resultMap["Account"]
+	theAmount := resultMap["Amount"]
+
+	mapD := map[string]string{"Account": theAccount, "Amount": theAmount}
+	mapB, _ := json.Marshal(mapD)
+
+	fmt.Println(string(mapB))
+
+	//c.Write([]byte(mapB))
+
+	fmt.Println(theAccount)
+
+	return string(mapB), errors.New(string(mapB))
+}
+
+func findUserAccount(Account string, ctx context.Context) (string, error) {
+
+	tr := otel.Tracer("crypto-trace")
+	ctx, span := tr.Start(ctx, "findUser")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+	//response := lakeFindUser(Account, ctx)
+	//fmt.Println("-->data ping results: " + results)
+	//return response
+	//traffic := Traffic{Account: Account, Role: "USER"}
+
+	//mongoResult := queryMongo(traffic)
+	resultMap, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: Account})
+	if err != nil {
+		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
+	}
+
+	//if mongoResult["message"] == "No Match" {
+	//	return "Account Not Found"
+	//}
+
+	fmt.Print("Your query result ")
+	//var resultMap primitive.M
+	//
+	//resultMap = mongoResult.Map()
+
+	msg := resultMap["message"]
+	if msg == "No Match" {
+		return "Account Not Found", errors.New("Account Not Found")
+	}
+
+	theAccount := resultMap["Account"]
+	theAmount := resultMap["Password"]
 
 	mapD := map[string]string{"Account": theAccount, "Password": theAmount}
 	mapB, _ := json.Marshal(mapD)
 
-	logger.Debug(string(mapB))
+	fmt.Println(string(mapB))
 
 	//c.Write([]byte(mapB))
 
-	//logger.Info(theAccount)
+	fmt.Println(theAccount)
 
-	return string(mapB), nil
+	return string(mapB), errors.New(string(mapB))
 }
 
-func deleteUser(jsonResponse Traffic, ctx context.Context) (results string, err error) {
+func deleteUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	ctx, span := tr.Start(ctx, "deleteUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
-	deleteMongo(jsonResponse, ctx)
-	jsonResponse.Role = "USER"
-	deleteMongo(jsonResponse, ctx)
-	return "delete user succes", nil
+	r := RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+	if r["code"] == "1" {
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	}
+	RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+	if r["code"] == "1" {
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	}
+
+	//deleteMongo(jsonResponse, ctx)
+	//jsonResponse.Role = "USER"
+	//deleteMongo(jsonResponse, ctx)
+	return "Delete Succesful", errors.New("Delete Succesful")
 }
 
 //works
-func createUser(jsonResponse Traffic, ctx context.Context) (results string, err error) {
+func createUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "createUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+	//response := lakeCreateUser(jsonResponse.SourceAccount)
+	//response := acceptCreateUser(jsonResponse)
+	//fmt.Println("-->data ping results: " + results)
+	//return response
 
-	logger.Debug("--> data ping results: " + results)
+	//traffic := Traffic{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password}
+	//resultMap := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
+	//if resultMap["message"] == "No Match" {
+	//	data := jsonResponse.SourceAccount + jsonResponse.Amount
+	//	hashLedger(data)
+	//	writeToMongo("users", jsonResponse.SourceAccount, "", traffic)
+	//	writeToMongo("ledger", jsonResponse.SourceAccount, jsonResponse.Amount, traffic)
+	//	return jsonResponse.SourceAccount + " created"
+	//}
 
-	traffic := Traffic{SourceAccount: jsonResponse.SourceAccount, Password: jsonResponse.Password}
-	mongoResult, err := queryMongo(traffic)
-	if err != nil {
-		resultMap := mongoResult.Map()
-		if resultMap["message"] == "No Match" {
-			data := jsonResponse.SourceAccount + jsonResponse.Amount
-			_, err = hashLedger(data)
-			if err != nil {
-				log.Println("hashLedger error in createUser")
-				return "hashledger error in createUser", nil
-			}
-			_, err = writeToMongo("users", jsonResponse.SourceAccount, "", traffic)
-			if err != nil {
-				log.Println("write error in createUser")
-				return "write error in createUser", nil
-			}
-			_, err = writeToMongo("ledger", jsonResponse.SourceAccount, jsonResponse.Amount, traffic)
-			if err != nil {
-				log.Println("write error in createUser")
-				return "write error in createUser", nil
-			}
-			return jsonResponse.SourceAccount + " created", nil
-		}
+	r, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
+	if err == nil {
+		return "--> User already exists", errors.New("--> User already exists")
 	}
 
-	return "account already exists", errors.New("account already exists")
+	r, err = RunDynamoCreateItem("users", User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
+	if err != nil {
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	}
+
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
+	if err != nil {
+		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	}
+
+	return r["msg"], nil
 }
 
-func deposit(jsonResponse Traffic, ctx context.Context) (results string, err error) {
+func Login(jsonResponse Traffic, ctx context.Context) (results string, err error) {
 	tr := otel.Tracer("crypto-trace")
-	_, span := tr.Start(ctx, "createUser")
+	_, span := tr.Start(ctx, "login")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 	//response := lakeCreateUser(jsonResponse.Account)
 	//response := acceptCreateUser(jsonResponse)
-	logger.Debug("-->data ping results: " + results)
+	//logger.Debug("-->data ping results: " + results)
 	//return response
 
-	mongoResult, err := queryMongo(jsonResponse)
+	jsonResponse.Role = "USER"
+
+	resultMap, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
-		log.Println(err)
-		return "query error in deposit", errors.New("query error in deposit")
+		return "--> User already exists", errors.New("--> User already exists")
 	}
-	resultMap := mongoResult.Map()
-	if resultMap["message"] != "No Match" {
-		data := jsonResponse.SourceAccount + jsonResponse.Amount
 
-		mongoResult, err := queryMongo(jsonResponse)
-		if err != nil {
-			log.Println(err)
-			return "query error in deposit", errors.New("query error in deposit")
-		}
-		time.Sleep(1 * time.Second)
-		resultMap := mongoResult.Map()
-		finalAmount, err := strconv.Atoi(jsonResponse.Amount)
-		if err != nil {
-			logger.Error(fmt.Sprintf("%s", err))
-		}
-		Amount1, err := strconv.Atoi(resultMap["Amount"].(string))
-		if err != nil {
-			logger.Error(fmt.Sprintf("%s", err))
-		}
-		finalAmount1 := Amount1 + finalAmount
+	if resultMap["code"] != "1" {
 
-		intFinalAmount1 := strconv.Itoa(finalAmount1)
+		if jsonResponse.SourceAccount == resultMap["Account"] && jsonResponse.Password == resultMap["Password"] {
+			rMap := make(map[string]string)
 
-		_, err = hashLedger(data)
-		if err != nil {
-			log.Println(err)
-			return "hashLedger error in deposit", errors.New("hashLedger error in deposit")
+			rMap["token"] = "thisisthetoken"
+
+			return "{\"token\":\"thisisthetoken\"}", nil
 		}
-		updateMongo(jsonResponse.SourceAccount, intFinalAmount1)
+
 		//writeToMongo("ledger", jsonResponse.Account, jsonResponse.Amount)
 		return jsonResponse.SourceAccount + " updated", nil
 	}
@@ -282,63 +264,111 @@ func deposit(jsonResponse Traffic, ctx context.Context) (results string, err err
 	return "account not found", errors.New("account not found")
 }
 
-func hashLedger(data string) (results string, err error) {
-	theHash := ""
-	var iteration int
-	hashResult, err := queryMongoAll("hashHistory")
+func deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
+	var results string
+	tr := otel.Tracer("crypto-trace")
+	_, span := tr.Start(ctx, "createUser")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+	//response := lakeCreateUser(jsonResponse.SourceAccount)
+	//response := acceptCreateUser(jsonResponse)
+	fmt.Println("-->data ping results: " + results)
+	//return response
+
+	//mongoResult := queryMongo(jsonResponse)
+	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
-		log.Println(err)
-		return "query error in hashLedger", errors.New("query error in hashLedger")
-	}
-	if hashResult != nil {
-		iteration = len(hashResult)
-
-		mongoHash, err := queryHash(iteration)
-		if err != nil {
-			log.Println(err)
-			return "query error in hashLedger", errors.New("query error in hashLedger")
-		}
-
-		//queryMongo(Account)
-
-		//fmt.Print("Your query result ")
-		hashMap := mongoHash.Map()
-		if _, ok := hashMap["Message"]; ok {
-			//do something here
-
-			if hashMap["Message"].(string) == "No Match" {
-				theHash = "000000"
-			}
-		} else {
-			theHash = hashMap["Hash"].(string)
-			//logger.Info(theHash)
-		}
+		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
 
-	s := data + theHash
+	//if resultMap["message"] != "No Match" {
+	//data := jsonResponse.SourceAccount + jsonResponse.Amount
 
-	h := sha1.New()
-
-	h.Write([]byte(s))
-
-	bs := h.Sum(nil)
-
-	currentTime := time.Now()
-	hashTime := currentTime.Format("2006-01-02") + currentTime.Format(" 15:04:05")
-
-	//logger.Info(s)
-	prettyHash := fmt.Sprintf("%x", bs)
-	//logger.Info(prettyHash)
-	//logger.Info(hashTime)
-	logger.Debug(fmt.Sprintf("--> ledger hashed: %s", prettyHash))
-
-	_, err = writeToHashHistory("hashHistory", prettyHash, hashTime, iteration+1, theHash, data)
+	//mongoResult := queryMongo(jsonResponse)
+	time.Sleep(1 * time.Second)
+	//resultMap := mongoResult.Map()
+	finalAmount, err := strconv.Atoi(jsonResponse.Amount)
 	if err != nil {
-		log.Println("write error in hashLedger")
-		return "write error in hashLedger", nil
+		fmt.Println(err)
 	}
-	return "hashLedger succesful", nil
+	Amount1, err := strconv.Atoi(resultMap["Amount"])
+	if err != nil {
+		fmt.Println(err)
+	}
+	finalAmount1 := Amount1 + finalAmount
+
+	intFinalAmount1 := strconv.Itoa(finalAmount1)
+
+	//hashLedger(data)
+	resp, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1})
+	if err != nil {
+		return "--> " + resp["msg"], errors.New("--> " + resp["msg"])
+	}
+	//updateMongo(jsonResponse.SourceAccount, intFinalAmount1)
+	//writeToMongo("ledger", jsonResponse.SourceAccount, jsonResponse.Amount)
+	return jsonResponse.SourceAccount + " resp", errors.New(jsonResponse.SourceAccount + " resp")
+	//}
+
+	return "Account not found", errors.New("Account not found")
 }
+
+//func HashLedger(data string) (results string, err error) {
+//	theHash := ""
+//	var iteration int
+//	hashResult, err := queryMongoAll("hashHistory")
+//	if err != nil {
+//		log.Println(err)
+//		return "query error in hashLedger", errors.New("query error in hashLedger")
+//	}
+//	if hashResult != nil {
+//		iteration = len(hashResult)
+//
+//		mongoHash, err := queryHash(iteration)
+//		if err != nil {
+//			log.Println(err)
+//			return "query error in hashLedger", errors.New("query error in hashLedger")
+//		}
+//
+//		//queryMongo(Account)
+//
+//		//fmt.Print("Your query result ")
+//		hashMap := mongoHash.Map()
+//		if _, ok := hashMap["Message"]; ok {
+//			//do something here
+//
+//			if hashMap["Message"].(string) == "No Match" {
+//				theHash = "000000"
+//			}
+//		} else {
+//			theHash = hashMap["Hash"].(string)
+//			//logger.Info(theHash)
+//		}
+//	}
+//
+//	s := data + theHash
+//
+//	h := sha1.New()
+//
+//	h.Write([]byte(s))
+//
+//	bs := h.Sum(nil)
+//
+//	currentTime := time.Now()
+//	hashTime := currentTime.Format("2006-01-02") + currentTime.Format(" 15:04:05")
+//
+//	//logger.Info(s)
+//	prettyHash := fmt.Sprintf("%x", bs)
+//	//logger.Info(prettyHash)
+//	//logger.Info(hashTime)
+//	logger.Debug(fmt.Sprintf("--> ledger hashed: %s", prettyHash))
+//
+//	_, err = writeToHashHistory("hashHistory", prettyHash, hashTime, iteration+1, theHash, data)
+//	if err != nil {
+//		log.Println("write error in hashLedger")
+//		return "write error in hashLedger", nil
+//	}
+//	return "hashLedger succesful", nil
+//}
 
 func tracerProvider(url string) (*tracesdk.TracerProvider, error) {
 	// Create the Jaeger exporter

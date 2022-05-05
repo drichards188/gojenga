@@ -1,8 +1,8 @@
 # Gojenga
-## Pseudo Blockchain Portfolio Project
+## Hashed Ledger Banking Portfolio Project
 
 ### Made by David Richards
-### Breaking into Golang industry
+### Breaking into backend industry
 ### https://www.linkedin.com/in/drichards188/
 
 ## **WIP (Work In Progress)**
@@ -14,7 +14,7 @@
 ## Technologies
 -Golang 1.18
 
--MongoDB
+-Aws (DynamoDB)
 
 -OpenTelemetry Distributed Tracing
 
@@ -23,20 +23,14 @@
 ## **What this project does**<br>
 This project creates a http server. The server handles a REST API. Users can create accounts, make deposits and payments to
 other users. They can also see their account information and balance as well as delete their account. The storage solution 
-is mongoDB.
-
-There is a React/Redux front end to interact with the system on AWS Amplify. For local development I use Postman to interact with the system.
-The front end is not my focus, but ideally I want to not have to bother a front end dev for everything at work. We work so close together
-it is good to walk in their shoes and help when I can.
+is dynamoDB on AWS. I'm working on converting the hashing functionality from mongo to dynamo.
 
 ## **Design Decisions**<br>
 Golang was selected for duck type interfaces, channels and context propagation.
 
-MongoDB was selected because I am still changing the schema. The format is great for prototyping. At one point SQL was
-the storage solution and will be again at completion for its speed.
+DynamoDB was selected for its open schema and low cost.
 
-OpenTelemetry is implemented for my desire to break this project into microservices and onto AWS to scale horizontally. Traces
-can be inspected using Jaeger for a requests complete lifecycle.
+OpenTelemetry is vital for debugging the system at scale by braiding the three pillars together.
 
 ## **Roadmap**<br>
 [1] - Making the system Zillow production compliant
@@ -74,15 +68,24 @@ https://aws.amazon.com/lambda/
 https://aws.amazon.com/ecr/
 
 ## **Install Instructions**<br>
+-Install AWS CLI and setup credentials
+
+-configure OpenTelemetry collector to AWS
 
 -clone project
 
 -enter directory
 
--build and run directory
+-build and run gojenga/main/main.go
+
+-or run the Dockerfile and deploy to ECS (pre alpha)
 
 ## **Run Instructions**<br>
 
--standard run and build
+-build and run gojenga/main/main.go
 
--adding config options soon
+-or run the Dockerfile and deploy to ECS (pre alpha)
+
+-be sure to have AWS CLI and your credentials setup
+
+-adding API documentation soon

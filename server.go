@@ -1,4 +1,4 @@
-package main
+package gojenga
 
 import (
 	_ "bytes"
@@ -28,7 +28,7 @@ const (
 	service     = "blockchain"
 	environment = "alpha"
 	id          = 1
-	verion      = "1.0.8"
+	verion      = "1.0.9"
 )
 
 type Traffic struct {
@@ -50,7 +50,7 @@ func testingFunc() (throwError bool) {
 	return false
 }
 
-func startServer(port string, ctx context.Context) {
+func StartServer(port string, ctx context.Context) {
 
 	config := zap.NewDevelopmentConfig()
 	config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
@@ -108,7 +108,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		defer span.End()
 		w.WriteHeader(http.StatusOK)
 		results := handleGet(req, ctx)
-		_, err := w.Write([]byte(`{"response":"` + results + `"}`))
+		_, err := w.Write([]byte(`{"response":` + results + `}`))
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
@@ -121,7 +121,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		defer span.End()
 		w.WriteHeader(http.StatusCreated)
 		results := handlePost(req, ctx)
-		_, err := w.Write([]byte(`{"response":"` + results + `"}`))
+		_, err := w.Write([]byte(`{"response":` + results + `}`))
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
@@ -134,7 +134,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		defer span.End()
 		w.WriteHeader(http.StatusAccepted)
 		results := handlePut(req, ctx)
-		_, err := w.Write([]byte(`{"response":"` + results + `"}`))
+		_, err := w.Write([]byte(`{"response":` + results + `}`))
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
@@ -147,7 +147,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		defer span.End()
 		w.WriteHeader(http.StatusOK)
 		results := handleDelete(req, ctx)
-		_, err := w.Write([]byte(`{"response":"` + results + `"}`))
+		_, err := w.Write([]byte(`{"response":` + results + `}`))
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
@@ -174,8 +174,8 @@ func handlePost(req *http.Request, ctx context.Context) (results string) {
 	if jsonResponse.Verb == "CRT" {
 		results, err := createUser(jsonResponse, ctx)
 		if err != nil {
-			logger.Debug(fmt.Sprintf("--> %s", err))
-			return fmt.Sprintf("CRT error: %s", err)
+			log.Println(err)
+			return "CRT error"
 		}
 		return results
 	}
@@ -238,14 +238,14 @@ func handlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := deposit(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
-			return fmt.Sprintf("ADD error: %s", err)
+			return fmt.Sprintf("CRT error: %s", err)
 		}
 		return results
-	} else if jsonResponse.Verb == "HASH" {
-		results, err := hashLedger("hash verb called")
+	} else if jsonResponse.Verb == "LOGIN" {
+		results, err := Login(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
-			return fmt.Sprintf("HASH error: %s", err)
+			return fmt.Sprintf("ADD error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "QUERY" {
