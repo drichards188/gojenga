@@ -21,7 +21,7 @@
 -Zap logging
 
 ## **What this project does**<br>
-This project creates a http server. The server handles a REST API. Users can create accounts, make deposits and payments to
+This project creates a http server meant for ECS. Users can create accounts, make deposits and payments to
 other users. They can also see their account information and balance as well as delete their account. The storage solution 
 is dynamoDB on AWS. I'm working on converting the hashing functionality from mongo to dynamo. Transactions will flow 
 at top speed and only log with a hashed ledger, so it is not a bottleneck
