@@ -10,8 +10,8 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /blockchain-backend
+RUN go build -o /gojenga .
 
 EXPOSE 8070
 
-CMD [ "/blockchain-backend" ]
+CMD [ "/gojenga" ]

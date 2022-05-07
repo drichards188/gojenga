@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/aws/aws-sdk-go v1.44.4
-	go.mongodb.org/mongo-driver v1.9.0
 	go.opentelemetry.io/otel v1.6.3
 	go.opentelemetry.io/otel/exporters/jaeger v1.2.0
 	go.opentelemetry.io/otel/sdk v1.6.3

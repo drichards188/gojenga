@@ -1,16 +1,113 @@
-package gojenga
+package gjLib
 
 import (
 	"errors"
 	"fmt"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"log"
-	"os"
-
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"log"
+	"os"
 )
+
+////works
+////hashHistory should have ledger items it is changing, hash of said ledger, hash of prev hash and current hash, time
+
+////works
+
+type Traffic struct {
+	Name               string
+	Amount             string
+	SourceAccount      string
+	DestinationAccount string
+	Verb               string
+	Role               string
+	Port               string
+	Payload            string
+	Password           string
+}
+
+//type User struct {
+//	Account  string
+//	Password string
+//}
+
+//gjUser := User{
+//	Account:  "david",
+//	Password: "54321",
+//}
+
+//ledger := Ledger{
+//	Account: "david",
+//	Amount:  "200",
+//}
+
+//gjQuery := Query{
+//	TableName: "hashHistory",
+//	Key:       "Iteration",
+//	Value:     "1",
+//}
+
+//works
+
+//func HashLedger(data string) (results string, err error) {
+//	theHash := ""
+//	var iteration int
+//	hashResult, err := queryMongoAll("hashHistory")
+//	if err != nil {
+//		log.Println(err)
+//		return "gjQuery error in hashLedger", errors.New("gjQuery error in hashLedger")
+//	}
+//	if hashResult != nil {
+//		iteration = len(hashResult)
+//
+//		mongoHash, err := queryHash(iteration)
+//		if err != nil {
+//			log.Println(err)
+//			return "gjQuery error in hashLedger", errors.New("gjQuery error in hashLedger")
+//		}
+//
+//		//queryMongo(Account)
+//
+//		//fmt.Print("Your gjQuery result ")
+//		hashMap := mongoHash.Map()
+//		if _, ok := hashMap["Message"]; ok {
+//			//do something here
+//
+//			if hashMap["Message"].(string) == "No Match" {
+//				theHash = "000000"
+//			}
+//		} else {
+//			theHash = hashMap["Hash"].(string)
+//			//logger.Info(theHash)
+//		}
+//	}
+//
+//	s := data + theHash
+//
+//	h := sha1.New()
+//
+//	h.Write([]byte(s))
+//
+//	bs := h.Sum(nil)
+//
+//	currentTime := time.Now()
+//	hashTime := currentTime.Format("2006-01-02") + currentTime.Format(" 15:04:05")
+//
+//	//logger.Info(s)
+//	prettyHash := fmt.Sprintf("%x", bs)
+//	//logger.Info(prettyHash)
+//	//logger.Info(hashTime)
+//	logger.Debug(fmt.Sprintf("--> ledger hashed: %s", prettyHash))
+//
+//	_, err = writeToHashHistory("hashHistory", prettyHash, hashTime, iteration+1, theHash, data)
+//	if err != nil {
+//		log.Println("write error in hashLedger")
+//		return "write error in hashLedger", nil
+//	}
+//	return "hashLedger succesful", nil
+//}
 
 func RunDynamoCreateTable(tableName string) {
 	// Initialize a session in us-west-2 that the SDK will use to load
@@ -237,7 +334,7 @@ func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string
 	if err != nil {
 		fmt.Println("Got error marshalling map:")
 		fmt.Println(err.Error())
-		r["msg"] = "-->Could not delete: " + value
+		r["msg"] = "-->Could not gjDelete: " + value
 		r["code"] = "1"
 		return r
 	}
@@ -255,7 +352,7 @@ func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string
 	}
 
 	fmt.Println("Delete complete")
-	r["msg"] = "-->Completed delete: " + value
+	r["msg"] = "-->Completed gjDelete: " + value
 	r["code"] = "0"
 	return r
 }

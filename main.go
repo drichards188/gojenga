@@ -1,34 +1,51 @@
-package gojenga
+package main
 
 import (
-	_ "bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/sdk/trace"
+	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/sdk/resource"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-
-	//"go.opentelemetry.io/otel/exporters/jaeger"
-	//"go.opentelemetry.io/otel/sdk/resource"
+	"gojenga/lib/gjLib"
+	"gojenga/services/gjCreateUser"
+	"gojenga/services/gjDelete"
+	"gojenga/services/gjDeposit"
+	"gojenga/services/gjLogin"
+	"gojenga/services/gjQuery"
+	"gojenga/services/gjTransaction"
+	"gojenga/services/gjUser"
 	"io"
 	"log"
 	"net/http"
 	"time"
+
+	_ "bytes"
+	"go.opentelemetry.io/otel/sdk/trace"
 	//"go.opentelemetry.io/otel"
 	//"go.opentelemetry.io/otel/attribute"
-	//tracesdk "go.opentelemetry.io/otel/sdk/trace"
-	//semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
+	tracesdk "go.opentelemetry.io/otel/sdk/trace"
+	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 	//_ "go.opentelemetry.io/otel/trace"
 )
+
+func main() {
+	ctx := context.Background()
+
+	//ctx, cancelCtx := context.WithCancel(ctx)
+	StartServer("8070", ctx)
+	//time.Sleep(time.Second * 2)
+	//cancelCtx()
+}
 
 const (
 	service     = "blockchain"
 	environment = "alpha"
 	id          = 1
-	verion      = "1.0.9"
+	verion      = "1.0.10"
 )
 
 type Traffic struct {
@@ -50,6 +67,27 @@ func testingFunc() (throwError bool) {
 	return false
 }
 
+func TracerProvider(url string) (*tracesdk.TracerProvider, error) {
+	// Create the Jaeger exporter
+	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
+	if err != nil {
+		return nil, err
+	}
+	tp := tracesdk.NewTracerProvider(
+		// Always be sure to batch in production.
+		tracesdk.WithBatcher(exp),
+		// Record information about this application in a Resource.
+		tracesdk.WithResource(resource.NewWithAttributes(
+			semconv.SchemaURL,
+			semconv.ServiceNameKey.String(service),
+			attribute.String("environment", environment),
+			attribute.Int64("ID", id),
+		)),
+	)
+	return tp, nil
+}
+
+//begining configure to ecs
 func StartServer(port string, ctx context.Context) {
 
 	config := zap.NewDevelopmentConfig()
@@ -72,7 +110,7 @@ func StartServer(port string, ctx context.Context) {
 func crypto(w http.ResponseWriter, req *http.Request) {
 
 	//tracerProvider gets trace info to Jaeger. One per node but I'm not sure if it matters
-	myTp, err := tracerProvider("http://localhost:14268/api/traces")
+	myTp, err := TracerProvider("http://localhost:14268/api/traces")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -126,7 +164,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
 		}
-		//PUT handles most commands particularly transaction
+		//PUT handles most commands particularly gjTransaction
 	case "PUT":
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-put")
@@ -139,10 +177,10 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return
 		}
-		//delete is self explanatory and untested lately
+		//gjDelete is self explanatory and untested lately
 	case "DELETE":
 		tr := otel.Tracer("crypto-called")
-		ctx, span := tr.Start(ctx, "got-delete")
+		ctx, span := tr.Start(ctx, "got-gjDelete")
 		span.SetAttributes(attribute.Key("testset").String("value"))
 		defer span.End()
 		w.WriteHeader(http.StatusOK)
@@ -172,7 +210,7 @@ func handlePost(req *http.Request, ctx context.Context) (results string) {
 	}
 
 	if jsonResponse.Verb == "CRT" {
-		results, err := createUser(jsonResponse, ctx)
+		results, err := gjCreateUser.CreateUser(gjLib.Traffic(jsonResponse), ctx)
 		if err != nil {
 			log.Println(err)
 			return "CRT error"
@@ -184,7 +222,7 @@ func handlePost(req *http.Request, ctx context.Context) (results string) {
 }
 
 func handleGet(req *http.Request, ctx context.Context) (results string) {
-	var jsonResponse Traffic
+	var jsonResponse gjLib.Traffic
 
 	tr := otel.Tracer("mempool-trace")
 	ctx, span := tr.Start(ctx, "handle-get")
@@ -203,7 +241,7 @@ func handleGet(req *http.Request, ctx context.Context) (results string) {
 	}
 
 	if jsonResponse.Verb == "PING" {
-		_, err := createUser(jsonResponse, ctx)
+		_, err := gjCreateUser.CreateUser(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("PING error: %s", err)
@@ -214,7 +252,7 @@ func handleGet(req *http.Request, ctx context.Context) (results string) {
 }
 
 func handlePut(req *http.Request, ctx context.Context) (results string) {
-	var jsonResponse Traffic
+	var jsonResponse gjLib.Traffic
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
@@ -228,42 +266,42 @@ func handlePut(req *http.Request, ctx context.Context) (results string) {
 	}
 
 	if jsonResponse.Verb == "TRAN" {
-		results, err := transaction(jsonResponse, ctx)
+		results, err := gjTransaction.Transaction(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("TRAN error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "ADD" {
-		results, err := deposit(jsonResponse, ctx)
+		results, err := gjDeposit.Deposit(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("CRT error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "LOGIN" {
-		results, err := Login(jsonResponse, ctx)
+		results, err := gjLogin.Login(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("ADD error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "QUERY" {
-		results, err := findUser(jsonResponse.SourceAccount, ctx)
+		results, err := gjQuery.FindUser(jsonResponse.SourceAccount, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("QUERY error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "USER" {
-		results, err := findUserAccount(jsonResponse.SourceAccount, ctx)
+		results, err := gjUser.FindUserAccount(jsonResponse.SourceAccount, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("USER error: %s", err)
 		}
 		return results
 	} else if jsonResponse.Verb == "DLT" {
-		results, err := deleteUser(jsonResponse, ctx)
+		results, err := gjDelete.DeleteUser(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
 			return fmt.Sprintf("DLT error: %s", err)
@@ -275,7 +313,7 @@ func handlePut(req *http.Request, ctx context.Context) (results string) {
 }
 
 func handleDelete(req *http.Request, ctx context.Context) (results string) {
-	var traffic Traffic
+	var traffic gjLib.Traffic
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
@@ -289,12 +327,12 @@ func handleDelete(req *http.Request, ctx context.Context) (results string) {
 		return fmt.Sprintf("DLT error: %s", err)
 	}
 
-	_, err = deleteUser(traffic, ctx)
+	_, err = gjDelete.DeleteUser(traffic, ctx)
 	if err != nil {
 		logger.Debug(fmt.Sprintf("--> %s", err))
 		return fmt.Sprintf("DLT error: %s", err)
 	}
 
 	logger.Debug(fmt.Sprintf("%s", jsonMap["name"]))
-	return "delete successful"
+	return "gjDelete successful"
 }
