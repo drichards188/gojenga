@@ -10,8 +10,8 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gojenga .
+RUN go build -o /gjCreateUser .
 
 EXPOSE 8070
 
-CMD [ "/gojenga" ]
+CMD [ "/gjCreateUser" ]

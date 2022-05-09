@@ -1,13 +1,23 @@
 package gjLib
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/exporters/jaeger"
+	"go.opentelemetry.io/otel/sdk/resource"
+	tracesdk "go.opentelemetry.io/otel/sdk/trace"
+	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
+	"go.opentelemetry.io/otel/trace"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -15,6 +25,9 @@ import (
 ////hashHistory should have ledger items it is changing, hash of said ledger, hash of prev hash and current hash, time
 
 ////works
+
+var tp *trace.TracerProvider
+var logger *zap.Logger
 
 type Traffic struct {
 	Name               string
@@ -26,6 +39,33 @@ type Traffic struct {
 	Port               string
 	Payload            string
 	Password           string
+}
+
+type Config struct {
+	Service     string
+	Environment string
+	Id          int64
+	Version     string
+}
+
+func TracerProvider(url string, config Config) (*tracesdk.TracerProvider, error) {
+	// Create the Jaeger exporter
+	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
+	if err != nil {
+		return nil, err
+	}
+	tp := tracesdk.NewTracerProvider(
+		// Always be sure to batch in production.
+		tracesdk.WithBatcher(exp),
+		// Record information about this application in a Resource.
+		tracesdk.WithResource(resource.NewWithAttributes(
+			semconv.SchemaURL,
+			semconv.ServiceNameKey.String(config.Service),
+			attribute.String("environment", config.Environment),
+			attribute.Int64("ID", config.Id),
+		)),
+	)
+	return tp, nil
 }
 
 //type User struct {
@@ -108,6 +148,24 @@ type Traffic struct {
 //	}
 //	return "hashLedger succesful", nil
 //}
+
+func StartServer(port string, config Config, crypto func(w http.ResponseWriter, req *http.Request), ctx context.Context) {
+
+	logConfig := zap.NewDevelopmentConfig()
+	logConfig.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+	logger, _ = logConfig.Build()
+	defer logger.Sync()
+
+	logger.Debug(fmt.Sprintf("version: %s", config.Version))
+
+	port = ":" + port
+
+	http.HandleFunc("/crypto", crypto)
+
+	logger.Debug(fmt.Sprintf("--> Listening on %s", port))
+
+	log.Fatal(http.ListenAndServe(port, nil))
+}
 
 func RunDynamoCreateTable(tableName string) {
 	// Initialize a session in us-west-2 that the SDK will use to load

@@ -1,43 +1,19 @@
-package gjLogin
+package main
 
 import (
 	"context"
 	"errors"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"go.opentelemetry.io/otel/exporters/jaeger"
-	"go.opentelemetry.io/otel/sdk/resource"
-	tracesdk "go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
-	"gojenga/lib/gjLib"
+	"gojenga/src/lib/gjLib"
 )
 
 const (
-	service     = "blockchain"
+	service     = "login"
 	environment = "alpha"
-	id          = 1
-	verion      = "1.0.10"
+	id          = 5
+	version     = "1.0.10"
 )
-
-func TracerProvider(url string) (*tracesdk.TracerProvider, error) {
-	// Create the Jaeger exporter
-	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
-	if err != nil {
-		return nil, err
-	}
-	tp := tracesdk.NewTracerProvider(
-		// Always be sure to batch in production.
-		tracesdk.WithBatcher(exp),
-		// Record information about this application in a Resource.
-		tracesdk.WithResource(resource.NewWithAttributes(
-			semconv.SchemaURL,
-			semconv.ServiceNameKey.String(service),
-			attribute.String("environment", environment),
-			attribute.Int64("ID", id),
-		)),
-	)
-	return tp, nil
-}
 
 func Login(jsonResponse gjLib.Traffic, ctx context.Context) (results string, err error) {
 	tr := otel.Tracer("crypto-trace")

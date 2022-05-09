@@ -4,20 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"gjLib"
+
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
-	"gojenga/lib/gjLib"
-	"gojenga/services/gjCreateUser"
-	"gojenga/services/gjDelete"
-	"gojenga/services/gjDeposit"
-	"gojenga/services/gjLogin"
-	"gojenga/services/gjQuery"
-	"gojenga/services/gjTransaction"
-	"gojenga/services/gjUser"
+
 	"io"
 	"log"
 	"net/http"
@@ -25,18 +19,23 @@ import (
 
 	_ "bytes"
 	"go.opentelemetry.io/otel/sdk/trace"
-	//"go.opentelemetry.io/otel"
-	//"go.opentelemetry.io/otel/attribute"
 	tracesdk "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
-	//_ "go.opentelemetry.io/otel/trace"
 )
 
 func main() {
+
 	ctx := context.Background()
 
+	config := gjLib.Config{
+		Service:     service,
+		Environment: environment,
+		Id:          id,
+		Version:     version,
+	}
+
 	//ctx, cancelCtx := context.WithCancel(ctx)
-	StartServer("8070", ctx)
+	gjLib.StartServer("8070", config, crypto, ctx)
 	//time.Sleep(time.Second * 2)
 	//cancelCtx()
 }
@@ -45,7 +44,7 @@ const (
 	service     = "blockchain"
 	environment = "alpha"
 	id          = 1
-	verion      = "1.0.10"
+	version     = "1.0.10"
 )
 
 type Traffic struct {
@@ -85,25 +84,6 @@ func TracerProvider(url string) (*tracesdk.TracerProvider, error) {
 		)),
 	)
 	return tp, nil
-}
-
-//begining configure to ecs
-func StartServer(port string, ctx context.Context) {
-
-	config := zap.NewDevelopmentConfig()
-	config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
-	logger, _ = config.Build()
-	defer logger.Sync()
-
-	logger.Debug(fmt.Sprintf("version: %s", verion))
-
-	port = ":" + port
-
-	http.HandleFunc("/crypto", crypto)
-
-	logger.Debug(fmt.Sprintf("--> Listening on %s", port))
-
-	log.Fatal(http.ListenAndServe(port, nil))
 }
 
 //the main worker function. called when node gets an http request
