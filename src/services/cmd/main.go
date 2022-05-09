@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gjLib"
+	"github.com/drichards188/gojenga/src/lib/gjLib"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
