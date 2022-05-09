@@ -1,4 +1,4 @@
-package gojenga
+package main
 
 import (
 	"fmt"
