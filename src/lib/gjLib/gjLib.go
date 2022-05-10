@@ -145,6 +145,13 @@ func TracerProvider(url string, config Config) (*tracesdk.TracerProvider, error)
 //	return "hashLedger succesful", nil
 //}
 
+func InitializeLogger() *zap.Logger {
+	config := zap.NewDevelopmentConfig()
+	config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+	logger, _ := config.Build()
+	return logger
+}
+
 func StartServer(port string, config Config, crypto func(w http.ResponseWriter, req *http.Request), ctx context.Context) {
 
 	logConfig := zap.NewDevelopmentConfig()
