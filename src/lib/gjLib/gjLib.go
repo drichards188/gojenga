@@ -34,6 +34,7 @@ type Traffic struct {
 	Port               string
 	Payload            string
 	Password           string
+	Table              string
 }
 
 type Config struct {
