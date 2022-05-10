@@ -22,7 +22,7 @@ const (
 	service     = "createUser"
 	environment = "alpha"
 	id          = 2
-	version     = "1.0.10"
+	version     = "1.0.11"
 )
 
 func testingFunc() (throwError bool) {

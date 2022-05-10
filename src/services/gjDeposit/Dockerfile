@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gj-deposit .
+RUN go build -o /gj-deposit
 
 EXPOSE 8070
 

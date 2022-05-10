@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gj-delete .
+RUN go build -o /gj-delete
 
 EXPOSE 8070
 

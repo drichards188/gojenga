@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gj-user .
+RUN go build -o /gj-user
 
 EXPOSE 8070
 

@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gj-query .
+RUN go build -o /gj-query
 
 EXPOSE 8070
 

@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gj-transaction .
+RUN go build -o /gj-transaction
 
 EXPOSE 8070
 
