@@ -26,11 +26,12 @@ const (
 )
 
 func testingFunc() (throwError bool) {
-
+	logger = gjLib.InitializeLogger()
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -89,7 +90,7 @@ func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error)
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
-	r, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
+	r, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
 	if err == nil {
 		return "--> User already exists", errors.New("--> User already exists")
 	}

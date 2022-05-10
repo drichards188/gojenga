@@ -25,10 +25,12 @@ const (
 )
 
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{

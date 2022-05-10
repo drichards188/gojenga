@@ -24,7 +24,7 @@ import (
 )
 
 func main() {
-
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -63,6 +63,7 @@ var tp *trace.TracerProvider
 var logger *zap.Logger
 
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
 	return false
 }
 
