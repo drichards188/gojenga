@@ -26,6 +26,7 @@ const (
 )
 
 func testingFunc() (throwError bool) {
+
 	return false
 }
 
