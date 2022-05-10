@@ -323,7 +323,7 @@ func RunDynamoGetItem(query Query) (resp map[string]string, err error) {
 		if err != nil {
 			log.Fatalf("Got error calling GetItem: %s", err)
 		}
-	} else if query.TableName == "users" || query.TableName == "ledger" {
+	} else if query.TableName == "users" || query.TableName == "ledger" || query.TableName == "dynamoTest" {
 		result, err = svc.GetItem(&dynamodb.GetItemInput{
 			TableName: aws.String(query.TableName),
 			Key: map[string]*dynamodb.AttributeValue{
@@ -336,8 +336,6 @@ func RunDynamoGetItem(query Query) (resp map[string]string, err error) {
 			log.Fatalf("Got error calling GetItem: %s", err)
 		}
 	}
-
-	//item := Hash{}
 
 	err = dynamodbattribute.UnmarshalMap(result.Item, &r)
 
