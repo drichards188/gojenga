@@ -3,11 +3,12 @@ module github.com/drichards188/gojenga/src/services/gjDeposit
 go 1.18
 
 require (
-	github.com/aws/aws-sdk-go v1.44.4
-	go.opentelemetry.io/otel v1.6.3
-	go.opentelemetry.io/otel/exporters/jaeger v1.2.0
-	go.opentelemetry.io/otel/sdk v1.6.3
-	go.opentelemetry.io/otel/trace v1.6.3
+	github.com/aws/aws-sdk-go v1.44.10
+	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220509195336-5a94fc56fe77
+	go.opentelemetry.io/otel v1.7.0
+	go.opentelemetry.io/otel/exporters/jaeger v1.7.0
+	go.opentelemetry.io/otel/sdk v1.7.0
+	go.opentelemetry.io/otel/trace v1.7.0
 	go.uber.org/zap v1.21.0
 )
 

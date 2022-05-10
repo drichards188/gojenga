@@ -41,7 +41,7 @@ func main() {
 }
 
 const (
-	service     = "blockchain"
+	service     = "gojenga"
 	environment = "alpha"
 	id          = 1
 	version     = "1.0.10"

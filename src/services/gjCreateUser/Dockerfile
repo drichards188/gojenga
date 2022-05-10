@@ -10,8 +10,8 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gjCreateUser .
+RUN go build -o /gs-create-user
 
 EXPOSE 8070
 
-CMD [ "/gjCreateUser" ]
+CMD [ "/gs-create-user" ]

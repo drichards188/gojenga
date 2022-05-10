@@ -1,10 +1,11 @@
-package gjCreateUser
+package main
 
 import (
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -21,8 +22,12 @@ const (
 	service     = "createUser"
 	environment = "alpha"
 	id          = 2
-	version     = "1.0.10"
+	version     = "1.0.11"
 )
+
+func testingFunc() (throwError bool) {
+	return false
+}
 
 func main() {
 	ctx := context.Background()
@@ -42,7 +47,13 @@ func main() {
 
 func crypto(w http.ResponseWriter, req *http.Request) {
 	ctx := context.Background()
-	handleCrypto(req, ctx)
+	w.WriteHeader(http.StatusOK)
+	results := handleCrypto(req, ctx)
+	_, err := w.Write([]byte(`{"response":` + results + `}`))
+	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		return
+	}
 }
 
 func handleCrypto(req *http.Request, ctx context.Context) (results string) {

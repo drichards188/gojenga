@@ -5,10 +5,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"gojenga/src/lib/gjLib"
+	"go.uber.org/zap"
+	"io"
+	"log"
+	"net/http"
 )
+
+var logger *zap.Logger
 
 const (
 	service     = "query"
@@ -17,7 +23,67 @@ const (
 	version     = "1.0.10"
 )
 
-func FindUser(Account string, ctx context.Context) (string, error) {
+func testingFunc() (throwError bool) {
+	return false
+}
+
+func main() {
+	ctx := context.Background()
+
+	config := gjLib.Config{
+		Service:     service,
+		Environment: environment,
+		Id:          id,
+		Version:     version,
+	}
+
+	//ctx, cancelCtx := context.WithCancel(ctx)
+	gjLib.StartServer("8070", config, crypto, ctx)
+	//time.Sleep(time.Second * 2)
+	//cancelCtx()
+}
+
+func crypto(w http.ResponseWriter, req *http.Request) {
+	ctx := context.Background()
+	w.WriteHeader(http.StatusOK)
+	results := handleCrypto(req, ctx)
+	_, err := w.Write([]byte(`{"response":` + results + `}`))
+	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		return
+	}
+}
+
+func handleCrypto(req *http.Request, ctx context.Context) (results string) {
+	var jsonResponse gjLib.Traffic
+
+	body, err := io.ReadAll(req.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = json.Unmarshal([]byte(body), &jsonResponse)
+	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		return fmt.Sprintf("PUT unmarshal error: %s", err)
+	}
+
+	if jsonResponse.Verb == "QUERY" {
+		results, err := FindUser(jsonResponse, ctx)
+		if err != nil {
+			log.Println(err)
+			return "QUERY error"
+		}
+		return results
+	}
+
+	return "crypto error"
+}
+
+func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+
+	Account := jsonResponse.SourceAccount
+
 	tr := otel.Tracer("crypto-trace")
 	ctx, span := tr.Start(ctx, "findUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))

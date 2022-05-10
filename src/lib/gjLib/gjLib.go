@@ -21,11 +21,6 @@ import (
 	"os"
 )
 
-////works
-////hashHistory should have ledger items it is changing, hash of said ledger, hash of prev hash and current hash, time
-
-////works
-
 var tp *trace.TracerProvider
 var logger *zap.Logger
 

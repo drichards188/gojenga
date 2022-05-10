@@ -10,8 +10,8 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN go build -o /gjCreateUser .
+RUN go build -o /gj-delete
 
 EXPOSE 8070
 
-CMD [ "/gjCreateUser" ]
+CMD [ "/gj-delete" ]
