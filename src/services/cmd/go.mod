@@ -11,7 +11,7 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go v1.44.10 // indirect
-	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220509195336-5a94fc56fe77 // indirect
+	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220510182423-42dc2d909b08 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect

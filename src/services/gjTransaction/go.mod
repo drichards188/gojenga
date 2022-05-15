@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/aws/aws-sdk-go v1.44.10
-	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220509195336-5a94fc56fe77
+	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220510182423-42dc2d909b08
 	go.opentelemetry.io/otel v1.7.0
 	go.opentelemetry.io/otel/exporters/jaeger v1.7.0
 	go.opentelemetry.io/otel/sdk v1.7.0

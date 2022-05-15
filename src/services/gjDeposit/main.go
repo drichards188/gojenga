@@ -27,10 +27,24 @@ const (
 )
 
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+
+	traffic := gjLib.Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test", Amount: "12"}
+
+	resp, err := Deposit(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjDeposit test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjDeposit test returned: %s", resp))
+
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -125,7 +139,7 @@ func Deposit(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	}
 	//updateMongo(jsonResponse.SourceAccount, intFinalAmount1)
 	//writeToMongo("ledger", jsonResponse.SourceAccount, jsonResponse.Amount)
-	return jsonResponse.SourceAccount + " resp", errors.New(jsonResponse.SourceAccount + " resp")
+	return jsonResponse.SourceAccount + " resp", nil
 	//}
 
 	return "Account not found", errors.New("Account not found")

@@ -25,10 +25,24 @@ const (
 )
 
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+
+	traffic := gjLib.Traffic{SourceAccount: "david", Password: "54321", Table: "dynamoTest"}
+	resp, err := Login(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjLogin test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjLogin test returned: %s", resp))
+
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
+
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -93,9 +107,9 @@ func Login(jsonResponse gjLib.Traffic, ctx context.Context) (results string, err
 
 	jsonResponse.Role = "USER"
 
-	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
+	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
-		return "--> User already exists", errors.New("--> User already exists")
+		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
 	}
 
 	if resultMap["code"] != "1" {

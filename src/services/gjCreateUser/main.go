@@ -12,7 +12,9 @@ import (
 	"go.uber.org/zap"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 var tp *trace.TracerProvider
@@ -25,12 +27,44 @@ const (
 	version     = "1.0.11"
 )
 
+const charset = "abcdefghijklmnopqrstuvwxyz" +
+	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+var seededRand *rand.Rand = rand.New(
+	rand.NewSource(time.Now().UnixNano()))
+
+func StringWithCharset(length int, charset string) string {
+	b := make([]byte, length)
+	for i := range b {
+		b[i] = charset[seededRand.Intn(len(charset))]
+	}
+	return string(b)
+}
+
+func GenRanString(length int) string {
+	return StringWithCharset(length, charset)
+}
+
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+	randAccount := GenRanString(6)
+
+	traffic := gjLib.Traffic{SourceAccount: randAccount, Table: "dynamoTest", Role: "test"}
+
+	resp, err := CreateUser(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjCreateFunction test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjCreateFunction test returned: %s", resp))
 
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -89,7 +123,15 @@ func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error)
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
-	r, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "users", Key: "Account", Value: jsonResponse.SourceAccount})
+	if jsonResponse.Role == "test" {
+		r, err := gjLib.RunDynamoCreateItem(jsonResponse.Table, gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		if err != nil {
+			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		}
+		return r["msg"], nil
+	}
+
+	r, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
 	if err == nil {
 		return "--> User already exists", errors.New("--> User already exists")
 	}

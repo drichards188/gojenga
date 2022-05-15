@@ -24,10 +24,24 @@ const (
 )
 
 func testingFunc() (throwError bool) {
+	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+
+	traffic := gjLib.Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test"}
+
+	resp, err := FindUser(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjQuery test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjQuery test returned: %s", resp))
+
 	return false
 }
 
 func main() {
+	logger = gjLib.InitializeLogger()
 	ctx := context.Background()
 
 	config := gjLib.Config{
@@ -121,5 +135,5 @@ func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 
 	fmt.Println(theAccount)
 
-	return string(mapB), errors.New(string(mapB))
+	return string(mapB), nil
 }
