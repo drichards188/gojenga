@@ -26,6 +26,18 @@ const (
 
 func testingFunc() (throwError bool) {
 	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+
+	traffic := gjLib.Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test"}
+
+	resp, err := FindUserAccount(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjDeposit test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjDeposit test returned: %s", resp))
+
 	return false
 }
 
@@ -126,5 +138,5 @@ func FindUserAccount(jsonResponse gjLib.Traffic, ctx context.Context) (string, e
 
 	fmt.Println(theAccount)
 
-	return string(mapB), errors.New(string(mapB))
+	return string(mapB), nil
 }

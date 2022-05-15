@@ -28,6 +28,18 @@ var logger *zap.Logger
 
 func testingFunc() (throwError bool) {
 	logger = gjLib.InitializeLogger()
+	ctx := context.Background()
+
+	traffic := gjLib.Traffic{SourceAccount: "david", DestinationAccount: "allie", Table: "dynamoTest", Role: "test", Amount: "12"}
+
+	resp, err := Transaction(traffic, ctx)
+	if err != nil {
+		logger.Warn(fmt.Sprintf("gjDeposit test error: %s", err))
+		return true
+	}
+
+	logger.Debug(fmt.Sprintf("gjDeposit test returned: %s", resp))
+
 	return false
 }
 
@@ -144,5 +156,5 @@ func Transaction(jsonResponse gjLib.Traffic, ctx context.Context) (string, error
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
-	return "Transaction Successful", errors.New("Transaction Succesful")
+	return "Transaction Successful", nil
 }

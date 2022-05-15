@@ -26,7 +26,6 @@ const (
 
 func testingFunc() (throwError bool) {
 	logger = gjLib.InitializeLogger()
-
 	ctx := context.Background()
 
 	traffic := gjLib.Traffic{SourceAccount: "david", Password: "54321", Table: "dynamoTest"}
