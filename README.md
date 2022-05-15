@@ -1,8 +1,7 @@
 # Gojenga
-## Hashed Ledger Banking Portfolio Project
+## Serverless Banking Portfolio Project
 
 ### Made by David Richards
-### Breaking into backend industry
 ### https://www.linkedin.com/in/drichards188/
 
 ## **WIP (Work In Progress)**
