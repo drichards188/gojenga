@@ -74,6 +74,8 @@ https://aws.amazon.com/ecr/
 
 -clone project
 
+-enter sqs url on lambda folder
+
 -enter directory
 
 -build and run gojenga/main/main.go
