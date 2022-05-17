@@ -20,12 +20,14 @@
 -Zap logging
 
 ## **What this project does**<br>
-This project creates a http server meant for ECS. Users can create accounts, make deposits and payments to
+This project creates microservices meant for ECS. Users can create accounts, make deposits and payments to
 other users. They can also see their account information and balance as well as delete their account. The storage solution 
 is dynamoDB on AWS. I'm working on converting the hashing functionality from mongo to dynamo. Transactions will flow 
 at top speed and only log with a hashed ledger, so it is not a bottleneck
 
 ## **Design Decisions**<br>
+This project will only address the system from the event bus down. Anything above that such as step functions, api gateway, and a UI will not be addressed.
+
 Golang was selected for duck type interfaces, channels and context propagation.
 
 DynamoDB was selected for its open schema and low cost.
@@ -33,6 +35,8 @@ DynamoDB was selected for its open schema and low cost.
 OpenTelemetry is vital for debugging the system at scale by braiding the three pillars together.
 
 ## **Roadmap**<br>
+[0] - Impliment Saga Orchestration for transaction completion and rollbacks
+
 [1] - Making the system Zillow production compliant
 
 -Comments
