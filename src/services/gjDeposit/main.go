@@ -144,3 +144,7 @@ func Deposit(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 
 	return "Account not found", errors.New("Account not found")
 }
+
+func RollbackDeposit() {
+
+}
