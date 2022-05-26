@@ -1,0 +1,299 @@
+2022-05-26 07:09:42,727 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 6762 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
+2022-05-26 07:09:42,730 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 07:09:42,730 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 07:09:43,897 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 07:09:43,934 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 33 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 07:09:44,367 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 07:09:44,374 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:09:44,374 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 07:09:44,375 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 07:09:44,532 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 07:09:44,532 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1737 ms
+2022-05-26 07:09:44,864 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 07:09:44,965 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f7c18cf96164f9ee57cc2', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:1}] to localhost:27017
+2022-05-26 07:09:44,965 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f7c18cf96164f9ee57cc2', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:2}] to localhost:27017
+2022-05-26 07:09:44,965 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f7c18cf96164f9ee57cc2', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=54711995}
+2022-05-26 07:09:46,116 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 07:09:46,151 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:09:46,159 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 07:09:46,172 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 4.072 seconds (JVM running for 6.292)
+2022-05-26 07:09:46,486 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 07:09:46,486 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 07:09:46,488 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 2 ms
+2022-05-26 07:09:46,510 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:3}] to localhost:27017
+2022-05-26 07:20:12,775 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:3}] to localhost:27017 because the pool has been closed.
+2022-05-26 07:51:32,202 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 9197 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
+2022-05-26 07:51:32,205 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 07:51:32,206 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 07:51:32,901 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 07:51:32,940 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 35 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 07:51:33,388 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 07:51:33,394 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:51:33,395 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 07:51:33,395 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 07:51:33,453 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 07:51:33,453 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1208 ms
+2022-05-26 07:51:33,760 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 07:51:33,798 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f85e548b9b9672086746f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:5}] to localhost:27017
+2022-05-26 07:51:33,798 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f85e548b9b9672086746f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:4}] to localhost:27017
+2022-05-26 07:51:33,799 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f85e548b9b9672086746f', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13481383}
+2022-05-26 07:51:34,860 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 07:51:34,899 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:51:34,908 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 07:51:34,922 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.12 seconds (JVM running for 6.071)
+2022-05-26 07:51:35,981 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 07:51:35,982 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 07:51:35,986 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 3 ms
+2022-05-26 07:51:35,996 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:6}] to localhost:27017
+2022-05-26 07:52:59,698 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:6}] to localhost:27017 because the pool has been closed.
+2022-05-26 07:53:42,649 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 9422 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
+2022-05-26 07:53:42,651 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 07:53:42,652 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 07:53:43,298 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 07:53:43,330 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 07:53:43,811 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 07:53:43,817 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:53:43,819 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 07:53:43,820 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 07:53:43,886 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 07:53:43,886 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1205 ms
+2022-05-26 07:53:44,211 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 07:53:44,241 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f866861dd366fe619980e', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:8}] to localhost:27017
+2022-05-26 07:53:44,241 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f866861dd366fe619980e', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:9}] to localhost:27017
+2022-05-26 07:53:44,242 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f866861dd366fe619980e', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=9933288}
+2022-05-26 07:53:45,255 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 07:53:45,289 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 07:53:45,296 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 07:53:45,311 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.008 seconds (JVM running for 3.529)
+2022-05-26 07:53:45,655 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 07:53:45,656 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 07:53:45,657 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-05-26 07:53:45,668 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:10}] to localhost:27017
+2022-05-26 08:00:43,917 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:10}] to localhost:27017 because the pool has been closed.
+2022-05-26 08:00:47,647 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 9700 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
+2022-05-26 08:00:47,662 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 08:00:47,662 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 08:00:48,574 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 08:00:48,619 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 40 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 08:00:49,044 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 08:00:49,050 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:00:49,051 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 08:00:49,051 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 08:00:49,114 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 08:00:49,114 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1348 ms
+2022-05-26 08:00:49,433 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 08:00:49,485 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f88119d12427af8252b86', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:13}] to localhost:27017
+2022-05-26 08:00:49,485 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f88119d12427af8252b86', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:12}] to localhost:27017
+2022-05-26 08:00:49,487 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f88119d12427af8252b86', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=25101175}
+2022-05-26 08:00:50,638 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 08:00:50,675 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:00:50,684 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 08:00:50,697 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.607 seconds (JVM running for 4.554)
+2022-05-26 08:00:51,211 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 08:00:51,212 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 08:00:51,213 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-05-26 08:00:51,232 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:14}] to localhost:27017
+2022-05-26 08:02:30,782 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-3] Post mapping triggered
+2022-05-26 08:02:32,903 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:14}] to localhost:27017 because the pool has been closed.
+2022-05-26 08:02:36,128 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 9930 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
+2022-05-26 08:02:36,131 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 08:02:36,132 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 08:02:36,838 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 08:02:36,888 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 46 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 08:02:37,313 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 08:02:37,320 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:02:37,320 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 08:02:37,320 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 08:02:37,388 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 08:02:37,388 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1212 ms
+2022-05-26 08:02:37,685 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 08:02:37,728 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f887dd2a9dc7ba88c6e83', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:16}] to localhost:27017
+2022-05-26 08:02:37,728 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f887dd2a9dc7ba88c6e83', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:15}] to localhost:27017
+2022-05-26 08:02:37,729 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f887dd2a9dc7ba88c6e83', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14572838}
+2022-05-26 08:02:38,801 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 08:02:38,839 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:02:38,847 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 08:02:38,859 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.204 seconds (JVM running for 4.157)
+2022-05-26 08:02:39,328 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 08:02:39,329 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 08:02:39,331 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-05-26 08:02:39,341 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:17}] to localhost:27017
+2022-05-26 08:02:49,253 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] Post mapping triggered
+2022-05-26 08:02:49,570 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot connect the database!] with root cause
+com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'MDT' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
+	at com.mysql.cj.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:132)
+	at com.mysql.cj.protocol.a.NativeProtocol.configureTimezone(NativeProtocol.java:2241)
+	at com.mysql.cj.protocol.a.NativeProtocol.initServerSession(NativeProtocol.java:2265)
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:1319)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:966)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:455)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at com.hyperion.datalake.SqlInter.main(SqlInter.java:32)
+	at com.hyperion.datalake.TutorialController.handlePost(TutorialController.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-05-26 08:06:56,396 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:17}] to localhost:27017 because the pool has been closed.
+2022-05-26 08:15:57,114 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 10551 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-05-26 08:15:57,116 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-05-26 08:15:57,117 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-05-26 08:15:57,731 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-05-26 08:15:57,764 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-05-26 08:15:58,150 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-05-26 08:15:58,158 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:15:58,159 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-05-26 08:15:58,159 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-05-26 08:15:58,229 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-05-26 08:15:58,229 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1073 ms
+2022-05-26 08:15:58,527 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-05-26 08:15:58,564 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f8b9ee919870e87b22c45', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:19}] to localhost:27017
+2022-05-26 08:15:58,564 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='628f8b9ee919870e87b22c45', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:18}] to localhost:27017
+2022-05-26 08:15:58,565 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='628f8b9ee919870e87b22c45', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14059020}
+2022-05-26 08:15:59,681 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-05-26 08:15:59,723 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-05-26 08:15:59,734 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-05-26 08:15:59,750 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.969 seconds (JVM running for 3.546)
+2022-05-26 08:16:00,074 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-26 08:16:00,075 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-05-26 08:16:00,077 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2022-05-26 08:16:00,086 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:20}] to localhost:27017
+2022-05-26 08:16:19,313 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] Post mapping triggered
+2022-05-26 08:16:19,613 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot connect the database!] with root cause
+com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'MDT' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:85)
+	at com.mysql.cj.util.TimeUtil.getCanonicalTimezone(TimeUtil.java:132)
+	at com.mysql.cj.protocol.a.NativeProtocol.configureTimezone(NativeProtocol.java:2241)
+	at com.mysql.cj.protocol.a.NativeProtocol.initServerSession(NativeProtocol.java:2265)
+	at com.mysql.cj.jdbc.ConnectionImpl.initializePropsFromServer(ConnectionImpl.java:1319)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:966)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:455)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:240)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:199)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
+	at com.hyperion.datalake.SqlInter.main(SqlInter.java:32)
+	at com.hyperion.datalake.TutorialController.handlePost(TutorialController.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-05-26 08:20:15,416 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:20}] to localhost:27017 because the pool has been closed.
