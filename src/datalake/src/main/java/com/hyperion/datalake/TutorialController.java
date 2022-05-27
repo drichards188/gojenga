@@ -61,7 +61,9 @@ public class TutorialController {
                 Tutorial response = botnetFuncs.transaction(tutorialRepository, hashRepository, tutorial);
 
                 return new ResponseEntity<>(response, HttpStatus.OK);
-            } else if (tutorial.getVerb().equals("QUERY")) {
+            } else if (tutorial.getVerb().equals("ADD")) {
+//                todo placeholder
+            }else if (tutorial.getVerb().equals("QUERY")) {
                 logger.debug("Attempting QUERY");
                 logger.info("Attempting QUERY");
                 Tutorial response = botnetFuncs.findAccount(tutorialRepository, tutorial.getAccount());
