@@ -23,7 +23,7 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
     public static void main() throws Exception {
 
         SqlInter sqlInter = new SqlInter();
-        String url = "jdbc:mysql://localhost:3306/crypto";
+        String url = "jdbc:mysql://localhost:3306/crypto?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String username = "david";
         String password = "password";
 

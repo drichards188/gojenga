@@ -25,8 +25,6 @@ public class LwrPOJO {
         this.amount = amount;
     }
 
-
-
     public String getaccount() {
         return account;
     }
