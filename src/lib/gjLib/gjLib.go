@@ -349,24 +349,9 @@ func RunDynamoGetItem(query Query) (resp map[string]string, err error) {
 	r["code"] = "0"
 
 	return r, nil
-
-	//if err != nil {
-	//	panic(fmt.Sprintf("Failed to unmarshal Record, %v", err))
-	//}
-	//
-	//if item.Hash == "" {
-	//	fmt.Println("Could not find 'The Big New Movie' (2015)")
-	//	return
-	//}
-
-	//fmt.Println("Found item")
-	//fmt.Println("Year:  ", item.Year)
-	//fmt.Println("Title: ", item.Title)
-	//fmt.Println("Plot:  ", item.Info.Plot)
-	//fmt.Println("Rating:", item.Info.Rating)
 }
 
-func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string) {
+func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string, err error) {
 	// Initialize a session in us-west-2 that the SDK will use to load
 	// credentials from the shared credentials file ~/.aws/credentials.
 	sess, err := session.NewSession(&aws.Config{
@@ -383,7 +368,7 @@ func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string
 
 	m := make(map[string]any)
 
-	if tableName == "users" || tableName == "ledger" {
+	if tableName == "users" || tableName == "ledger" || tableName == "dynamoTest" {
 		m["Account"] = value
 	} else if tableName == "hashHistory" {
 		m["Iteration"] = value
@@ -395,7 +380,7 @@ func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string
 		fmt.Println(err.Error())
 		r["msg"] = "-->Could not gjDelete: " + value
 		r["code"] = "1"
-		return r
+		return r, errors.New("-->Could not get gjDelete " + value)
 	}
 
 	input := &dynamodb.DeleteItemInput{
@@ -413,5 +398,5 @@ func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string
 	fmt.Println("Delete complete")
 	r["msg"] = "-->Completed gjDelete: " + value
 	r["code"] = "0"
-	return r
+	return r, nil
 }
