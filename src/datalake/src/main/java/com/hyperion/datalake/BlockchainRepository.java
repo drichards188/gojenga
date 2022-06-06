@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface TutorialRepository extends MongoRepository<Tutorial, String> {
+public interface BlockchainRepository extends MongoRepository<Blockchain, String> {
 //    List<Tutorial> findByTitleContaining(String account);
 //    List<Tutorial> findByPublished(boolean published);
-    List<Tutorial> findByAccountContaining(String Account);
-    List<Tutorial> findByAccount2Containing(String Account);
+    List<Blockchain> findByAccountContaining(String Account);
+    List<Blockchain> findByAccount2Containing(String Account);
     Long deleteByAccount(String Account);
 //    List<Tutorial> findByAccount(String Account);
 }
