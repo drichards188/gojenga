@@ -1,26 +1,8 @@
 package com.hyperion.datalake;
 
-import org.bson.Document;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import com.hyperion.datalake.TutorialRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpEntity;
-
-import java.util.*;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -28,26 +10,24 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BotnetFuncs {
 //    @Autowired
 //    HashRepository hashRepository;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Tutorial createAccount(TutorialRepository tutorialRepository, HashRepository hashRepository, Tutorial tutorial) throws NoSuchAlgorithmException {
-        Tutorial _tutorial = new Tutorial();
+    public Blockchain createAccount(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException {
+        Blockchain _blockchain = new Blockchain();
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
-            _tutorial = tutorialRepository.save(new Tutorial(tutorial.getAccount(), tutorial.getAmount()));
-            hashLedger(tutorialRepository, hashRepository, tutorial);
-            return _tutorial;
+            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getAccount(), blockchain.getAmount()));
+            hashLedger(blockchainRepository, hashRepository, blockchain);
+            return _blockchain;
         } catch (Exception e) {
             logger.error("createAccount threw exception");
-            _tutorial.setMessage("createAccount failed");
-            return _tutorial;
+            _blockchain.setMessage("createAccount failed");
+            return _blockchain;
         }
 
 //        MongoStruct query = new MongoStruct();
@@ -71,43 +51,43 @@ public class BotnetFuncs {
 //        return "account not found";
     }
 
-    public Tutorial findAccount(TutorialRepository tutorialRepository, String Account) {
-        Tutorial _tutorial = new Tutorial();
+    public Blockchain findAccount(BlockchainRepository blockchainRepository, String Account) {
+        Blockchain _blockchain = new Blockchain();
         logger.debug("Attempting findAccount");
         logger.info("Attempting findAccount");
         String amount = "";
         try {
-            List<Tutorial> tutorialData = tutorialRepository.findByAccountContaining(Account);
+            List<Blockchain> blockchainData = blockchainRepository.findByAccountContaining(Account);
 
-            if (!tutorialData.isEmpty()) {
-                _tutorial = tutorialData.get(0);
-                Account = _tutorial.getAccount();
-                amount = _tutorial.getAmount();
+            if (!blockchainData.isEmpty()) {
+                _blockchain = blockchainData.get(0);
+                Account = _blockchain.getAccount();
+                amount = _blockchain.getAmount();
 
-                return _tutorial;
+                return _blockchain;
             }
 
             else {
-                _tutorial.setMessage("No Results Found");
-                return _tutorial;
+                _blockchain.setMessage("No Results Found");
+                return _blockchain;
             }
 
         } catch (Exception e) {
             logger.error("findAccount threw exception");
-            _tutorial.setMessage("createAccount failed");
-            return _tutorial;
+            _blockchain.setMessage("createAccount failed");
+            return _blockchain;
         }
     }
 
-    public Tutorial deleteAccount(TutorialRepository tutorialRepository, String Account) {
-        Tutorial _tutorial = new Tutorial();
+    public Blockchain deleteAccount(BlockchainRepository blockchainRepository, String Account) {
+        Blockchain _blockchain = new Blockchain();
         logger.debug("Attempting deleteAccount");
         logger.info("Attempting deleteAccount");
         try {
-           Long tutorialData = tutorialRepository.deleteByAccount(Account);
+           Long tutorialData = blockchainRepository.deleteByAccount(Account);
 
-            _tutorial.setMessage("Account Delete Success");
-                return _tutorial;
+            _blockchain.setMessage("Account Delete Success");
+                return _blockchain;
 
 //            if (!tutorialData.isEmpty()) {
 //                _tutorial = tutorialData.get(0);
@@ -124,18 +104,18 @@ public class BotnetFuncs {
 
         } catch (Exception e) {
             logger.error("deleteAccount threw an exception");
-            _tutorial.setMessage("createAccount failed");
-            return _tutorial;
+            _blockchain.setMessage("createAccount failed");
+            return _blockchain;
         }
     }
 
-    public Tutorial transaction(TutorialRepository tutorialRepository, HashRepository hashRepository, Tutorial tutorial) throws IOException, ParseException, NoSuchAlgorithmException {
+    public Blockchain transaction(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
 
-        Tutorial account1 = findAccount(tutorialRepository, tutorial.getAccount());
-        Tutorial account2 = findAccount(tutorialRepository, tutorial.getAccount2());
-        Tutorial _tutorial = new Tutorial();
+        Blockchain account1 = findAccount(blockchainRepository, blockchain.getAccount());
+        Blockchain account2 = findAccount(blockchainRepository, blockchain.getAccount2());
+        Blockchain _blockchain = new Blockchain();
 
 //        if (result1.equals("No results Found")) {
 //            _tutorial.setMessage("No Results Found");
@@ -147,20 +127,20 @@ public class BotnetFuncs {
 //            return _tutorial;
 //        }
 
-        Integer amount1 = Integer.parseInt(account1.getAmount()) - Integer.parseInt(tutorial.getAmount());
-        Integer amount2 = Integer.parseInt(account2.getAmount()) + Integer.parseInt(tutorial.getAmount());
+        Integer amount1 = Integer.parseInt(account1.getAmount()) - Integer.parseInt(blockchain.getAmount());
+        Integer amount2 = Integer.parseInt(account2.getAmount()) + Integer.parseInt(blockchain.getAmount());
 
         account1.setAmount(amount1.toString());
         account2.setAmount(amount2.toString());
 
-        tutorialRepository.deleteByAccount(tutorial.getAccount());
-        tutorialRepository.deleteByAccount(tutorial.getAccount2());
+        blockchainRepository.deleteByAccount(blockchain.getAccount());
+        blockchainRepository.deleteByAccount(blockchain.getAccount2());
 
-        _tutorial = tutorialRepository.save(account1);
-        _tutorial = tutorialRepository.save(account2);
-        hashLedger(tutorialRepository, hashRepository, tutorial);
+        _blockchain = blockchainRepository.save(account1);
+        _blockchain = blockchainRepository.save(account2);
+        hashLedger(blockchainRepository, hashRepository, blockchain);
 
-        return _tutorial = _tutorial;
+        return _blockchain = _blockchain;
 
 
 //        MongoStruct query = new MongoStruct();
@@ -190,10 +170,10 @@ public class BotnetFuncs {
 //        return "Transaction Successful";
     }
 
-    public String hashLedger(TutorialRepository tutorialRepository, HashRepository hashRepository, Tutorial tutorial) throws NoSuchAlgorithmException, ParseException {
+    public String hashLedger(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
         logger.debug("Attempting hashLedger");
         logger.info("Attempting hashLedger");
-        String results = getAllTutorials(tutorialRepository);
+        String results = getAllTutorials(blockchainRepository);
         Hash hashStruc = new Hash();
         String prevHash = "";
 //        MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -222,12 +202,12 @@ public class BotnetFuncs {
 
         hashStruc.setPreviousHash(prevHash);
 
-        if (tutorial.getVerb().equals("CRT")) {
-            String ledgerStr = tutorial.getAccount() + tutorial.getAmount();
+        if (blockchain.getVerb().equals("CRT")) {
+            String ledgerStr = blockchain.getAccount() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
-        } else if (tutorial.getVerb().equals("TRAN")) {
-            String ledgerStr = tutorial.getAccount() + tutorial.getAccount2() + tutorial.getAmount();
+        } else if (blockchain.getVerb().equals("TRAN")) {
+            String ledgerStr = blockchain.getAccount() + blockchain.getAccount2() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
         }
@@ -279,17 +259,17 @@ public class BotnetFuncs {
 //        return "Unsuccessful";
     }
 
-    public String getAllTutorials(TutorialRepository tutorialRepository) {
+    public String getAllTutorials(BlockchainRepository blockchainRepository) {
             String result = "";
 
-            List<Tutorial> tutorials = new ArrayList<Tutorial>();
-            Tutorial tutorial = new Tutorial();
+            List<Blockchain> blockchains = new ArrayList<Blockchain>();
+            Blockchain blockchain = new Blockchain();
 
-            tutorialRepository.findAll().forEach(tutorials::add);
+            blockchainRepository.findAll().forEach(blockchains::add);
 
             Integer i = 0;
-            while (i < tutorials.size()) {
-                Tutorial currentTut = tutorials.get(i);
+            while (i < blockchains.size()) {
+                Blockchain currentTut = blockchains.get(i);
                 result = result + currentTut.toHashString();
                 i+= 1;
             }

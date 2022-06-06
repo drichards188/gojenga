@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "ledger")
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Tutorial {
+public class Blockchain {
     public String amount;
     public String account;
     public String account2;
@@ -16,11 +16,11 @@ public class Tutorial {
     public String payload;
     public String message;
 
-    public Tutorial() {
+    public Blockchain() {
 
     }
 
-public Tutorial(String account, String amount) {
+public Blockchain(String account, String amount) {
         this.account = account;
         this.amount = amount;
         }

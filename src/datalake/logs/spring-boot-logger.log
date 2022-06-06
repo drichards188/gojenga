@@ -93,7 +93,7 @@
 2022-05-26 08:00:51,212 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
 2022-05-26 08:00:51,213 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
 2022-05-26 08:00:51,232 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:14}] to localhost:27017
-2022-05-26 08:02:30,782 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-3] Post mapping triggered
+2022-05-26 08:02:30,782 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
 2022-05-26 08:02:32,903 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:14}] to localhost:27017 because the pool has been closed.
 2022-05-26 08:02:36,128 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.1 on CoffeeContainer with PID 9930 (/home/drich/datalake/build/classes/java/main started by drich in /home/drich/datalake)
 2022-05-26 08:02:36,131 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
@@ -118,7 +118,7 @@
 2022-05-26 08:02:39,329 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
 2022-05-26 08:02:39,331 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
 2022-05-26 08:02:39,341 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:17}] to localhost:27017
-2022-05-26 08:02:49,253 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] Post mapping triggered
+2022-05-26 08:02:49,253 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
 2022-05-26 08:02:49,570 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot connect the database!] with root cause
 com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'MDT' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -140,7 +140,7 @@ com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zon
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
 	at com.hyperion.datalake.SqlInter.main(SqlInter.java:32)
-	at com.hyperion.datalake.TutorialController.handlePost(TutorialController.java:44)
+	at com.hyperion.datalake.BlockchainController.handlePost(TutorialController.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -219,7 +219,7 @@ com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zon
 2022-05-26 08:16:00,075 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
 2022-05-26 08:16:00,077 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
 2022-05-26 08:16:00,086 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:20}] to localhost:27017
-2022-05-26 08:16:19,313 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] Post mapping triggered
+2022-05-26 08:16:19,313 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
 2022-05-26 08:16:19,613 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: Cannot connect the database!] with root cause
 com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zone value 'MDT' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration property) to use a more specifc time zone value if you want to utilize time zone support.
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -241,7 +241,7 @@ com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zon
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:229)
 	at com.hyperion.datalake.SqlInter.main(SqlInter.java:32)
-	at com.hyperion.datalake.TutorialController.handlePost(TutorialController.java:44)
+	at com.hyperion.datalake.BlockchainController.handlePost(TutorialController.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -344,10 +344,10 @@ com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zon
 2022-05-26 09:13:29,605 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
 2022-05-26 09:13:29,606 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
 2022-05-26 09:13:29,626 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:31}] to localhost:27017
-2022-05-26 09:13:34,382 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-1] Post mapping triggered
-2022-05-26 09:13:36,255 ERROR com.hyperion.datalake.TutorialController [http-nio-6789-exec-1] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Tutorial.getVerb()" is null
-2022-05-26 09:16:09,623 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-4] Post mapping triggered
-2022-05-26 09:16:09,657 ERROR com.hyperion.datalake.TutorialController [http-nio-6789-exec-4] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Tutorial.getVerb()" is null
+2022-05-26 09:13:34,382 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-05-26 09:13:36,255 ERROR com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Blockchain.getVerb()" is null
+2022-05-26 09:16:09,623 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Post mapping triggered
+2022-05-26 09:16:09,657 ERROR com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Blockchain.getVerb()" is null
 2022-05-26 09:16:11,878 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:31}] to localhost:27017 because the pool has been closed.
 2022-05-26 09:16:14,702 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12952 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
 2022-05-26 09:16:14,705 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
@@ -372,6 +372,6 @@ com.mysql.cj.exceptions.InvalidConnectionAttributeException: The server time zon
 2022-05-26 09:16:17,727 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
 2022-05-26 09:16:17,729 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 2 ms
 2022-05-26 09:16:17,734 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:34}] to localhost:27017
-2022-05-26 09:16:29,872 DEBUG com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] Post mapping triggered
-2022-05-26 09:16:30,205 ERROR com.hyperion.datalake.TutorialController [http-nio-6789-exec-2] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Tutorial.getVerb()" is null
+2022-05-26 09:16:29,872 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-05-26 09:16:30,205 ERROR com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] handlePost triggered exception: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "com.hyperion.datalake.Blockchain.getVerb()" is null
 2022-05-26 09:16:54,205 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:34}] to localhost:27017 because the pool has been closed.
