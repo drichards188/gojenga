@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/drichards188/gojenga/src/lib/gjLib"
+
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -158,7 +159,7 @@ func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error)
 
 func RollbackCreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
-	_, span := tr.Start(ctx, "createUser")
+	_, span := tr.Start(ctx, "rollbackCreateUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
@@ -168,24 +169,17 @@ func RollbackCreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 		return r["msg"], nil
+	} else {
+		r, err := gjLib.RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+		if err != nil {
+			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		}
+
+		r, err = gjLib.RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+		if err != nil {
+			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		}
 	}
 
-	r := gjLib.RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
-
-	r = gjLib.RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
-	//if err == nil {
-	//	return "--> User already exists", errors.New("--> User already exists")
-	//}
-	//
-	//r, err = gjLib.RunDynamoCreateItem("users", gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
-	//if err != nil {
-	//	return "--> " + r["msg"], errors.New("--> " + r["msg"])
-	//}
-	//
-	//r, err = gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
-	//if err != nil {
-	//	return "--> " + r["msg"], errors.New("--> " + r["msg"])
-	//}
-
-	return r["msg"], nil
+	return "rollback createUser complete", nil
 }

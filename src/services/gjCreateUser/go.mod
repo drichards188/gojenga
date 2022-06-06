@@ -3,7 +3,7 @@ module github.com/drichards188/gojenga/src/services/gjCreateUser
 go 1.18
 
 require (
-	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220606172839-070f699b43ef
+	github.com/drichards188/gojenga/src/lib/gjLib v0.0.0-20220606184205-f286a44359c6
 	go.opentelemetry.io/otel v1.7.0
 	go.opentelemetry.io/otel/sdk v1.7.0
 	go.uber.org/zap v1.21.0
