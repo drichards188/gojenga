@@ -112,6 +112,13 @@ func handleCrypto(req *http.Request, ctx context.Context) (results string) {
 			return "CRT error"
 		}
 		return results
+	} else if jsonResponse.Verb == "ROLL" {
+		results, err := RollbackCreateUser(jsonResponse, ctx)
+		if err != nil {
+			log.Println(err)
+			return "ROLL error"
+		}
+		return results
 	}
 
 	return "crypto error"
@@ -145,6 +152,40 @@ func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
+
+	return r["msg"], nil
+}
+
+func RollbackCreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+	tr := otel.Tracer("crypto-trace")
+	_, span := tr.Start(ctx, "createUser")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
+	if jsonResponse.Role == "test" {
+		r, err := gjLib.RunDynamoCreateItem(jsonResponse.Table, gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		if err != nil {
+			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		}
+		return r["msg"], nil
+	}
+
+	r := gjLib.RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+
+	r = gjLib.RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+	//if err == nil {
+	//	return "--> User already exists", errors.New("--> User already exists")
+	//}
+	//
+	//r, err = gjLib.RunDynamoCreateItem("users", gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
+	//if err != nil {
+	//	return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	//}
+	//
+	//r, err = gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
+	//if err != nil {
+	//	return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	//}
 
 	return r["msg"], nil
 }
