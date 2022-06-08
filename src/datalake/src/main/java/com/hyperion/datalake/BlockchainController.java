@@ -35,40 +35,43 @@ public class BlockchainController {
     public ResponseEntity<Blockchain> handlePost(@RequestBody Blockchain blockchain) throws Exception {
 
         logger.debug("Post mapping triggered");
-        sqlInter.main();
-//        logger.info("Info: Log4j2 Usage");
-//        logger.debug("Debug: Program has finished successfully");
-//        logger.error("Error: Program has errors");
+//        sqlInter.main();
 
         try {
-            if (blockchain.getVerb().equals("CRT")) {
-                logger.debug("Attempting CRT");
-                logger.info("Attempting CRT");
+            switch (blockchain.getVerb()) {
+                case "CRT": {
+                    logger.debug("Attempting CRT");
+                    logger.info("Attempting CRT");
 
-                Blockchain response = botnetFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
+//                    Blockchain response = botnetFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
 
-//                Tutorial _tutorial = tutorialRepository.save(new Tutorial(tutorial.getAccount(), tutorial.getAmount()));
-                return new ResponseEntity<>(response, HttpStatus.CREATED);
-            } else if (blockchain.getVerb().equals("TRAN")) {
-                logger.debug("Attempting TRAN");
-                logger.info("Attempting TRAN");
-                Blockchain response = botnetFuncs.transaction(blockchainRepository, hashRepository, blockchain);
+                Blockchain response = blockchainRepository.save(blockchain);
+                    return new ResponseEntity<>(response, HttpStatus.CREATED);
+                }
+                case "TRAN": {
+                    logger.debug("Attempting TRAN");
+                    logger.info("Attempting TRAN");
+                    Blockchain response = botnetFuncs.transaction(blockchainRepository, hashRepository, blockchain);
 
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            } else if (blockchain.getVerb().equals("ADD")) {
+                    return new ResponseEntity<>(response, HttpStatus.OK);
+                }
+                case "ADD":
 //                todo placeholder
-            }else if (blockchain.getVerb().equals("QUERY")) {
-                logger.debug("Attempting QUERY");
-                logger.info("Attempting QUERY");
-                Blockchain response = botnetFuncs.findAccount(blockchainRepository, blockchain.getAccount());
+                    break;
+                case "QUERY": {
+                    logger.debug("Attempting QUERY");
+                    logger.info("Attempting QUERY");
+                    Blockchain response = botnetFuncs.findAccount(blockchainRepository, blockchain.getAccount());
 
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            } else if (blockchain.getVerb().equals("DLT")) {
-                logger.debug("Attempting DLT");
-                logger.info("Attempting DLT");
-                Blockchain response = botnetFuncs.deleteAccount(blockchainRepository, blockchain.getAccount());
+                    return new ResponseEntity<>(response, HttpStatus.OK);
+                }
+                case "DLT": {
+                    logger.debug("Attempting DLT");
+                    logger.info("Attempting DLT");
+                    Blockchain response = botnetFuncs.deleteAccount(blockchainRepository, blockchain.getAccount());
 
-                return new ResponseEntity<>(response, HttpStatus.OK);
+                    return new ResponseEntity<>(response, HttpStatus.OK);
+                }
             }
             Blockchain respMsg = null;
             respMsg.setMessage("Internal Failure");
@@ -92,23 +95,23 @@ public class BlockchainController {
 
             return new ResponseEntity<>(blockchainRepository.save(response), HttpStatus.OK);
 
-//            List<Tutorial> tutorialData = tutorialRepository.findByAccountContaining(account);
+//            List<Blockchain> BlockchainData = blockchainRepository.findByAccountContaining(account);
 //
-//            if (!tutorialData.isEmpty()) {
-//                Tutorial _tutorial = tutorialData.get(0);
-//                _tutorial.setAmount(tutorial.getAmount());
-//                _tutorial.setAccount(tutorial.getAccount());
+//            if (!BlockchainData.isEmpty()) {
+//                Blockchain _Blockchain = BlockchainData.get(0);
+//                _Blockchain.setAmount(Blockchain.getAmount());
+//                _Blockchain.setAccount(Blockchain.getAccount());
 //
-//                return new ResponseEntity<>(tutorialRepository.save(_tutorial), HttpStatus.OK);
+//                return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
 //            }
 
-//            if (tutorialData.isPresent()) {
-//                Tutorial _tutorial = tutorialData.get();
-//                _tutorial.setAmount(tutorial.getAmount());
-////                _tutorial.setTitle(tutorial.getTitle());
-////                _tutorial.setDescription(tutorial.getDescription());
-////                _tutorial.setPublished(tutorial.isPublished());
-//                return new ResponseEntity<>(tutorialRepository.save(_tutorial), HttpStatus.OK);
+//            if (BlockchainData.isPresent()) {
+//                Blockchain _Blockchain = BlockchainData.get();
+//                _Blockchain.setAmount(Blockchain.getAmount());
+////                _Blockchain.setTitle(Blockchain.getTitle());
+////                _Blockchain.setDescription(Blockchain.getDescription());
+////                _Blockchain.setPublished(Blockchain.isPublished());
+//                return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
 //            } else {
 //                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //            }
@@ -121,11 +124,11 @@ public class BlockchainController {
 
 //        try {
 //
-//            if (tutorial.getVerb().equals("TRAN")) {
-//                Tutorial _tutorial = tutorialRepository.save(new Tutorial(tutorial.getAccount(), tutorial.getAmount()));
-//                return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+//            if (Blockchain.getVerb().equals("TRAN")) {
+//                Blockchain _Blockchain = blockchainRepository.save(new Blockchain(Blockchain.getAccount(), Blockchain.getAmount()));
+//                return new ResponseEntity<>(_Blockchain, HttpStatus.CREATED);
 //            }
-//            Tutorial respMsg = null;
+//            Blockchain respMsg = null;
 //            respMsg.setMessage("Internal Failure");
 //
 //            return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -133,14 +136,14 @@ public class BlockchainController {
 //        } catch (Exception e) {
 //            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
-//        Tutorial respMsg = null;
+//        Blockchain respMsg = null;
 //        respMsg.setMessage("Internal Failure");
 
 //        return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/crypto")
-    public ResponseEntity<List<Blockchain>> getAllTutorials(@RequestParam(required = false) String account) {
+    public ResponseEntity<List<Blockchain>> getAllBlockchains(@RequestParam(required = false) String account) {
         try {
 
             List<Blockchain> blockchains = new ArrayList<Blockchain>();
@@ -151,9 +154,9 @@ public class BlockchainController {
             else
                 blockchain = botnetFuncs.findAccount(blockchainRepository, account);
             blockchains.add(blockchain);
-//                tutorialRepository.findByAccountContaining(account).forEach(tutorials::add);
+//                blockchainRepository.findByAccountContaining(account).forEach(Blockchains::add);
 
-//            if (tutorials.isEmpty()) {
+//            if (Blockchains.isEmpty()) {
 //                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //            }
 
@@ -165,47 +168,47 @@ public class BlockchainController {
     }
 
     @GetMapping("/crypto/{id}")
-    public ResponseEntity<Blockchain> getTutorialById(@PathVariable("id") String id) {
-        Optional<Blockchain> tutorialData = blockchainRepository.findById(id);
+    public ResponseEntity<Blockchain> getBlockchainById(@PathVariable("id") String id) {
+        Optional<Blockchain> BlockchainData = blockchainRepository.findById(id);
 
-        if (tutorialData.isPresent()) {
-            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+        if (BlockchainData.isPresent()) {
+            return new ResponseEntity<>(BlockchainData.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
 //    @GetMapping("/crypto/published")
-//    public ResponseEntity<List<Tutorial>> findByPublished() {
+//    public ResponseEntity<List<Blockchain>> findByPublished() {
 //        try {
-//            List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
+//            List<Blockchain> Blockchains = blockchainRepository.findByPublished(true);
 //
-//            if (tutorials.isEmpty()) {
+//            if (Blockchains.isEmpty()) {
 //                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 //            }
-//            return new ResponseEntity<>(tutorials, HttpStatus.OK);
+//            return new ResponseEntity<>(Blockchains, HttpStatus.OK);
 //        } catch (Exception e) {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
 
 //    @PutMapping("/crypto/{id}")
-//    public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") String id, @RequestBody Tutorial tutorial) {
-//        Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+//    public ResponseEntity<Blockchain> updateBlockchain(@PathVariable("id") String id, @RequestBody Blockchain Blockchain) {
+//        Optional<Blockchain> BlockchainData = blockchainRepository.findById(id);
 //
-//        if (tutorialData.isPresent()) {
-//            Tutorial _tutorial = tutorialData.get();
-//            _tutorial.setTitle(tutorial.getTitle());
-//            _tutorial.setDescription(tutorial.getDescription());
-//            _tutorial.setPublished(tutorial.isPublished());
-//            return new ResponseEntity<>(tutorialRepository.save(_tutorial), HttpStatus.OK);
+//        if (BlockchainData.isPresent()) {
+//            Blockchain _Blockchain = BlockchainData.get();
+//            _Blockchain.setTitle(Blockchain.getTitle());
+//            _Blockchain.setDescription(Blockchain.getDescription());
+//            _Blockchain.setPublished(Blockchain.isPublished());
+//            return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
 //        } else {
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
 //    }
 
     @DeleteMapping("/crypto/{id}")
-    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") String id) {
+    public ResponseEntity<HttpStatus> deleteBlockchain(@PathVariable("id") String id) {
         try {
             blockchainRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -215,7 +218,7 @@ public class BlockchainController {
     }
 
     @DeleteMapping("/crypto")
-    public ResponseEntity<HttpStatus> deleteAllTutorials() {
+    public ResponseEntity<HttpStatus> deleteAllBlockchains() {
         try {
             blockchainRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
