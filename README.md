@@ -19,6 +19,14 @@
 
 -Zap logging
 
+-Java
+
+-Springboot Java Framework
+
+-MongoDB
+
+-Junit & Mockito
+
 ## **What this project does**<br>
 This project creates microservices meant for ECS. Users can create accounts, make deposits and payments to
 other users. They can also see their account information and balance as well as delete their account. The storage solution 
