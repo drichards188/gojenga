@@ -117,16 +117,6 @@ public class BotnetFuncs {
         Blockchain account2 = findAccount(blockchainRepository, blockchain.getAccount2());
         Blockchain _blockchain = new Blockchain();
 
-//        if (result1.equals("No results Found")) {
-//            _tutorial.setMessage("No Results Found");
-//            return _tutorial;
-//        }
-//
-//        if (result2.equals("No Results Found")) {
-//            _tutorial.setMessage("No Results Found");
-//            return _tutorial;
-//        }
-
         Integer amount1 = Integer.parseInt(account1.getAmount()) - Integer.parseInt(blockchain.getAmount());
         Integer amount2 = Integer.parseInt(account2.getAmount()) + Integer.parseInt(blockchain.getAmount());
 
@@ -138,36 +128,10 @@ public class BotnetFuncs {
 
         _blockchain = blockchainRepository.save(account1);
         _blockchain = blockchainRepository.save(account2);
-        hashLedger(blockchainRepository, hashRepository, blockchain);
+        String hashResponse = hashLedger(blockchainRepository, hashRepository, blockchain);
+        logger.info("tran hash response is --> " + hashResponse);
 
         return _blockchain = _blockchain;
-
-
-//        MongoStruct query = new MongoStruct();
-//
-//        query.Account = values.Account;
-//        query.Amount = amount1.toString();
-//
-//        String updateMsg = MongoInter.UpdateOne(query);
-//
-//        if ((updateMsg.equals("Update Unsuccessful"))) {
-//            return "Transaction failed";
-//        }
-//
-//        query.clear();
-//
-//        query.Account = values.Account2;
-//        query.Amount = amount2.toString();
-//        String data = values.Account + amount1 + values.Account2 + amount2;
-//
-//        hashLedger(data);
-//        updateMsg = MongoInter.UpdateOne(query);
-//
-//        if ((updateMsg.equals("Update Unsuccessful"))) {
-//            return "Transaction failed";
-//        }
-//
-//        return "Transaction Successful";
     }
 
     public String hashLedger(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
@@ -214,49 +178,13 @@ public class BotnetFuncs {
 
         try {
             Hash saveResults = hashRepository.save(hashStruc);
+            logger.info("hash saveResults are --> " + saveResults);
         } catch (Exception e) {
             logger.error("hashLedger threw an exception");
             System.out.println(e);
         }
 
         return "Hash Complete";
-
-//        MongoStruct query = new MongoStruct();
-//        MongoStruct hashQuery = new MongoStruct();
-//        StringBuilder doc = new StringBuilder();
-//
-//
-//        doc.append(results);
-//        doc.append(hash);
-//        doc.append(timestamp);
-//
-//        query.Extra = doc.toString();
-//        query.Collection = "hashHistory";
-//
-//        Integer iterator = MongoInter.countDocs(query);
-//
-//        hashQuery.Field = "Iteration";
-//        hashQuery.IntValue = iterator - 1;
-//
-//        String hashHistory = MongoInter.FindHash(hashQuery);
-//
-//        Document document = new Document();
-//        document.append("Iteration", iterator);
-//        document.append("Timestamp", myTime);
-//        document.append("Hash", hash);
-//        document.append("PreviousHash", hashHistory);
-//        document.append("ledger", data);
-//
-//
-//        MongoInter.InsertOne(query, document);
-//
-////        Long newIterator = iterator - 1;
-//
-////        query.clear();
-////        query.Field = "Version";
-////        query.Value = newIterator.toString();
-//
-//        return "Unsuccessful";
     }
 
     public String getAllTutorials(BlockchainRepository blockchainRepository) {
