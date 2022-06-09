@@ -26,16 +26,13 @@ public class BlockchainController {
     @Autowired
     HashRepository hashRepository;
 
-    BotnetFuncs botnetFuncs = new BotnetFuncs();
-    SqlInter sqlInter = new SqlInter();
+    BankingFuncs bankingFuncs = new BankingFuncs();
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/crypto")
     public ResponseEntity<Blockchain> handlePost(@RequestBody Blockchain blockchain) throws Exception {
-
         logger.debug("Post mapping triggered");
-//        sqlInter.main();
 
         try {
             switch (blockchain.getVerb()) {
@@ -43,15 +40,16 @@ public class BlockchainController {
                     logger.debug("Attempting CRT");
                     logger.info("Attempting CRT");
 
-//                    Blockchain response = botnetFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
-
-                Blockchain response = blockchainRepository.save(blockchain);
+                    //createAccount also calls the hashing functions
+                    Blockchain response = bankingFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }
                 case "TRAN": {
                     logger.debug("Attempting TRAN");
                     logger.info("Attempting TRAN");
-                    Blockchain response = botnetFuncs.transaction(blockchainRepository, hashRepository, blockchain);
+
+                    //transaction also calls the hashing functions
+                    Blockchain response = bankingFuncs.transaction(blockchainRepository, hashRepository, blockchain);
 
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
@@ -61,14 +59,14 @@ public class BlockchainController {
                 case "QUERY": {
                     logger.debug("Attempting QUERY");
                     logger.info("Attempting QUERY");
-                    Blockchain response = botnetFuncs.findAccount(blockchainRepository, blockchain.getAccount());
+                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getsourceAccount());
 
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
-                    Blockchain response = botnetFuncs.deleteAccount(blockchainRepository, blockchain.getAccount());
+                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getsourceAccount());
 
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
@@ -86,60 +84,20 @@ public class BlockchainController {
 
     @PutMapping("/crypto")
     public ResponseEntity<Blockchain> handlePut(@RequestBody Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
-        String account = blockchain.getAccount();
+        String sourceAccount = blockchain.getsourceAccount();
 
         if (blockchain.getVerb().equals("TRAN")) {
             logger.debug("Attempting TRAN");
             logger.info("Attempting TRAN");
-            Blockchain response = botnetFuncs.transaction(blockchainRepository, hashRepository, blockchain);
+            Blockchain response = bankingFuncs.transaction(blockchainRepository, hashRepository, blockchain);
 
             return new ResponseEntity<>(blockchainRepository.save(response), HttpStatus.OK);
-
-//            List<Blockchain> BlockchainData = blockchainRepository.findByAccountContaining(account);
-//
-//            if (!BlockchainData.isEmpty()) {
-//                Blockchain _Blockchain = BlockchainData.get(0);
-//                _Blockchain.setAmount(Blockchain.getAmount());
-//                _Blockchain.setAccount(Blockchain.getAccount());
-//
-//                return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
-//            }
-
-//            if (BlockchainData.isPresent()) {
-//                Blockchain _Blockchain = BlockchainData.get();
-//                _Blockchain.setAmount(Blockchain.getAmount());
-////                _Blockchain.setTitle(Blockchain.getTitle());
-////                _Blockchain.setDescription(Blockchain.getDescription());
-////                _Blockchain.setPublished(Blockchain.isPublished());
-//                return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
-//            } else {
-//                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//            }
         } else {
             Blockchain respMsg = null;
             respMsg.setMessage("Internal Failure");
             logger.error("TRAN caused error");
             return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-//        try {
-//
-//            if (Blockchain.getVerb().equals("TRAN")) {
-//                Blockchain _Blockchain = blockchainRepository.save(new Blockchain(Blockchain.getAccount(), Blockchain.getAmount()));
-//                return new ResponseEntity<>(_Blockchain, HttpStatus.CREATED);
-//            }
-//            Blockchain respMsg = null;
-//            respMsg.setMessage("Internal Failure");
-//
-//            return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
-//
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//        Blockchain respMsg = null;
-//        respMsg.setMessage("Internal Failure");
-
-//        return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/crypto")
@@ -152,7 +110,7 @@ public class BlockchainController {
             if (account == null)
                 blockchainRepository.findAll().forEach(blockchains::add);
             else
-                blockchain = botnetFuncs.findAccount(blockchainRepository, account);
+                blockchain = bankingFuncs.findAccount(blockchainRepository, account);
             blockchains.add(blockchain);
 //                blockchainRepository.findByAccountContaining(account).forEach(Blockchains::add);
 
@@ -177,35 +135,6 @@ public class BlockchainController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-//    @GetMapping("/crypto/published")
-//    public ResponseEntity<List<Blockchain>> findByPublished() {
-//        try {
-//            List<Blockchain> Blockchains = blockchainRepository.findByPublished(true);
-//
-//            if (Blockchains.isEmpty()) {
-//                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//            }
-//            return new ResponseEntity<>(Blockchains, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
-//    @PutMapping("/crypto/{id}")
-//    public ResponseEntity<Blockchain> updateBlockchain(@PathVariable("id") String id, @RequestBody Blockchain Blockchain) {
-//        Optional<Blockchain> BlockchainData = blockchainRepository.findById(id);
-//
-//        if (BlockchainData.isPresent()) {
-//            Blockchain _Blockchain = BlockchainData.get();
-//            _Blockchain.setTitle(Blockchain.getTitle());
-//            _Blockchain.setDescription(Blockchain.getDescription());
-//            _Blockchain.setPublished(Blockchain.isPublished());
-//            return new ResponseEntity<>(blockchainRepository.save(_Blockchain), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 
     @DeleteMapping("/crypto/{id}")
     public ResponseEntity<HttpStatus> deleteBlockchain(@PathVariable("id") String id) {

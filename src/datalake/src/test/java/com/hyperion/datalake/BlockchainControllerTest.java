@@ -11,7 +11,7 @@ class BlockchainControllerTest {
         BlockchainController blockchainController = new BlockchainController();
 
         Blockchain blockchain = new Blockchain();
-        blockchain.setAccount("sheldon");
+        blockchain.setsourceAccount("sheldon");
         blockchain.setAmount("200");
         blockchain.setVerb("CRT");
 

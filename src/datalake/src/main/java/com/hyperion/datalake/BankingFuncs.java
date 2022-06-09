@@ -11,9 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BotnetFuncs {
-//    @Autowired
-//    HashRepository hashRepository;
+public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public Blockchain createAccount(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException {
@@ -21,7 +19,7 @@ public class BotnetFuncs {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
-            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getAccount(), blockchain.getAmount()));
+            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getsourceAccount(), blockchain.getAmount()));
             hashLedger(blockchainRepository, hashRepository, blockchain);
             return _blockchain;
         } catch (Exception e) {
@@ -29,26 +27,6 @@ public class BotnetFuncs {
             _blockchain.setMessage("createAccount failed");
             return _blockchain;
         }
-
-//        MongoStruct query = new MongoStruct();
-//        query.Account = account;
-//        query.Collection = "ledger";
-//
-//        Document document = new Document();
-//        document.append("Account", account);
-//        document.append("Amount", defaultAmount);
-//
-//        String data = account + defaultAmount;
-//
-//        String hashResult = hashLedger(data);
-//
-//        String results = MongoInter.InsertOne(query, document);
-//        String results = MongoInter.InsertOne(accountVec);
-//        if (!results.equals("No Results Found")) {
-//            return "Created account: " + account;
-//        }
-
-//        return "account not found";
     }
 
     public Blockchain findAccount(BlockchainRepository blockchainRepository, String Account) {
@@ -57,11 +35,11 @@ public class BotnetFuncs {
         logger.info("Attempting findAccount");
         String amount = "";
         try {
-            List<Blockchain> blockchainData = blockchainRepository.findByAccountContaining(Account);
+            List<Blockchain> blockchainData = blockchainRepository.findBySourceAccountContaining(Account);
 
             if (!blockchainData.isEmpty()) {
                 _blockchain = blockchainData.get(0);
-                Account = _blockchain.getAccount();
+                Account = _blockchain.getsourceAccount();
                 amount = _blockchain.getAmount();
 
                 return _blockchain;
@@ -84,14 +62,14 @@ public class BotnetFuncs {
         logger.debug("Attempting deleteAccount");
         logger.info("Attempting deleteAccount");
         try {
-           Long tutorialData = blockchainRepository.deleteByAccount(Account);
+           Long tutorialData = blockchainRepository.deleteBySourceAccount(Account);
 
             _blockchain.setMessage("Account Delete Success");
                 return _blockchain;
 
 //            if (!tutorialData.isEmpty()) {
 //                _tutorial = tutorialData.get(0);
-//                Account = _tutorial.getAccount();
+//                Account = _tutorial.getSourceAccount();
 //                amount = _tutorial.getAmount();
 //
 //                return _tutorial;
@@ -113,21 +91,21 @@ public class BotnetFuncs {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
 
-        Blockchain account1 = findAccount(blockchainRepository, blockchain.getAccount());
-        Blockchain account2 = findAccount(blockchainRepository, blockchain.getAccount2());
+        Blockchain sourceAccount = findAccount(blockchainRepository, blockchain.getsourceAccount());
+        Blockchain destinationAccount = findAccount(blockchainRepository, blockchain.getdestinationAccount());
         Blockchain _blockchain = new Blockchain();
 
-        Integer amount1 = Integer.parseInt(account1.getAmount()) - Integer.parseInt(blockchain.getAmount());
-        Integer amount2 = Integer.parseInt(account2.getAmount()) + Integer.parseInt(blockchain.getAmount());
+        Integer amount1 = Integer.parseInt(sourceAccount.getAmount()) - Integer.parseInt(blockchain.getAmount());
+        Integer amount2 = Integer.parseInt(destinationAccount.getAmount()) + Integer.parseInt(blockchain.getAmount());
 
-        account1.setAmount(amount1.toString());
-        account2.setAmount(amount2.toString());
+        sourceAccount.setAmount(amount1.toString());
+        destinationAccount.setAmount(amount2.toString());
 
-        blockchainRepository.deleteByAccount(blockchain.getAccount());
-        blockchainRepository.deleteByAccount(blockchain.getAccount2());
+        blockchainRepository.deleteBySourceAccount(blockchain.getsourceAccount());
+        blockchainRepository.deleteBySourceAccount(blockchain.getdestinationAccount());
 
-        _blockchain = blockchainRepository.save(account1);
-        _blockchain = blockchainRepository.save(account2);
+        _blockchain = blockchainRepository.save(sourceAccount);
+        _blockchain = blockchainRepository.save(destinationAccount);
         String hashResponse = hashLedger(blockchainRepository, hashRepository, blockchain);
         logger.info("tran hash response is --> " + hashResponse);
 
@@ -167,11 +145,11 @@ public class BotnetFuncs {
         hashStruc.setPreviousHash(prevHash);
 
         if (blockchain.getVerb().equals("CRT")) {
-            String ledgerStr = blockchain.getAccount() + blockchain.getAmount();
+            String ledgerStr = blockchain.getsourceAccount() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
         } else if (blockchain.getVerb().equals("TRAN")) {
-            String ledgerStr = blockchain.getAccount() + blockchain.getAccount2() + blockchain.getAmount();
+            String ledgerStr = blockchain.getsourceAccount() + blockchain.getdestinationAccount() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
         }
@@ -221,76 +199,9 @@ public class BotnetFuncs {
             return wholeHash.getHash();
     }
 
-//
+    public String deleteAccount(BlockchainRepository blockchainRepository, Blockchain blockchain, String account) throws NoSuchAlgorithmException, ParseException {
+        blockchainRepository.deleteBySourceAccount(account);
 
-//
-//    public static String deleteAccount(String account) throws NoSuchAlgorithmException, ParseException {
-//        MongoStruct query = new MongoStruct();
-//        query.Account = account;
-//        query.Collection = "ledger";
-//
-//        Document document = new Document();
-//        document.append("Account", account);
-//
-//        String data = account;
-//
-//        String hashResult = hashLedger(data);
-//
-//        String results = MongoInter.DeleteOne(query);
-////        String results = MongoInter.InsertOne(accountVec);
-//        if (!results.equals("No Results Found")) {
-//            return "Created account: " + account;
-//        }
-//
-//        return "account not found";
-//    }
-//
-
-//
-
-//
-//    public static String disco() {
-//        return "Unsuccessful";
-//    }
-//
-//    public static String ping(String account) {
-//
-//        return "Unsuccessful";
-//    }
-//
-//    public static String findAccount(String account) throws ParseException {
-//        MongoStruct query = new MongoStruct();
-//        query.Account = account;
-//        query.Field = "Account";
-//        query.Value = account;
-//
-//        String results = MongoInter.FindOne(query);
-////        String results = MongoInter.InsertOne(accountVec);
-//        if (!results.equals("No Results Found")) {
-//
-//            JSONParser parser = new JSONParser();
-//            JSONObject json = (JSONObject) parser.parse(results);
-//            String userAmount = (String) json.get("Amount");
-//            return results;
-//        }
-//
-//        return "account not found";
-//    }
-//
-//    public static Traffic extractValues(String result) throws IOException, ParseException {
-//        Traffic values = new Traffic();
-//
-//        JSONParser parser = new JSONParser();
-//        JSONObject jsonObject = (JSONObject) parser.parse(result);
-//        System.out.println(jsonObject);
-//
-//        values.Verb = (String) jsonObject.get("Verb");
-//        values.Account = (String) jsonObject.get("Account");
-//        values.Account2 = (String) jsonObject.get("Account2");
-//        values.Amount = (String) jsonObject.get("Amount");
-//        values.Payload = (String) jsonObject.get("Payload");
-//
-//        return values;
-//    }
-//
+        return "account deleted";
+    }
 }
