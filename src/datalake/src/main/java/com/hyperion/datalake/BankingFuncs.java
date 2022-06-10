@@ -19,7 +19,7 @@ public class BankingFuncs {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
-            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getsourceAccount(), blockchain.getAmount()));
+            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getAccount(), blockchain.getAmount()));
             hashLedger(blockchainRepository, hashRepository, blockchain);
             return _blockchain;
         } catch (Exception e) {
@@ -29,17 +29,42 @@ public class BankingFuncs {
         }
     }
 
+    public Blockchain transaction(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
+        logger.debug("Attempting transaction");
+        logger.info("Attempting transaction");
+
+        Blockchain sourceAccount = findAccount(blockchainRepository, blockchain.getSourceAccount());
+        Blockchain destinationAccount = findAccount(blockchainRepository, blockchain.getDestinationAccount());
+        Blockchain _blockchain = new Blockchain();
+
+        Integer amount1 = Integer.parseInt(sourceAccount.getAmount()) - Integer.parseInt(blockchain.getAmount());
+        Integer amount2 = Integer.parseInt(destinationAccount.getAmount()) + Integer.parseInt(blockchain.getAmount());
+
+        sourceAccount.setAmount(amount1.toString());
+        destinationAccount.setAmount(amount2.toString());
+
+        blockchainRepository.deleteByAccount(blockchain.getSourceAccount());
+        blockchainRepository.deleteByAccount(blockchain.getDestinationAccount());
+
+        _blockchain = blockchainRepository.save(sourceAccount);
+        _blockchain = blockchainRepository.save(destinationAccount);
+        String hashResponse = hashLedger(blockchainRepository, hashRepository, blockchain);
+        logger.info("tran hash response is --> " + hashResponse);
+
+        return _blockchain = _blockchain;
+    }
+
     public Blockchain findAccount(BlockchainRepository blockchainRepository, String Account) {
         Blockchain _blockchain = new Blockchain();
         logger.debug("Attempting findAccount");
         logger.info("Attempting findAccount");
         String amount = "";
         try {
-            List<Blockchain> blockchainData = blockchainRepository.findBySourceAccountContaining(Account);
+            List<Blockchain> blockchainData = blockchainRepository.findByAccount(Account);
 
             if (!blockchainData.isEmpty()) {
                 _blockchain = blockchainData.get(0);
-                Account = _blockchain.getsourceAccount();
+                Account = _blockchain.getSourceAccount();
                 amount = _blockchain.getAmount();
 
                 return _blockchain;
@@ -87,30 +112,7 @@ public class BankingFuncs {
         }
     }
 
-    public Blockchain transaction(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
-        logger.debug("Attempting transaction");
-        logger.info("Attempting transaction");
 
-        Blockchain sourceAccount = findAccount(blockchainRepository, blockchain.getsourceAccount());
-        Blockchain destinationAccount = findAccount(blockchainRepository, blockchain.getdestinationAccount());
-        Blockchain _blockchain = new Blockchain();
-
-        Integer amount1 = Integer.parseInt(sourceAccount.getAmount()) - Integer.parseInt(blockchain.getAmount());
-        Integer amount2 = Integer.parseInt(destinationAccount.getAmount()) + Integer.parseInt(blockchain.getAmount());
-
-        sourceAccount.setAmount(amount1.toString());
-        destinationAccount.setAmount(amount2.toString());
-
-        blockchainRepository.deleteBySourceAccount(blockchain.getsourceAccount());
-        blockchainRepository.deleteBySourceAccount(blockchain.getdestinationAccount());
-
-        _blockchain = blockchainRepository.save(sourceAccount);
-        _blockchain = blockchainRepository.save(destinationAccount);
-        String hashResponse = hashLedger(blockchainRepository, hashRepository, blockchain);
-        logger.info("tran hash response is --> " + hashResponse);
-
-        return _blockchain = _blockchain;
-    }
 
     public String hashLedger(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
         logger.debug("Attempting hashLedger");
@@ -145,11 +147,11 @@ public class BankingFuncs {
         hashStruc.setPreviousHash(prevHash);
 
         if (blockchain.getVerb().equals("CRT")) {
-            String ledgerStr = blockchain.getsourceAccount() + blockchain.getAmount();
+            String ledgerStr = blockchain.getAccount() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
         } else if (blockchain.getVerb().equals("TRAN")) {
-            String ledgerStr = blockchain.getsourceAccount() + blockchain.getdestinationAccount() + blockchain.getAmount();
+            String ledgerStr = blockchain.getAccount() + blockchain.getDestinationAccount() + blockchain.getAmount();
 
             hashStruc.setLedger(ledgerStr);
         }

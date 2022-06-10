@@ -14,7 +14,7 @@ class BlockchainRepositoryTest {
     @Test
     void testRepositorySave() {
         Blockchain blockchain = new Blockchain();
-        blockchain.setsourceAccount("test1");
+        blockchain.setSourceAccount("test1");
         blockchain.setAmount("200");
         blockchain.setVerb("CRT");
 

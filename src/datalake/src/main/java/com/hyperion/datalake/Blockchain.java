@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Blockchain {
     public String amount;
+    public String account;
     public String sourceAccount;
     public String destinationAccount;
     public String verb;
@@ -20,25 +21,32 @@ public class Blockchain {
 
     }
 
-public Blockchain(String sourceAccount, String amount) {
-        this.sourceAccount = sourceAccount;
+public Blockchain(String account, String amount) {
+        this.account = account;
         this.amount = amount;
         }
 
+    public String getAccount() {
+        return account;
+    }
 
-    public String getsourceAccount() {
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getSourceAccount() {
         return sourceAccount;
     }
 
-    public void setsourceAccount(String sourceAccount) {
+    public void setSourceAccount(String sourceAccount) {
         this.sourceAccount = sourceAccount;
     }
 
-    public String getdestinationAccount() {
+    public String getDestinationAccount() {
         return destinationAccount;
     }
 
-    public void setdestinationAccount(String destinationAccount) {
+    public void setDestinationAccount(String destinationAccount) {
         this.destinationAccount = destinationAccount;
     }
 

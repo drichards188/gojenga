@@ -1022,3 +1022,887 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 2022-06-09 17:41:29,209 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
 2022-06-09 17:41:29,263 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@7005c1bd
 2022-06-09 17:44:40,124 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:47}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:09:26,530 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12903 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:09:26,532 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:09:26,532 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:09:27,158 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:09:27,190 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:09:27,581 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:09:27,586 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:09:27,587 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:09:27,587 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:09:27,647 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:09:27,647 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1083 ms
+2022-06-09 18:09:27,921 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:09:27,963 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a28bb7c7ad7e6f0b65228f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:48}] to localhost:27017
+2022-06-09 18:09:27,964 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28bb7c7ad7e6f0b65228f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:49}] to localhost:27017
+2022-06-09 18:09:27,965 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28bb7c7ad7e6f0b65228f', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=17768442}
+2022-06-09 18:09:29,079 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:09:29,118 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:09:29,126 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:09:29,140 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.956 seconds (JVM running for 3.466)
+2022-06-09 18:09:29,465 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:09:29,466 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:09:29,469 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:09:29,481 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:50}] to localhost:27017
+2022-06-09 18:09:39,140 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-09 18:09:39,141 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:09:39,141 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:09:39,141 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:09:39,141 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:09:56,478 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:09:59,426 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:09:59,725 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] hash saveResults are --> com.hyperion.datalake.Hash@473c01c3
+2022-06-09 18:10:40,907 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting TRAN
+2022-06-09 18:10:40,908 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting TRAN
+2022-06-09 18:10:40,908 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting transaction
+2022-06-09 18:10:40,908 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting transaction
+2022-06-09 18:10:40,908 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting findAccount
+2022-06-09 18:10:40,908 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting findAccount
+2022-06-09 18:10:40,913 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting findAccount
+2022-06-09 18:10:40,913 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting findAccount
+2022-06-09 18:10:43,374 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:10:43,374 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:10:43,398 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@5e3d8f26
+2022-06-09 18:10:43,399 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] tran hash response is --> Hash Complete
+2022-06-09 18:13:16,872 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-6] Attempting TRAN
+2022-06-09 18:13:16,873 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-6] Attempting TRAN
+2022-06-09 18:13:16,873 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting transaction
+2022-06-09 18:13:16,873 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting transaction
+2022-06-09 18:13:16,873 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting findAccount
+2022-06-09 18:13:16,873 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting findAccount
+2022-06-09 18:13:16,876 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting findAccount
+2022-06-09 18:13:16,876 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting findAccount
+2022-06-09 18:13:22,880 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting hashLedger
+2022-06-09 18:13:22,881 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] Attempting hashLedger
+2022-06-09 18:13:22,888 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] hash saveResults are --> com.hyperion.datalake.Hash@1fa9961
+2022-06-09 18:13:22,888 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-6] tran hash response is --> Hash Complete
+2022-06-09 18:13:22,923 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:50}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:15:29,740 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13172 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:15:29,742 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:15:29,743 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:15:30,490 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:15:30,532 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 38 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:15:30,951 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:15:30,958 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:15:30,959 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:15:30,959 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:15:31,019 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:15:31,019 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1242 ms
+2022-06-09 18:15:31,337 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:15:31,371 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28d237a32b23d17e5a796', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:52}] to localhost:27017
+2022-06-09 18:15:31,371 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a28d237a32b23d17e5a796', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:51}] to localhost:27017
+2022-06-09 18:15:31,371 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28d237a32b23d17e5a796', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10425500}
+2022-06-09 18:15:32,506 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:15:32,548 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:15:32,570 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:15:32,589 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.249 seconds (JVM running for 3.758)
+2022-06-09 18:15:32,816 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:15:32,816 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:15:32,818 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:15:32,839 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:53}] to localhost:27017
+2022-06-09 18:15:38,896 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting TRAN
+2022-06-09 18:15:38,897 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting TRAN
+2022-06-09 18:16:52,366 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting transaction
+2022-06-09 18:16:55,429 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting transaction
+2022-06-09 18:16:57,651 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:16:57,653 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:16:58,550 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:16:58,551 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:19:37,615 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:19:37,617 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:19:37,765 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@480481fd
+2022-06-09 18:20:14,837 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] tran hash response is --> Hash Complete
+2022-06-09 18:21:12,105 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:53}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:21:15,022 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13435 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:21:15,025 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:21:15,025 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:21:15,673 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:21:15,705 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:21:16,126 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:21:16,134 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:21:16,134 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:21:16,135 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:21:16,213 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:21:16,213 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1125 ms
+2022-06-09 18:21:16,543 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:21:16,586 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28e7c466b1e1f3e21eae8', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:54}] to localhost:27017
+2022-06-09 18:21:16,586 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a28e7c466b1e1f3e21eae8', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:55}] to localhost:27017
+2022-06-09 18:21:16,587 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28e7c466b1e1f3e21eae8', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10081856}
+2022-06-09 18:21:17,660 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:21:17,697 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:21:17,705 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:21:17,718 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.191 seconds (JVM running for 4.098)
+2022-06-09 18:21:18,236 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:21:18,236 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:21:18,237 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-09 18:21:18,257 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:56}] to localhost:27017
+2022-06-09 18:21:44,777 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-09 18:21:44,778 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:21:44,778 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:21:44,778 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:21:44,778 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:21:50,105 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:21:50,106 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:21:50,160 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@2c1943c7
+2022-06-09 18:22:00,909 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:22:00,909 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:22:00,909 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:22:00,910 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:22:00,910 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:22:03,290 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:22:03,291 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:22:03,312 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@3343092b
+2022-06-09 18:22:20,720 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:22:20,720 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:22:35,598 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:22:35,599 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:22:35,600 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:22:35,602 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:22:35,627 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:22:35,628 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:22:50,062 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:22:50,063 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:22:50,097 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@756ef6fa
+2022-06-09 18:22:50,099 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] tran hash response is --> Hash Complete
+2022-06-09 18:23:39,857 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-5] Attempting TRAN
+2022-06-09 18:23:39,858 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-5] Attempting TRAN
+2022-06-09 18:23:46,117 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting transaction
+2022-06-09 18:23:46,117 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting transaction
+2022-06-09 18:23:46,118 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:23:46,118 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:23:46,120 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:23:46,120 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:26:02,136 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting hashLedger
+2022-06-09 18:26:02,137 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting hashLedger
+2022-06-09 18:26:02,176 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] hash saveResults are --> com.hyperion.datalake.Hash@12e3f11b
+2022-06-09 18:26:02,178 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] tran hash response is --> Hash Complete
+2022-06-09 18:26:02,270 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:56}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:26:05,016 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13696 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:26:05,019 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:26:05,020 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:26:05,762 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:26:05,794 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:26:06,177 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:26:06,184 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:26:06,184 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:26:06,185 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:26:06,241 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:26:06,242 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1127 ms
+2022-06-09 18:26:06,540 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:26:06,578 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a28f9ea19a136a5de5d93b', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:58}] to localhost:27017
+2022-06-09 18:26:06,578 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28f9ea19a136a5de5d93b', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:57}] to localhost:27017
+2022-06-09 18:26:06,578 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28f9ea19a136a5de5d93b', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11617426}
+2022-06-09 18:26:07,705 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:26:07,741 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:26:07,751 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:26:07,765 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.143 seconds (JVM running for 3.941)
+2022-06-09 18:26:08,208 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:26:08,209 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:26:08,210 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-09 18:26:08,230 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:59}] to localhost:27017
+2022-06-09 18:26:11,683 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting TRAN
+2022-06-09 18:26:11,683 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting TRAN
+2022-06-09 18:26:11,683 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting transaction
+2022-06-09 18:26:11,683 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting transaction
+2022-06-09 18:26:11,683 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting findAccount
+2022-06-09 18:26:11,684 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting findAccount
+2022-06-09 18:26:11,740 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting findAccount
+2022-06-09 18:26:11,740 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting findAccount
+2022-06-09 18:26:27,444 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:26:27,445 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:26:27,580 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] hash saveResults are --> com.hyperion.datalake.Hash@53316f9
+2022-06-09 18:26:27,581 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] tran hash response is --> Hash Complete
+2022-06-09 18:26:27,747 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:59}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:26:46,153 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13906 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:26:46,155 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:26:46,155 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:26:46,738 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:26:46,770 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:26:47,165 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:26:47,171 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:26:47,171 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:26:47,172 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:26:47,230 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:26:47,231 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1037 ms
+2022-06-09 18:26:47,556 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:26:47,605 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28fc7fe9c2147237df0cb', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:61}] to localhost:27017
+2022-06-09 18:26:47,605 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a28fc7fe9c2147237df0cb', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:60}] to localhost:27017
+2022-06-09 18:26:47,606 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a28fc7fe9c2147237df0cb', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=19170324}
+2022-06-09 18:26:49,142 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:26:49,185 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:26:49,197 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:26:49,211 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.434 seconds (JVM running for 4.061)
+2022-06-09 18:26:49,766 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(5)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:26:49,767 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:26:49,770 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Completed initialization in 3 ms
+2022-06-09 18:26:49,782 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(4)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:62}] to localhost:27017
+2022-06-09 18:26:54,941 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-09 18:26:54,941 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:26:54,941 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:26:54,941 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:26:54,941 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:26:55,085 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:26:55,086 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:26:55,184 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] hash saveResults are --> com.hyperion.datalake.Hash@7876c9f7
+2022-06-09 18:26:59,163 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:26:59,164 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:26:59,164 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:26:59,164 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:26:59,164 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:26:59,167 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:26:59,168 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:26:59,197 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@5da068bc
+2022-06-09 18:27:07,131 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:27:07,131 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:27:07,131 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:27:07,132 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:27:07,132 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:27:07,132 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:27:07,136 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:27:07,136 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:29:47,407 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:29:47,408 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:29:47,449 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@3b9ce81
+2022-06-09 18:29:47,450 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] tran hash response is --> Hash Complete
+2022-06-09 18:29:47,512 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:62}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:29:50,154 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14138 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:29:50,156 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:29:50,156 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:29:50,751 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:29:50,783 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:29:51,194 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:29:51,200 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:29:51,201 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:29:51,201 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:29:51,263 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:29:51,264 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1078 ms
+2022-06-09 18:29:51,585 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:29:51,638 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2907f4626f62e5c4a1b96', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:64}] to localhost:27017
+2022-06-09 18:29:51,639 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2907f4626f62e5c4a1b96', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13798400}
+2022-06-09 18:29:51,638 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a2907f4626f62e5c4a1b96', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:63}] to localhost:27017
+2022-06-09 18:29:52,801 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:29:52,839 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:29:52,847 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:29:52,860 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.26 seconds (JVM running for 3.933)
+2022-06-09 18:29:53,056 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(4)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:29:53,057 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(4)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:29:53,058 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(4)-127.0.0.1] Completed initialization in 1 ms
+2022-06-09 18:29:53,086 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:65}] to localhost:27017
+2022-06-09 18:30:00,927 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-09 18:30:00,927 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:30:00,928 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:30:00,928 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:30:00,928 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:30:00,971 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:30:00,972 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:30:01,020 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] hash saveResults are --> com.hyperion.datalake.Hash@4ba7343c
+2022-06-09 18:30:04,331 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:30:04,333 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:30:04,333 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:30:04,333 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:30:04,333 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:30:04,335 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:30:04,336 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:30:04,342 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@5e3e80d6
+2022-06-09 18:30:08,253 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:30:08,253 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:30:08,253 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:30:08,253 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:30:08,253 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:30:08,253 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:30:08,259 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:30:08,259 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:31:30,476 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-4] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.mapping.context.InvalidPersistentPropertyPath: No property 'account' found on class com.hyperion.datalake.Blockchain! Did you mean: Account,amount,account?] with root cause
+org.springframework.data.mapping.context.InvalidPersistentPropertyPath: No property 'account' found on class com.hyperion.datalake.Blockchain! Did you mean: Account,amount,account?
+	at org.springframework.data.mapping.context.PersistentPropertyPathFactory.createPersistentPropertyPath(PersistentPropertyPathFactory.java:205)
+	at org.springframework.data.mapping.context.PersistentPropertyPathFactory.lambda$getPersistentPropertyPath$1(PersistentPropertyPathFactory.java:172)
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330)
+	at org.springframework.data.mapping.context.PersistentPropertyPathFactory.getPersistentPropertyPath(PersistentPropertyPathFactory.java:171)
+	at org.springframework.data.mapping.context.PersistentPropertyPathFactory.from(PersistentPropertyPathFactory.java:86)
+	at org.springframework.data.mapping.context.PersistentPropertyPathFactory.from(PersistentPropertyPathFactory.java:99)
+	at org.springframework.data.mapping.context.AbstractMappingContext.getPersistentPropertyPath(AbstractMappingContext.java:285)
+	at org.springframework.data.mongodb.repository.query.MongoQueryCreator.create(MongoQueryCreator.java:119)
+	at org.springframework.data.mongodb.repository.query.MongoQueryCreator.create(MongoQueryCreator.java:66)
+	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createCriteria(AbstractQueryCreator.java:119)
+	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:95)
+	at org.springframework.data.repository.query.parser.AbstractQueryCreator.createQuery(AbstractQueryCreator.java:81)
+	at org.springframework.data.mongodb.repository.query.PartTreeMongoQuery.createQuery(PartTreeMongoQuery.java:89)
+	at org.springframework.data.mongodb.repository.query.AbstractMongoQuery.doExecute(AbstractMongoQuery.java:122)
+	at org.springframework.data.mongodb.repository.query.AbstractMongoQuery.execute(AbstractMongoQuery.java:107)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:159)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:80)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy2/jdk.proxy2.$Proxy96.deleteByAccount(Unknown Source)
+	at com.hyperion.datalake.BankingFuncs.transaction(BankingFuncs.java:104)
+	at com.hyperion.datalake.BlockchainController.handlePut(BlockchainController.java:81)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-06-09 18:31:30,522 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:65}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:31:41,951 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14354 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:31:41,953 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:31:41,954 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:31:42,698 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:31:42,729 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:31:43,243 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:31:43,249 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:31:43,249 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:31:43,249 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:31:43,332 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:31:43,332 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1349 ms
+2022-06-09 18:31:43,627 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:31:43,666 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a290efb01be65a1c5c8c31', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:66}] to localhost:27017
+2022-06-09 18:31:43,666 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a290efb01be65a1c5c8c31', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:67}] to localhost:27017
+2022-06-09 18:31:43,666 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a290efb01be65a1c5c8c31', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=12168613}
+2022-06-09 18:31:44,765 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:31:44,809 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:31:44,820 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:31:44,834 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.234 seconds (JVM running for 3.895)
+2022-06-09 18:31:44,982 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(5)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:31:44,983 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:31:44,985 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:31:45,012 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(4)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:68}] to localhost:27017
+2022-06-09 18:31:59,942 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-09 18:31:59,942 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:31:59,942 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:31:59,943 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:31:59,943 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:32:00,079 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:32:00,079 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:32:00,134 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@73d4677c
+2022-06-09 18:32:24,429 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:32:24,429 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:32:24,430 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:32:24,430 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:32:24,430 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:32:24,433 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:32:24,433 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:32:24,453 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@16482533
+2022-06-09 18:32:26,860 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:68}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:32:29,733 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14557 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:32:29,735 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:32:29,735 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:32:30,331 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:32:30,362 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 27 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:32:30,763 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:32:30,769 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:32:30,769 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:32:30,769 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:32:30,834 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:32:30,834 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1069 ms
+2022-06-09 18:32:31,147 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:32:31,188 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2911f4fb59e16a640eaac', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:69}] to localhost:27017
+2022-06-09 18:32:31,188 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2911f4fb59e16a640eaac', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11610420}
+2022-06-09 18:32:31,188 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a2911f4fb59e16a640eaac', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:70}] to localhost:27017
+2022-06-09 18:32:32,280 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:32:32,318 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:32:32,327 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:32:32,339 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.081 seconds (JVM running for 3.952)
+2022-06-09 18:32:32,712 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:32:32,712 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:32:32,714 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:32:32,732 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:71}] to localhost:27017
+2022-06-09 18:32:36,033 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-09 18:32:36,033 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:32:36,033 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:32:36,034 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:32:36,034 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:32:36,069 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:32:36,070 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:32:36,114 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@3a4342d2
+2022-06-09 18:32:56,261 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:32:56,261 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:32:56,262 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:32:56,262 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:32:56,262 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:32:56,281 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:32:56,281 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:32:56,303 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@1180151d
+2022-06-09 18:33:00,988 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Post mapping triggered
+2022-06-09 18:33:00,989 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting CRT
+2022-06-09 18:33:00,989 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting CRT
+2022-06-09 18:33:00,989 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting createAccount
+2022-06-09 18:33:00,989 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting createAccount
+2022-06-09 18:33:00,991 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:33:00,992 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:33:00,998 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@39854f46
+2022-06-09 18:33:11,690 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-5] Attempting TRAN
+2022-06-09 18:33:11,691 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-5] Attempting TRAN
+2022-06-09 18:33:11,691 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting transaction
+2022-06-09 18:33:11,691 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting transaction
+2022-06-09 18:33:11,691 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:33:11,691 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:33:11,695 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:33:11,695 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-5] Attempting findAccount
+2022-06-09 18:33:11,702 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-5] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: Cannot parse null string] with root cause
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Integer.parseInt(Integer.java:630)
+	at java.base/java.lang.Integer.parseInt(Integer.java:786)
+	at com.hyperion.datalake.BankingFuncs.transaction(BankingFuncs.java:40)
+	at com.hyperion.datalake.BlockchainController.handlePut(BlockchainController.java:81)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-06-09 18:33:44,844 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-7] Attempting TRAN
+2022-06-09 18:33:44,845 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-7] Attempting TRAN
+2022-06-09 18:33:44,845 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting transaction
+2022-06-09 18:33:44,845 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting transaction
+2022-06-09 18:33:59,975 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting findAccount
+2022-06-09 18:33:59,977 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting findAccount
+2022-06-09 18:34:04,033 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting findAccount
+2022-06-09 18:34:04,034 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-7] Attempting findAccount
+2022-06-09 18:34:21,003 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-7] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: Cannot parse null string] with root cause
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Integer.parseInt(Integer.java:630)
+	at java.base/java.lang.Integer.parseInt(Integer.java:786)
+	at com.hyperion.datalake.BankingFuncs.transaction(BankingFuncs.java:40)
+	at com.hyperion.datalake.BlockchainController.handlePut(BlockchainController.java:81)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-06-09 18:34:23,250 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-9] Attempting TRAN
+2022-06-09 18:34:23,250 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-9] Attempting TRAN
+2022-06-09 18:34:23,251 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting transaction
+2022-06-09 18:34:23,251 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting transaction
+2022-06-09 18:34:24,737 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting findAccount
+2022-06-09 18:34:24,739 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting findAccount
+2022-06-09 18:34:25,386 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting findAccount
+2022-06-09 18:34:25,388 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-9] Attempting findAccount
+2022-06-09 18:35:49,714 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-6789-exec-9] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NumberFormatException: Cannot parse null string] with root cause
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Integer.parseInt(Integer.java:630)
+	at java.base/java.lang.Integer.parseInt(Integer.java:786)
+	at com.hyperion.datalake.BankingFuncs.transaction(BankingFuncs.java:40)
+	at com.hyperion.datalake.BlockchainController.handlePut(BlockchainController.java:81)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:684)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:540)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:895)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1722)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-06-09 18:35:49,759 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:71}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:35:52,154 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14797 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:35:52,155 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:35:52,156 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:35:52,802 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:35:52,835 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:35:53,208 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:35:53,214 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:35:53,215 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:35:53,215 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:35:53,280 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:35:53,280 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1091 ms
+2022-06-09 18:35:53,567 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:35:53,606 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a291e94586782eb1dfe0e7', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:72}] to localhost:27017
+2022-06-09 18:35:53,606 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a291e94586782eb1dfe0e7', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:73}] to localhost:27017
+2022-06-09 18:35:53,607 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a291e94586782eb1dfe0e7', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18368501}
+2022-06-09 18:35:54,719 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:35:54,760 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:35:54,768 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:35:54,782 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.079 seconds (JVM running for 3.79)
+2022-06-09 18:35:55,262 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:35:55,263 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:35:55,264 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-09 18:35:55,282 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:74}] to localhost:27017
+2022-06-09 18:35:59,024 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting TRAN
+2022-06-09 18:35:59,025 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting TRAN
+2022-06-09 18:35:59,025 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting transaction
+2022-06-09 18:35:59,025 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting transaction
+2022-06-09 18:36:01,360 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:36:01,362 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:36:02,191 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:36:02,193 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting findAccount
+2022-06-09 18:36:06,948 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:36:06,951 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:36:07,081 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@41c8fab7
+2022-06-09 18:36:07,082 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] tran hash response is --> Hash Complete
+2022-06-09 18:36:24,998 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:74}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:36:27,774 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14989 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:36:27,776 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:36:27,776 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:36:28,393 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:36:28,433 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 37 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:36:28,837 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:36:28,845 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:36:28,846 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:36:28,846 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:36:28,927 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:36:28,927 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1119 ms
+2022-06-09 18:36:29,213 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:36:29,258 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2920d5af7dd737db064a1', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:76}] to localhost:27017
+2022-06-09 18:36:29,258 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a2920d5af7dd737db064a1', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:75}] to localhost:27017
+2022-06-09 18:36:29,258 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a2920d5af7dd737db064a1', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16280862}
+2022-06-09 18:36:30,378 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:36:30,421 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:36:30,429 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:36:30,442 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.072 seconds (JVM running for 3.705)
+2022-06-09 18:36:30,800 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:36:30,801 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:36:30,803 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:36:30,823 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:77}] to localhost:27017
+2022-06-09 18:36:42,503 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-09 18:36:42,504 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:36:42,504 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-09 18:36:42,504 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:36:42,504 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-09 18:36:42,572 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:36:42,573 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting hashLedger
+2022-06-09 18:36:42,629 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] hash saveResults are --> com.hyperion.datalake.Hash@246bac96
+2022-06-09 18:36:45,717 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:36:45,717 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:36:45,717 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:36:45,718 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:36:45,718 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:36:45,720 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:36:45,721 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:36:45,740 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@13b38082
+2022-06-09 18:36:48,189 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:36:48,190 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:36:48,190 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:36:48,190 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:36:50,075 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:36:50,076 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:36:50,679 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:36:50,680 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:37:35,613 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:37:35,614 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:37:35,649 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@26d77d18
+2022-06-09 18:38:39,314 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] tran hash response is --> Hash Complete
+2022-06-09 18:38:39,361 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:77}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:38:41,968 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 15207 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:38:41,969 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:38:41,970 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:38:42,548 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:38:42,579 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:38:43,025 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:38:43,044 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:38:43,044 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:38:43,044 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:38:43,113 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:38:43,113 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1107 ms
+2022-06-09 18:38:43,646 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:38:43,707 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a29293ca42b33ad1ce5559', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:79}] to localhost:27017
+2022-06-09 18:38:43,707 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a29293ca42b33ad1ce5559', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:78}] to localhost:27017
+2022-06-09 18:38:43,708 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a29293ca42b33ad1ce5559', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=21748718}
+2022-06-09 18:38:44,788 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:38:44,824 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:38:44,832 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:38:44,845 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.302 seconds (JVM running for 4.125)
+2022-06-09 18:38:44,924 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(5)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:38:44,924 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:38:44,925 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Completed initialization in 1 ms
+2022-06-09 18:38:44,938 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(4)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:80}] to localhost:27017
+2022-06-09 18:39:13,542 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:80}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:39:15,967 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 15391 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:39:15,969 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:39:15,969 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:39:16,670 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:39:16,705 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 31 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:39:17,081 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:39:17,087 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:39:17,088 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:39:17,088 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:39:17,152 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:39:17,152 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1145 ms
+2022-06-09 18:39:17,465 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:39:17,509 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a292b5e975c81b3a0308fc', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:81}] to localhost:27017
+2022-06-09 18:39:17,509 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a292b5e975c81b3a0308fc', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:82}] to localhost:27017
+2022-06-09 18:39:17,510 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a292b5e975c81b3a0308fc', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=19681769}
+2022-06-09 18:39:18,590 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:39:18,631 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:39:18,640 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:39:18,654 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.22 seconds (JVM running for 3.992)
+2022-06-09 18:39:18,876 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:39:18,877 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:39:18,879 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:39:18,898 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:83}] to localhost:27017
+2022-06-09 18:39:21,614 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-09 18:39:21,615 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:39:21,615 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:39:21,615 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:39:21,615 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:39:21,670 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:39:21,670 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:39:21,759 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@7e5bdd09
+2022-06-09 18:39:25,373 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:39:25,374 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:39:25,374 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:39:25,374 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:39:25,375 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:39:25,380 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:39:25,380 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:39:25,401 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@65f7882
+2022-06-09 18:39:44,284 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:39:44,284 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:39:44,284 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:39:44,285 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:39:49,204 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:39:49,205 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:39:49,713 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:39:49,715 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:40:14,238 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:40:14,239 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:40:14,270 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@650c772f
+2022-06-09 18:40:22,578 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] tran hash response is --> Hash Complete
+2022-06-09 18:41:16,625 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:83}] to localhost:27017 because the pool has been closed.
+2022-06-09 18:41:19,354 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 15616 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-09 18:41:19,357 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-09 18:41:19,357 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-09 18:41:20,080 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-09 18:41:20,118 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 34 ms. Found 2 MongoDB repository interfaces.
+2022-06-09 18:41:20,498 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-09 18:41:20,505 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:41:20,505 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-09 18:41:20,505 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-09 18:41:20,605 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-09 18:41:20,605 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1202 ms
+2022-06-09 18:41:20,873 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-09 18:41:20,909 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a293308e17771698af28ae', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:84}] to localhost:27017
+2022-06-09 18:41:20,909 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a293308e17771698af28ae', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:85}] to localhost:27017
+2022-06-09 18:41:20,910 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a293308e17771698af28ae', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16612876}
+2022-06-09 18:41:21,911 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-09 18:41:21,948 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-09 18:41:21,956 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-09 18:41:21,969 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.166 seconds (JVM running for 3.75)
+2022-06-09 18:41:22,143 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 18:41:22,143 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-09 18:41:22,145 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2022-06-09 18:41:22,170 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(4)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:86}] to localhost:27017
+2022-06-09 18:41:30,213 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-09 18:41:30,213 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:41:30,214 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-09 18:41:30,214 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:41:30,214 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-09 18:41:30,304 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:41:30,305 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting hashLedger
+2022-06-09 18:41:30,372 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] hash saveResults are --> com.hyperion.datalake.Hash@22af02f5
+2022-06-09 18:41:33,754 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-09 18:41:33,755 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:41:33,755 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-09 18:41:33,755 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:41:33,755 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-09 18:41:33,757 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:41:33,758 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting hashLedger
+2022-06-09 18:41:33,781 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] hash saveResults are --> com.hyperion.datalake.Hash@66ed954c
+2022-06-09 18:41:37,227 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:41:37,228 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-4] Attempting TRAN
+2022-06-09 18:41:37,228 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:41:37,228 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting transaction
+2022-06-09 18:41:39,536 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:41:39,537 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:41:39,540 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:41:39,540 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting findAccount
+2022-06-09 18:41:39,571 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:41:39,571 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] Attempting hashLedger
+2022-06-09 18:41:39,578 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] hash saveResults are --> com.hyperion.datalake.Hash@b658233
+2022-06-09 18:41:39,579 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-4] tran hash response is --> Hash Complete
+2022-06-09 18:41:51,040 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:86}] to localhost:27017 because the pool has been closed.

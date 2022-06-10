@@ -22,10 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BlockchainController {
     @Autowired
     BlockchainRepository blockchainRepository;
-
     @Autowired
     HashRepository hashRepository;
-
     BankingFuncs bankingFuncs = new BankingFuncs();
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -44,30 +42,21 @@ public class BlockchainController {
                     Blockchain response = bankingFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }
-                case "TRAN": {
-                    logger.debug("Attempting TRAN");
-                    logger.info("Attempting TRAN");
-
-                    //transaction also calls the hashing functions
-                    Blockchain response = bankingFuncs.transaction(blockchainRepository, hashRepository, blockchain);
-
-                    return new ResponseEntity<>(response, HttpStatus.OK);
-                }
                 case "ADD":
 //                todo placeholder
                     break;
                 case "QUERY": {
                     logger.debug("Attempting QUERY");
                     logger.info("Attempting QUERY");
-                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getsourceAccount());
-
+                    
+                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getSourceAccount());
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
-                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getsourceAccount());
-
+                    
+                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getSourceAccount());
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
             }
@@ -84,14 +73,14 @@ public class BlockchainController {
 
     @PutMapping("/crypto")
     public ResponseEntity<Blockchain> handlePut(@RequestBody Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
-        String sourceAccount = blockchain.getsourceAccount();
+        String sourceAccount = blockchain.getSourceAccount();
 
         if (blockchain.getVerb().equals("TRAN")) {
             logger.debug("Attempting TRAN");
             logger.info("Attempting TRAN");
             Blockchain response = bankingFuncs.transaction(blockchainRepository, hashRepository, blockchain);
 
-            return new ResponseEntity<>(blockchainRepository.save(response), HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             Blockchain respMsg = null;
             respMsg.setMessage("Internal Failure");
