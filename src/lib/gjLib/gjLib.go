@@ -272,7 +272,7 @@ func RunDynamoCreateItem[T any](tableName string, item T) (resp map[string]strin
 		os.Exit(1)
 	}
 
-	// Create item in table Movies
+	// Create item in table
 	input := &dynamodb.PutItemInput{
 		Item:      av,
 		TableName: aws.String(tableName),
