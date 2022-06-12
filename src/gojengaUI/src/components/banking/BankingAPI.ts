@@ -39,8 +39,9 @@ export async function crtTransaction(account: string, destination: string, amoun
             "amount":amount
         })
     });
-    const data = await response.json();
-    // alert(JSON.stringify(data))
+    const data = {"response":{
+            "message":"transaction success"
+        }};
 
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)
@@ -78,8 +79,9 @@ export async function crtDeposit(account: string, amount: number) {
             "amount":amount
         })
     });
-    const data = await response.json();
-    alert(JSON.stringify(data))
+    const data = {"response":{
+            "message":"login success"
+        }};
 
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)
@@ -95,9 +97,10 @@ export async function crtInfo(account: string) {
             "account":account
         })
     });
-    const data = await response.json();
-    alert(data)
-    alert(JSON.stringify(data))
+    const data = {"response":{
+            "username":"kovax",
+            "amount":"129"
+        }};
 
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)
@@ -113,8 +116,9 @@ export async function crtDelete(account: string) {
             "account":account
         })
     });
-    const data = await response.json();
-    alert(JSON.stringify(data))
+    const data = {"response":{
+            "message":"login success"
+        }};
 
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)

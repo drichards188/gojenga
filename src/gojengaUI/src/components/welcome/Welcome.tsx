@@ -2,49 +2,26 @@ import React, {useState} from 'react';
 
 import {useAppSelector, useAppDispatch} from '../../app/hooks';
 import {
-    decrement,
-    increment,
-    setUser,
     createUser,
-    setAmount,
-    incrementByAmount,
-    incrementAsync,
     createUserAsync,
-    incrementIfOdd,
     selectBanking,
     selectBankingUser,
-    makeTransaction,
-    createTransactionAsync,
-    makeDeposit,
     makeLogin,
-    createDepositAsync,
-    createDeleteAsync,
-    makeDelete,
-    makeInfo,
-    createInfoAsync, createLoginAsync
+    createLoginAsync, makeInfo, createInfoAsync,
 
 } from '../banking/BankingSlice';
 import styles from '../banking/Banking.module.css';
-import {Counter} from "../counter/Counter";
 
-// @ts-ignore
 export function Welcome() {
     const banking = useAppSelector(selectBanking);
     const bankingUser = useAppSelector(selectBankingUser)
     const dispatch = useAppDispatch();
-    const [incrementAmount, setIncrementAmount] = useState('200');
     const [username, setUsername] = useState('');
-    const [destination, setDestination] = useState('');
     const [amount, setStateAmount] = useState('0');
     const [password, setPassword] = useState('');
     const [display, setDisplay] = useState(true);
     const [displayUserCreation, setUserCreation] = useState(false);
-    const [displayTransactionCreation, setTransactionCreation] = useState(false);
-    const [displayDepositCreation, setDepositCreation] = useState(false);
-    const [displayInfoCreation, setInfoCreation] = useState(false);
-    const [displayDeleteCreation, setDeleteCreation] = useState(false);
     const [displayLoginCreation, setLoginCreation] = useState(false);
-    const incrementValue = Number(incrementAmount) || 0;
     const amountValue = Number(amount) || 0;
 
     let output;
@@ -88,8 +65,6 @@ export function Welcome() {
                         value={amountValue}
                         onChange={(e) => setStateAmount(e.target.value)}
                     />
-                    {/*<span className={styles.value}>{banking}</span>*/}
-                    {/*<span className={styles.value} onClick={() => dispatch(setUser("Tucker"))}>{blockchainUser}</span>*/}
                 </div>
                 <button
                     className={styles.button}
@@ -104,7 +79,6 @@ export function Welcome() {
                     Back
                 </button>
             </div>;
-        // setTransactionCreation(false)
     }
 
     let createLoginElem;
@@ -127,8 +101,6 @@ export function Welcome() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    {/*<span className={styles.value}>{banking}</span>*/}
-                    {/*<span className={styles.value} onClick={() => dispatch(setUser("Tucker"))}>{blockchainUser}</span>*/}
                 </div>
                 <button
                     className={styles.button}
@@ -143,10 +115,8 @@ export function Welcome() {
                     Back
                 </button>
             </div>;
-        // setTransactionCreation(false)
     }
 
-    // @ts-ignore
     return (
         <div>
             <div className={styles.row} id="welcomeDiv">
@@ -163,10 +133,10 @@ function createMyUser(dispatch: any, username: any, amount:any) {
     dispatch(createUserAsync({username, amount}))
 }
 
-
 function createLogin(dispatch: any, account:any, password: any) {
     dispatch(makeLogin({account, password}))
     dispatch(createLoginAsync({account, password}))
+    createInfo(dispatch, account)
 }
 
 function openAccountCreation(setDisplay: any, setUserCreation: any) {
@@ -188,3 +158,10 @@ function closeLoginCreation(setDisplay: any, setLoginCreation: any) {
     setDisplay(true)
     setLoginCreation(false)
 }
+
+function createInfo(dispatch: any, account: string) {
+    dispatch(makeInfo({account}))
+    dispatch(createInfoAsync({account}))
+}
+
+

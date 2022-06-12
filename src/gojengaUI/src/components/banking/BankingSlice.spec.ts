@@ -11,8 +11,9 @@ describe('counter reducer', () => {
         user: 'david',
         password: '12345',
         destination: 'allie',
-        message: 'msg',
+        message: '',
         loggedIn: false,
+        token: 'token',
         status: 'idle'
     };
     it('should handle initial state', () => {

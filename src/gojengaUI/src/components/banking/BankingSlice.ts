@@ -9,6 +9,7 @@ export interface BankingState {
     destination: string;
     message: string;
     loggedIn: boolean;
+    token: string;
     status: 'idle' | 'loading' | 'failed';
 }
 
@@ -17,8 +18,9 @@ const initialState: BankingState = {
     user: 'david',
     password: '12345',
     destination: 'allie',
-    message: 'msg',
+    message: '',
     loggedIn: false,
+    token: 'token',
     status: 'idle'
 };
 
@@ -126,6 +128,9 @@ export const bankingSlice = createSlice({
         resetState: (state) => {
             return initialState
         },
+        resetMessage: (state) => {
+            state.message = '';
+        },
         createUser: (state, action: PayloadAction<any>) => {
             state.user = action.payload.username
             state.amount = action.payload.amount
@@ -162,7 +167,7 @@ export const bankingSlice = createSlice({
             .addCase(createTransactionAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.user = action.payload["error"]["name"];
-                alert("the state.user is now " + state.user)
+                // alert("the state.user is now " + state.user)
             })
             //createDeposit
             .addCase(createDepositAsync.pending, (state) => {
@@ -170,8 +175,7 @@ export const bankingSlice = createSlice({
             })
             .addCase(createDepositAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.user = action.payload["error"]["name"];
-                alert("the state.user is now " + state.user)
+                state.message = action.payload["response"]["message"];
             })
             //createLogin
             .addCase(createLoginAsync.pending, (state) => {
@@ -179,14 +183,14 @@ export const bankingSlice = createSlice({
             })
             .addCase(createLoginAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.user = action.payload["response"]["token"];
+                state.token = action.payload["response"]["token"];
                 state.loggedIn = true;
-                alert("the state.user is now " + state.user)
+                // alert("the state.user is now " + state.user)
             })
             .addCase(createLoginAsync.rejected, (state, action) => {
                 state.status = 'failed';
-                alert("login rejected " + action.payload)
-                alert("the state.user is now " + state.user)
+                // alert("login rejected " + action.payload)
+                // alert("the state.user is now " + state.user)
             })
             //createUser
             .addCase(createUserAsync.pending, (state) => {
@@ -194,14 +198,30 @@ export const bankingSlice = createSlice({
             })
             .addCase(createUserAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.message = action.payload["response"];
+                state.user = action.payload["username"];
+                state.amount = action.payload["amount"];
                 state.loggedIn = true;
-                alert("the state.message is now " + state.message)
+                // alert("the state.message is now " + state.message)
             })
             .addCase(createUserAsync.rejected, (state, action) => {
                 state.status = 'failed';
-                alert("createUser rejected " + action.payload)
-                alert("the state.message is now " + state.message)
+                // alert("createUser rejected " + action.payload)
+                // alert("the state.message is now " + state.message)
+            })
+            //createInfo
+            .addCase(createInfoAsync.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(createInfoAsync.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.user = action.payload["response"]["username"];
+                state.amount = action.payload["response"]["amount"];
+                state.loggedIn = true;
+            })
+            .addCase(createInfoAsync.rejected, (state, action) => {
+                state.status = 'failed';
+                // alert("createUser rejected " + action.payload)
+                // alert("the state.message is now " + state.message)
             })
         ;
     },
@@ -214,6 +234,7 @@ export const {
     setUser,
     setAmount,
     resetState,
+    resetMessage,
     createUser,
     makeTransaction,
     makeLogin,
@@ -228,6 +249,10 @@ export const {
 export const selectBanking = (state: RootState) => state.banking.amount;
 export const selectBankingUser = (state: RootState) => state.banking.user;
 export const selectLoggedIn = (state: RootState) => state.banking.loggedIn;
+export const selectToken = (state: RootState) => state.banking.token;
+export const selectMessage = (state: RootState) => state.banking.message;
+export const selectUser = (state: RootState) => state.banking.user;
+export const selectAmount = (state: RootState) => state.banking.amount;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
