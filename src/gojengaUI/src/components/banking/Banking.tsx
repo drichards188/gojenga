@@ -17,18 +17,22 @@ import {
     makeDelete,
     resetMessage,
     makeInfo,
-    createInfoAsync, createLoginAsync, selectToken, selectMessage
+    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectUser, selectAmount
 
 } from './BankingSlice';
 import styles from './Banking.module.css';
 
 export function Banking() {
+    const dispatch = useAppDispatch();
     const banking = useAppSelector(selectBanking);
     const bankingUser = useAppSelector(selectBankingUser);
     const token = useAppSelector(selectToken);
     const serverMessage = useAppSelector(selectMessage);
+    const serverUser = useAppSelector(selectUser);
+    const serverAmount = useAppSelector(selectAmount);
     const isLoggedIn = useAppSelector(selectLoggedIn);
-    const dispatch = useAppDispatch();
+
+
     const [username, setUsername] = useState('');
     const [destination, setDestination] = useState('');
     const [amount, setStateAmount] = useState('0');
@@ -42,7 +46,22 @@ export function Banking() {
     let toolbar;
     if (isLoggedIn && display) {
         toolbar =
+
             <div className={styles.row}>
+                <div>
+                    <text
+                        className={styles.textbox}
+                        aria-label="Set User"
+                    >
+                        {serverUser}
+                    </text>
+                    <text
+                        className={styles.textbox}
+                        aria-label="Set User"
+                    >
+                        {serverAmount}
+                    </text>
+                </div>
                 <div>
                     <button
                         className={styles.button}
@@ -58,15 +77,9 @@ export function Banking() {
                     </button>
                     <button
                         className={styles.button}
-                        onClick={() => openInfoCreation(setDisplay, setInfoCreation)}
+                        onClick={() => openInfoCreation(setDisplay, setInfoCreation, dispatch, username)}
                     >
-                        Balance
-                    </button>
-                    <button
-                        className={styles.button}
-                        onClick={() => openDeleteCreation(setDisplay, setDeleteCreation)}
-                    >
-                        Delete Account
+                        Account
                     </button>
                 </div>
             </div>
@@ -170,26 +183,20 @@ export function Banking() {
                         className={styles.textbox}
                         aria-label="Set User"
                     >
-                        {serverMessage}
+                        {serverUser}
                     </text>
-                    <input
+                    <text
                         className={styles.textbox}
                         aria-label="Set User"
-                        placeholder={"Username"}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <input
-                        className={styles.textbox}
-                        aria-label="Deposit Amount"
-                        value={banking}
-                    />
+                    >
+                        {serverAmount}
+                    </text>
                 </div>
                 <button
                     className={styles.button}
-                    onClick={() => createInfo(dispatch, username)}
+                    onClick={() => openDeleteCreation(setDisplay, setDeleteCreation)}
                 >
-                    See Balance
+                    Delete Account
                 </button>
                 <button
                     className={styles.button}
@@ -249,19 +256,9 @@ export function Banking() {
     );
 }
 
-function createMyUser(dispatch: any, username: string, amount: string) {
-    dispatch(createUser({username, amount}))
-    dispatch(createUserAsync({username, amount}))
-}
-
 function createTransaction(dispatch: any, account: string, destination: string, amount: string) {
     dispatch(makeTransaction({destination, amount}))
     dispatch(createTransactionAsync({account, destination, amount}))
-}
-
-function createLogin(dispatch: any, account: string, password: string) {
-    dispatch(makeLogin({account, password}))
-    dispatch(createLoginAsync({account, password}))
 }
 
 function createDeposit(dispatch: any, account: string, amount: string) {
@@ -289,9 +286,10 @@ function openDepositCreation(setDisplay: any, setDepositCreation: any) {
     setDepositCreation(true)
 }
 
-function openInfoCreation(setDisplay: any, setInfoCreation: any) {
+function openInfoCreation(setDisplay: any, setInfoCreation: any, dispatch:any, username: string) {
     setDisplay(false)
     setInfoCreation(true)
+    createInfo(dispatch, username)
 }
 
 function openDeleteCreation(setDisplay: any, setDeleteCreation: any) {

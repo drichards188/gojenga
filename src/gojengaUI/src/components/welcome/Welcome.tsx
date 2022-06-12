@@ -7,7 +7,7 @@ import {
     selectBanking,
     selectBankingUser,
     makeLogin,
-    createLoginAsync
+    createLoginAsync, makeInfo, createInfoAsync,
 
 } from '../banking/BankingSlice';
 import styles from '../banking/Banking.module.css';
@@ -136,6 +136,7 @@ function createMyUser(dispatch: any, username: any, amount:any) {
 function createLogin(dispatch: any, account:any, password: any) {
     dispatch(makeLogin({account, password}))
     dispatch(createLoginAsync({account, password}))
+    createInfo(dispatch, account)
 }
 
 function openAccountCreation(setDisplay: any, setUserCreation: any) {
@@ -156,6 +157,11 @@ function closeAccountCreation(setDisplay: any, setUserCreation: any) {
 function closeLoginCreation(setDisplay: any, setLoginCreation: any) {
     setDisplay(true)
     setLoginCreation(false)
+}
+
+function createInfo(dispatch: any, account: string) {
+    dispatch(makeInfo({account}))
+    dispatch(createInfoAsync({account}))
 }
 
 

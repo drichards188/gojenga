@@ -198,11 +198,27 @@ export const bankingSlice = createSlice({
             })
             .addCase(createUserAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.message = action.payload["response"];
+                state.user = action.payload["username"];
+                state.amount = action.payload["amount"];
                 state.loggedIn = true;
                 // alert("the state.message is now " + state.message)
             })
             .addCase(createUserAsync.rejected, (state, action) => {
+                state.status = 'failed';
+                // alert("createUser rejected " + action.payload)
+                // alert("the state.message is now " + state.message)
+            })
+            //createInfo
+            .addCase(createInfoAsync.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(createInfoAsync.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.user = action.payload["response"]["username"];
+                state.amount = action.payload["response"]["amount"];
+                state.loggedIn = true;
+            })
+            .addCase(createInfoAsync.rejected, (state, action) => {
                 state.status = 'failed';
                 // alert("createUser rejected " + action.payload)
                 // alert("the state.message is now " + state.message)
@@ -235,6 +251,8 @@ export const selectBankingUser = (state: RootState) => state.banking.user;
 export const selectLoggedIn = (state: RootState) => state.banking.loggedIn;
 export const selectToken = (state: RootState) => state.banking.token;
 export const selectMessage = (state: RootState) => state.banking.message;
+export const selectUser = (state: RootState) => state.banking.user;
+export const selectAmount = (state: RootState) => state.banking.amount;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
