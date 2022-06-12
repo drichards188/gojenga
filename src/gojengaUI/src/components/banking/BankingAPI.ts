@@ -78,8 +78,9 @@ export async function crtDeposit(account: string, amount: number) {
             "amount":amount
         })
     });
-    const data = await response.json();
-    alert(JSON.stringify(data))
+    const data = {"response":{
+            "message":"login success"
+        }};
 
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)
