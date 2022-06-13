@@ -134,27 +134,26 @@ export const bankingSlice = createSlice({
             state.message = '';
         },
         createUser: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
-            state.amount = action.payload.amount
+            state.user = action.payload.username;
+            state.amount = action.payload.amount;
         },
         makeLogin: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
-            state.password = action.payload.password
+            state.user = action.payload.username;
+            state.password = action.payload.password;
         },
         makeTransaction: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
-            state.amount = action.payload.amount
+            state.destination = action.payload.destination;
+            state.amount = action.payload.amount;
         },
         makeDeposit: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
-            state.amount = action.payload.amount
+            state.amount = action.payload.amount;
         },
         makeInfo: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
+            state.user = action.payload.username;
         },
         makeDelete: (state, action: PayloadAction<any>) => {
-            state.user = action.payload.username
-            state.amount = action.payload.amount
+            state.user = action.payload.username;
+            state.amount = action.payload.amount;
         },
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,
@@ -178,7 +177,9 @@ export const bankingSlice = createSlice({
             .addCase(createDepositAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.message = action.payload["response"]["message"];
+                state.balance = Number(state.balance) + Number(state.amount);
             })
+
             //createLogin
             .addCase(createLoginAsync.pending, (state) => {
                 state.status = 'loading';
