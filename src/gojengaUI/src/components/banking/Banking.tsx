@@ -47,7 +47,7 @@ export function Banking() {
     let toolbar;
     if (isLoggedIn && display) {
         toolbar =
-
+          
             <Container className={styles.row}>
 
                 <Box>
@@ -100,6 +100,7 @@ export function Banking() {
                 <button
                     className={styles.button}
                     onClick={() => createDeposit(dispatch, bankingUser, amount, setStateAmount)}
+
                 >
                     Deposit
                 </button>
@@ -142,6 +143,7 @@ export function Banking() {
                 </div>
                 <button
                     className={styles.button}
+
                     onClick={() => createTransaction(dispatch, bankingUser, destination, amount)}
                 >
                     Pay
@@ -154,7 +156,6 @@ export function Banking() {
                 </button>
             </div>;
     }
-
 
 
     let createInfoElem;
