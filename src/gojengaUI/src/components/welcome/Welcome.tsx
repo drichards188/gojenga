@@ -11,6 +11,7 @@ import {
 
 } from '../banking/BankingSlice';
 import styles from '../banking/Banking.module.css';
+import {Box, TextField} from "@mui/material";
 
 export function Welcome() {
     const banking = useAppSelector(selectBanking);
@@ -52,14 +53,33 @@ export function Welcome() {
         createUserElem =
             <div className={styles.row}>
                 <div>
-                    <input
-                        className={styles.textbox}
-                        aria-label="Set User"
-                        placeholder={"Username"}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <input
+                    <Box>
+                        <TextField
+                            id="create-username"
+                            label="Username"
+                            variant="standard"
+                            className={styles.textbox}
+                            aria-label="Set User"
+                            placeholder={"Username"}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <TextField
+                            id="create-password"
+                            label="Password"
+                            type="password"
+                            variant="standard"
+                            className={styles.textbox}
+                            aria-label="Set Password"
+                            placeholder={"Password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </Box>
+                    <TextField
+                        id="create-amount"
+                        label="Initial Deposit"
+                        variant="standard"
                         className={styles.textbox}
                         aria-label="Set Amount"
                         value={amountValue}
@@ -87,14 +107,21 @@ export function Welcome() {
         createLoginElem =
             <div className={styles.row}>
                 <div>
-                    <input
+                    <TextField
+                        id="username"
+                        label="Username"
+                        variant="standard"
                         className={styles.textbox}
                         aria-label="Set User"
                         placeholder={"Username"}
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
-                    <input
+                    <TextField
+                        id="password"
+                        label="Password"
+                        variant="standard"
+                        type="password"
                         className={styles.textbox}
                         aria-label="Set Password"
                         placeholder={"Password"}
@@ -128,12 +155,12 @@ export function Welcome() {
     );
 }
 
-function createMyUser(dispatch: any, username: any, amount:any) {
+function createMyUser(dispatch: any, username: any, amount: any) {
     dispatch(createUser({username, amount}))
     dispatch(createUserAsync({username, amount}))
 }
 
-function createLogin(dispatch: any, account:any, password: any) {
+function createLogin(dispatch: any, account: any, password: any) {
     dispatch(makeLogin({account, password}))
     dispatch(createLoginAsync({account, password}))
     createInfo(dispatch, account)

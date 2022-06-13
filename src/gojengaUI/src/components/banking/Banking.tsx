@@ -21,6 +21,7 @@ import {
 
 } from './BankingSlice';
 import styles from './Banking.module.css';
+import {Box, Container, TextField} from "@mui/material";
 
 export function Banking() {
     const dispatch = useAppDispatch();
@@ -47,9 +48,9 @@ export function Banking() {
     if (isLoggedIn && display) {
         toolbar =
 
-            <div className={styles.row}>
+            <Container className={styles.row}>
 
-                <div>
+                <Box>
                     <button
                         className={styles.button}
                         onClick={() => openDepositCreation(setDisplay, setDepositCreation)}
@@ -68,8 +69,8 @@ export function Banking() {
                     >
                         Account
                     </button>
-                </div>
-            </div>
+                </Box>
+            </Container>
     }
 
     let welcomeElem;
@@ -78,60 +79,18 @@ export function Banking() {
             <Welcome/>
     }
 
-    let createTransactionElem;
-    if (displayTransactionCreation) {
-
-        createTransactionElem =
-            <div className={styles.row}>
-                <p
-                    className={styles.textbox}
-                    aria-label="Set User"
-                >
-                    {serverMessage}
-                </p>
-                <div>
-                    <input
-                        className={styles.textbox}
-                        aria-label="Set User"
-                        placeholder={"Destination Username"}
-                        value={destination}
-                        onChange={(e) => setDestination(e.target.value)}
-                    />
-                    <input
-                        className={styles.textbox}
-                        aria-label="Pay Amount"
-                        value={amountValue}
-                        onChange={(e) => setStateAmount(e.target.value)}
-                    />
-                </div>
-                <button
-                    className={styles.button}
-                    onClick={() => createTransaction(dispatch, bankingUser, destination, amount)}
-                >
-                    Pay
-                </button>
-                <button
-                    className={styles.button}
-                    onClick={() => closeTransactionCreation(setDisplay, setTransactionCreation, dispatch)}
-                >
-                    Back
-                </button>
-            </div>;
-    }
-
     let createDepositElem;
     if (displayDepositCreation) {
 
         createDepositElem =
             <div className={styles.row}>
                 <div>
-                    <span
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {serverMessage}
-                    </span>
-                    <input
+                    <TextField
+                        id="deposit-amount"
+                        label="Deposit Amount"
+                        variant="standard"
+                        type="number"
+                        inputMode="numeric"
                         className={styles.textbox}
                         aria-label="Deposit Amount"
                         value={amountValue}
@@ -153,25 +112,56 @@ export function Banking() {
             </div>;
     }
 
+    let createTransactionElem;
+    if (displayTransactionCreation) {
+
+        createTransactionElem =
+            <div className={styles.row}>
+                <div>
+                    <TextField
+                        id="destination"
+                        label="Destination"
+                        variant="standard"
+                        className={styles.textbox}
+                        aria-label="Set User"
+                        placeholder={"Destination Username"}
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                    />
+                    <TextField
+                        id="payment-amount"
+                        label="Payment Amount"
+                        variant="standard"
+                        type="number"
+                        inputMode="numeric"
+                        className={styles.textbox}
+                        aria-label="Pay Amount"
+                        value={amountValue}
+                        onChange={(e) => setStateAmount(e.target.value)}
+                    />
+                </div>
+                <button
+                    className={styles.button}
+                    onClick={() => createTransaction(dispatch, bankingUser, destination, amount)}
+                >
+                    Pay
+                </button>
+                <button
+                    className={styles.button}
+                    onClick={() => closeTransactionCreation(setDisplay, setTransactionCreation, dispatch)}
+                >
+                    Back
+                </button>
+            </div>;
+    }
+
+
+
     let createInfoElem;
     if (displayInfoCreation) {
 
         createInfoElem =
             <div className={styles.row}>
-                <div>
-                    <p
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {"Hi "  + bankingUser + "!"}
-                    </p>
-                    <p
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {"You have $" + balance}
-                    </p>
-                </div>
                 <button
                     className={styles.button}
                     onClick={() => openDeleteCreation(setDisplay, setDeleteCreation)}
@@ -192,12 +182,6 @@ export function Banking() {
 
         createDeleteElem =
             <div className={styles.row}>
-                <p
-                    className={styles.textbox}
-                    aria-label="Set User"
-                >
-                    {serverMessage}
-                </p>
                 <div>
                     <input
                         className={styles.textbox}
@@ -226,18 +210,24 @@ export function Banking() {
     if (isLoggedIn) {
         infoDiv =
             <div>
-                <p
+                <Box
                     className={styles.textbox}
                     aria-label="Set User"
                 >
-                    {"Hi "  + bankingUser + "!"}
-                </p>
-                <p
+                    {"Hi " + bankingUser + "!"}
+                </Box>
+                <Box
                     className={styles.textbox}
                     aria-label="Set User"
                 >
                     {"You have $" + balance}
-                </p>
+                </Box>
+                <Box
+                    className={styles.textbox}
+                    aria-label="Set User"
+                >
+                    {serverMessage}
+                </Box>
             </div>
     }
 
@@ -261,7 +251,7 @@ function createTransaction(dispatch: any, account: string, destination: string, 
     dispatch(createTransactionAsync({account, destination, amount}))
 }
 
-function createDeposit(dispatch: any, account: string, amount: string, setStateAmount:any) {
+function createDeposit(dispatch: any, account: string, amount: string, setStateAmount: any) {
     dispatch(makeDeposit({account, amount}))
     dispatch(createDepositAsync({account, amount}))
     setStateAmount(0);
@@ -287,7 +277,7 @@ function openDepositCreation(setDisplay: any, setDepositCreation: any) {
     setDepositCreation(true)
 }
 
-function openInfoCreation(setDisplay: any, setInfoCreation: any, dispatch:any, username: string) {
+function openInfoCreation(setDisplay: any, setInfoCreation: any, dispatch: any, username: string) {
     setDisplay(false)
     setInfoCreation(true)
     createInfo(dispatch, username)
