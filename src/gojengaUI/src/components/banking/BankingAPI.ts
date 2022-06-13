@@ -22,7 +22,10 @@ export async function crtUser(account: string, amount: number) {
         })
     });
     // const data = await response.json();
-    const data = {"response":"crtUser success"};
+    const data = {"response":{
+            "username":account,
+            "balance":amount
+        }};
     return new Promise<{ data: any }>((resolve) =>
         setTimeout(() => resolve({data: data}), 500)
     );
@@ -98,8 +101,8 @@ export async function crtInfo(account: string) {
         })
     });
     const data = {"response":{
-            "username":"kovax",
-            "amount":"129"
+            "username":account,
+            "balance":"129.38"
         }};
 
     return new Promise<{ data: any }>((resolve) =>

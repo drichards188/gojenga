@@ -17,7 +17,7 @@ import {
     makeDelete,
     resetMessage,
     makeInfo,
-    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectUser, selectAmount
+    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectBalance, selectAmount
 
 } from './BankingSlice';
 import styles from './Banking.module.css';
@@ -28,7 +28,7 @@ export function Banking() {
     const bankingUser = useAppSelector(selectBankingUser);
     const token = useAppSelector(selectToken);
     const serverMessage = useAppSelector(selectMessage);
-    const serverUser = useAppSelector(selectUser);
+    const balance = useAppSelector(selectBalance);
     const serverAmount = useAppSelector(selectAmount);
     const isLoggedIn = useAppSelector(selectLoggedIn);
 
@@ -48,20 +48,7 @@ export function Banking() {
         toolbar =
 
             <div className={styles.row}>
-                <div>
-                    <text
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {serverUser}
-                    </text>
-                    <text
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {serverAmount}
-                    </text>
-                </div>
+
                 <div>
                     <button
                         className={styles.button}
@@ -183,7 +170,7 @@ export function Banking() {
                         className={styles.textbox}
                         aria-label="Set User"
                     >
-                        {serverUser}
+                        {bankingUser}
                     </text>
                     <text
                         className={styles.textbox}
@@ -242,8 +229,28 @@ export function Banking() {
             </div>;
     }
 
+    let infoDiv;
+    if (isLoggedIn && display) {
+        infoDiv =
+            <div>
+                <p
+                    className={styles.textbox}
+                    aria-label="Set User"
+                >
+                    {"Hi "  + bankingUser + "!"}
+                </p>
+                <p
+                    className={styles.textbox}
+                    aria-label="Set User"
+                >
+                    {"You have $" + balance}
+                </p>
+            </div>
+    }
+
     return (
         <div>
+            {infoDiv}
             <div className={styles.row}>
                 {createTransactionElem}
                 {createDepositElem}
