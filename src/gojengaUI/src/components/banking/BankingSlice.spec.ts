@@ -8,6 +8,7 @@ import counterReducer, {
 describe('counter reducer', () => {
     const initialState: BankingState = {
         amount: 0,
+        balance: 0,
         user: 'david',
         password: '12345',
         destination: 'allie',

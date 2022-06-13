@@ -17,7 +17,7 @@ import {
     makeDelete,
     resetMessage,
     makeInfo,
-    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectUser, selectAmount
+    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectBalance, selectAmount
 
 } from './BankingSlice';
 import styles from './Banking.module.css';
@@ -28,7 +28,7 @@ export function Banking() {
     const bankingUser = useAppSelector(selectBankingUser);
     const token = useAppSelector(selectToken);
     const serverMessage = useAppSelector(selectMessage);
-    const serverUser = useAppSelector(selectUser);
+    const balance = useAppSelector(selectBalance);
     const serverAmount = useAppSelector(selectAmount);
     const isLoggedIn = useAppSelector(selectLoggedIn);
 
@@ -48,20 +48,7 @@ export function Banking() {
         toolbar =
 
             <div className={styles.row}>
-                <div>
-                    <text
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {serverUser}
-                    </text>
-                    <text
-                        className={styles.textbox}
-                        aria-label="Set User"
-                    >
-                        {serverAmount}
-                    </text>
-                </div>
+
                 <div>
                     <button
                         className={styles.button}
@@ -96,12 +83,12 @@ export function Banking() {
 
         createTransactionElem =
             <div className={styles.row}>
-                <text
+                <p
                     className={styles.textbox}
                     aria-label="Set User"
                 >
                     {serverMessage}
-                </text>
+                </p>
                 <div>
                     <input
                         className={styles.textbox}
@@ -119,7 +106,7 @@ export function Banking() {
                 </div>
                 <button
                     className={styles.button}
-                    onClick={() => createTransaction(dispatch, username, destination, amount)}
+                    onClick={() => createTransaction(dispatch, bankingUser, destination, amount)}
                 >
                     Pay
                 </button>
@@ -138,19 +125,12 @@ export function Banking() {
         createDepositElem =
             <div className={styles.row}>
                 <div>
-                    <text
+                    <span
                         className={styles.textbox}
                         aria-label="Set User"
                     >
                         {serverMessage}
-                    </text>
-                    <input
-                        className={styles.textbox}
-                        aria-label="Set User"
-                        placeholder={"Username"}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                    </span>
                     <input
                         className={styles.textbox}
                         aria-label="Deposit Amount"
@@ -160,7 +140,7 @@ export function Banking() {
                 </div>
                 <button
                     className={styles.button}
-                    onClick={() => createDeposit(dispatch, username, amount)}
+                    onClick={() => createDeposit(dispatch, bankingUser, amount, setStateAmount)}
                 >
                     Deposit
                 </button>
@@ -179,18 +159,18 @@ export function Banking() {
         createInfoElem =
             <div className={styles.row}>
                 <div>
-                    <text
+                    <p
                         className={styles.textbox}
                         aria-label="Set User"
                     >
-                        {serverUser}
-                    </text>
-                    <text
+                        {"Hi "  + bankingUser + "!"}
+                    </p>
+                    <p
                         className={styles.textbox}
                         aria-label="Set User"
                     >
-                        {serverAmount}
-                    </text>
+                        {"You have $" + balance}
+                    </p>
                 </div>
                 <button
                     className={styles.button}
@@ -212,12 +192,12 @@ export function Banking() {
 
         createDeleteElem =
             <div className={styles.row}>
-                <text
+                <p
                     className={styles.textbox}
                     aria-label="Set User"
                 >
                     {serverMessage}
-                </text>
+                </p>
                 <div>
                     <input
                         className={styles.textbox}
@@ -242,8 +222,28 @@ export function Banking() {
             </div>;
     }
 
+    let infoDiv;
+    if (isLoggedIn) {
+        infoDiv =
+            <div>
+                <p
+                    className={styles.textbox}
+                    aria-label="Set User"
+                >
+                    {"Hi "  + bankingUser + "!"}
+                </p>
+                <p
+                    className={styles.textbox}
+                    aria-label="Set User"
+                >
+                    {"You have $" + balance}
+                </p>
+            </div>
+    }
+
     return (
         <div>
+            {infoDiv}
             <div className={styles.row}>
                 {createTransactionElem}
                 {createDepositElem}
@@ -261,9 +261,10 @@ function createTransaction(dispatch: any, account: string, destination: string, 
     dispatch(createTransactionAsync({account, destination, amount}))
 }
 
-function createDeposit(dispatch: any, account: string, amount: string) {
+function createDeposit(dispatch: any, account: string, amount: string, setStateAmount:any) {
     dispatch(makeDeposit({account, amount}))
     dispatch(createDepositAsync({account, amount}))
+    setStateAmount(0);
 }
 
 function createInfo(dispatch: any, account: string) {
