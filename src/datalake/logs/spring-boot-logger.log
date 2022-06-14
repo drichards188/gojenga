@@ -1,0 +1,623 @@
+2022-06-14 11:02:10,481 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 9092 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 11:02:10,500 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 11:02:10,500 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 11:02:11,612 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 11:02:11,727 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 90 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 11:02:12,279 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 11:02:12,286 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:02:12,287 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 11:02:12,287 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 11:02:12,369 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 11:02:12,370 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1806 ms
+2022-06-14 11:02:12,775 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 11:02:12,894 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bf14b678dd0d7caa7f62', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:1}] to localhost:27017
+2022-06-14 11:02:12,894 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8bf14b678dd0d7caa7f62', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:2}] to localhost:27017
+2022-06-14 11:02:12,895 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bf14b678dd0d7caa7f62', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=48532188}
+2022-06-14 11:02:14,412 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 11:02:14,449 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:02:14,459 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 11:02:14,472 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 5.186 seconds (JVM running for 7.753)
+2022-06-14 11:02:14,898 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 11:02:14,899 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 11:02:14,900 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 11:02:14,917 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:3}] to localhost:27017
+2022-06-14 11:02:21,307 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 11:02:21,308 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 11:02:21,308 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 11:02:21,308 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 11:02:21,308 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 11:02:49,155 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-14 11:02:49,156 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 11:02:49,156 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 11:02:49,156 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 11:02:49,156 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 11:03:01,580 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:3}] to localhost:27017 because the pool has been closed.
+2022-06-14 11:03:06,209 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 9313 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 11:03:06,212 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 11:03:06,212 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 11:03:06,793 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 11:03:06,826 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 11:03:07,195 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 11:03:07,202 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:03:07,202 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 11:03:07,202 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 11:03:07,269 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 11:03:07,270 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1020 ms
+2022-06-14 11:03:07,551 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 11:03:07,593 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bf4b209e9969e7e57c23', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:4}] to localhost:27017
+2022-06-14 11:03:07,594 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bf4b209e9969e7e57c23', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18882063}
+2022-06-14 11:03:07,599 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8bf4b209e9969e7e57c23', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:5}] to localhost:27017
+2022-06-14 11:03:08,614 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 11:03:08,651 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:03:08,659 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 11:03:08,672 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.905 seconds (JVM running for 4.649)
+2022-06-14 11:03:09,146 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 11:03:09,147 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 11:03:09,148 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 11:03:09,173 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:6}] to localhost:27017
+2022-06-14 11:03:16,138 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 11:03:16,138 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 11:03:16,139 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 11:03:16,139 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 11:03:16,139 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 11:05:18,798 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:6}] to localhost:27017 because the pool has been closed.
+2022-06-14 11:05:21,799 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 9584 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 11:05:21,801 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 11:05:21,801 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 11:05:22,384 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 11:05:22,418 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 11:05:22,819 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 11:05:22,826 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:05:22,827 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 11:05:22,827 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 11:05:22,890 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 11:05:22,890 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1059 ms
+2022-06-14 11:05:23,181 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 11:05:23,227 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bfd308ac9a0997bc2e70', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:8}] to localhost:27017
+2022-06-14 11:05:23,227 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8bfd308ac9a0997bc2e70', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:7}] to localhost:27017
+2022-06-14 11:05:23,228 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8bfd308ac9a0997bc2e70', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=23954745}
+2022-06-14 11:05:24,255 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 11:05:24,291 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 11:05:24,298 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 11:05:24,311 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.864 seconds (JVM running for 3.571)
+2022-06-14 11:05:24,862 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 11:05:24,863 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 11:05:24,864 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 11:05:24,877 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:9}] to localhost:27017
+2022-06-14 11:05:31,507 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 11:05:31,508 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 11:05:31,508 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 11:05:31,509 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 11:05:31,509 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 11:05:50,653 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-14 11:05:50,653 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 11:05:50,653 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 11:05:50,653 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 11:05:50,653 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 11:08:39,245 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:9}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:04:59,749 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 10118 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:04:59,751 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:04:59,752 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:05:00,390 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:05:00,434 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 40 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:05:00,854 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:05:00,861 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:05:00,861 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:05:00,862 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:05:00,923 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:05:00,924 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1137 ms
+2022-06-14 12:05:01,223 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:05:01,261 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8cdcd082915631f98893b', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:10}] to localhost:27017
+2022-06-14 12:05:01,262 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8cdcd082915631f98893b', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:11}] to localhost:27017
+2022-06-14 12:05:01,262 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8cdcd082915631f98893b', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=17306272}
+2022-06-14 12:05:02,344 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:05:02,380 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:05:02,387 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:05:02,400 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.055 seconds (JVM running for 3.656)
+2022-06-14 12:05:02,907 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:05:02,907 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:05:02,909 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 12:05:02,933 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(5)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:12}] to localhost:27017
+2022-06-14 12:05:11,421 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 12:05:11,422 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 12:05:11,422 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 12:05:11,423 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 12:05:11,423 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 12:05:28,488 DEBUG com.hyperion.datalake.SqlInter [http-nio-6789-exec-1] running insert
+2022-06-14 12:29:04,483 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:12}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:29:07,275 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 10547 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:29:07,277 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:29:07,277 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:29:07,920 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:29:07,954 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:29:08,460 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:29:08,469 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:29:08,470 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:29:08,471 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:29:08,550 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:29:08,551 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1244 ms
+2022-06-14 12:29:08,912 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:29:08,960 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d374281182542776b65d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:13}] to localhost:27017
+2022-06-14 12:29:08,960 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8d374281182542776b65d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:14}] to localhost:27017
+2022-06-14 12:29:08,960 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d374281182542776b65d', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=14427394}
+2022-06-14 12:29:10,246 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:29:10,291 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:29:10,300 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:29:10,314 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.529 seconds (JVM running for 4.11)
+2022-06-14 12:29:10,426 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:29:10,427 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:29:10,429 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2022-06-14 12:29:10,442 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:15}] to localhost:27017
+2022-06-14 12:29:18,878 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:29:18,878 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:29:18,879 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:29:18,879 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:29:18,879 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:34:41,778 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:34:55,595 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 10792 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:34:55,596 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:34:55,597 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:34:56,156 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:34:56,187 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:34:56,545 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:34:56,551 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:34:56,552 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:34:56,552 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:34:56,613 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:34:56,613 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 986 ms
+2022-06-14 12:34:56,892 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:34:56,931 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d4d06bb771098e864f3d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:17}] to localhost:27017
+2022-06-14 12:34:56,932 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8d4d06bb771098e864f3d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:16}] to localhost:27017
+2022-06-14 12:34:56,932 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d4d06bb771098e864f3d', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18875866}
+2022-06-14 12:34:58,356 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:34:58,397 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:34:58,407 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:34:58,421 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.231 seconds (JVM running for 3.858)
+2022-06-14 12:34:58,525 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(5)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:34:58,525 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:34:58,527 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(5)-127.0.0.1] Completed initialization in 2 ms
+2022-06-14 12:34:58,547 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(6)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:18}] to localhost:27017
+2022-06-14 12:34:59,971 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:34:59,972 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:34:59,972 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:34:59,972 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:34:59,972 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:35:20,434 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:40:42,747 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-14 12:40:42,748 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 12:40:42,748 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 12:40:42,748 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 12:40:42,748 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 12:42:14,979 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] createAccount threw exception
+2022-06-14 12:42:15,035 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:18}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:42:17,963 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 11066 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:42:17,966 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:42:17,966 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:42:18,629 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:42:18,664 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 32 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:42:19,044 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:42:19,050 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:42:19,051 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:42:19,051 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:42:19,115 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:42:19,116 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1120 ms
+2022-06-14 12:42:19,400 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:42:19,437 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d68b86e474481d5be3b4', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:19}] to localhost:27017
+2022-06-14 12:42:19,437 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8d68b86e474481d5be3b4', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:20}] to localhost:27017
+2022-06-14 12:42:19,437 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d68b86e474481d5be3b4', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16295421}
+2022-06-14 12:42:20,510 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:42:20,556 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:42:20,565 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:42:20,579 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.973 seconds (JVM running for 3.791)
+2022-06-14 12:42:20,653 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:42:20,653 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:42:20,656 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 2 ms
+2022-06-14 12:42:20,667 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:21}] to localhost:27017
+2022-06-14 12:42:24,183 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:42:24,183 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:42:24,183 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:42:24,183 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:42:24,184 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:44:25,114 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:44:25,154 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:21}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:44:27,913 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 11280 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:44:27,915 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:44:27,916 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:44:28,525 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:44:28,558 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:44:28,916 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:44:28,922 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:44:28,923 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:44:28,923 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:44:28,986 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:44:28,986 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1035 ms
+2022-06-14 12:44:29,279 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:44:29,319 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d70d5996e00eb353e377', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:22}] to localhost:27017
+2022-06-14 12:44:29,319 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8d70d5996e00eb353e377', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:23}] to localhost:27017
+2022-06-14 12:44:29,319 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8d70d5996e00eb353e377', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=16460662}
+2022-06-14 12:44:30,423 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:44:30,461 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:44:30,470 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:44:30,482 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.935 seconds (JVM running for 3.706)
+2022-06-14 12:44:30,916 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:44:30,917 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:44:30,918 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 12:44:30,930 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:24}] to localhost:27017
+2022-06-14 12:44:35,206 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:44:35,206 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:44:35,206 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:44:35,206 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:44:35,207 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:57:06,950 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:57:06,999 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:24}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:57:09,870 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 11565 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:57:09,873 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:57:09,874 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:57:10,452 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:57:10,484 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:57:10,850 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:57:10,856 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:57:10,857 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:57:10,857 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:57:10,915 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:57:10,916 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1004 ms
+2022-06-14 12:57:11,247 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:57:11,279 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da078272d12bdac8db4a', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:25}] to localhost:27017
+2022-06-14 12:57:11,280 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8da078272d12bdac8db4a', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:26}] to localhost:27017
+2022-06-14 12:57:11,280 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da078272d12bdac8db4a', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11657405}
+2022-06-14 12:57:12,323 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:57:12,361 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:57:12,370 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:57:12,383 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.888 seconds (JVM running for 3.702)
+2022-06-14 12:57:12,641 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:57:12,641 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:57:12,642 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 12:57:12,655 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:27}] to localhost:27017
+2022-06-14 12:57:19,340 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:57:19,341 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:57:19,341 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:57:19,341 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:57:19,341 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:57:45,615 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:58:06,548 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:27}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:58:09,634 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 11775 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:58:09,636 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:58:09,636 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:58:10,243 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:58:10,275 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:58:10,651 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:58:10,657 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:58:10,657 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:58:10,657 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:58:10,726 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:58:10,726 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1057 ms
+2022-06-14 12:58:11,057 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:58:11,111 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8da431009551e13c7d842', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:29}] to localhost:27017
+2022-06-14 12:58:11,111 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da431009551e13c7d842', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:28}] to localhost:27017
+2022-06-14 12:58:11,111 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da431009551e13c7d842', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=29877957}
+2022-06-14 12:58:12,257 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:58:12,300 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:58:12,310 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:58:12,323 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.996 seconds (JVM running for 3.733)
+2022-06-14 12:58:12,766 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:58:12,766 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:58:12,767 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 12:58:12,785 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:30}] to localhost:27017
+2022-06-14 12:58:15,955 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 12:58:15,956 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:58:15,956 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 12:58:15,956 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:58:15,957 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 12:58:23,814 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 12:59:17,656 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:30}] to localhost:27017 because the pool has been closed.
+2022-06-14 12:59:20,684 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 11977 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 12:59:20,686 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 12:59:20,686 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 12:59:21,306 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 12:59:21,342 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 32 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 12:59:21,755 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 12:59:21,762 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:59:21,763 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 12:59:21,763 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 12:59:21,824 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 12:59:21,824 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1106 ms
+2022-06-14 12:59:22,159 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 12:59:22,221 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8da8a3d676c599afb7b33', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:31}] to localhost:27017
+2022-06-14 12:59:22,221 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da8a3d676c599afb7b33', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:32}] to localhost:27017
+2022-06-14 12:59:22,222 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8da8a3d676c599afb7b33', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=26685408}
+2022-06-14 12:59:23,287 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 12:59:23,325 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 12:59:23,333 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 12:59:23,346 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.046 seconds (JVM running for 4.206)
+2022-06-14 12:59:23,602 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 12:59:23,602 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 12:59:23,604 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 12:59:23,615 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:33}] to localhost:27017
+2022-06-14 12:59:26,644 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 12:59:26,645 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 12:59:26,645 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 12:59:26,645 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 12:59:26,645 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:02:12,963 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] createAccount threw exception
+2022-06-14 13:02:13,015 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:33}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:02:15,471 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12206 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:02:15,477 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:02:15,478 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:02:16,328 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:02:16,361 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 30 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:02:16,747 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:02:16,753 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:02:16,754 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:02:16,754 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:02:16,817 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:02:16,817 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1242 ms
+2022-06-14 13:02:17,118 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:02:17,158 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8db3931eece5d6342254f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:34}] to localhost:27017
+2022-06-14 13:02:17,158 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8db3931eece5d6342254f', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:35}] to localhost:27017
+2022-06-14 13:02:17,159 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8db3931eece5d6342254f', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18137483}
+2022-06-14 13:02:18,198 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:02:18,236 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:02:18,244 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:02:18,257 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.229 seconds (JVM running for 3.709)
+2022-06-14 13:02:18,315 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:02:18,316 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:02:18,317 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:02:18,329 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:36}] to localhost:27017
+2022-06-14 13:02:21,903 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:02:21,903 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:02:21,904 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:02:21,904 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:02:21,904 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:02:28,890 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 13:02:43,328 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:36}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:06:35,581 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12440 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:06:35,583 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:06:35,584 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:06:36,188 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:06:36,219 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:06:36,579 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:06:36,585 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:06:36,586 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:06:36,586 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:06:36,647 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:06:36,648 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1035 ms
+2022-06-14 13:06:36,934 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:06:36,978 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8dc3cfca6105947a18af2', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:38}] to localhost:27017
+2022-06-14 13:06:36,978 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dc3cfca6105947a18af2', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:37}] to localhost:27017
+2022-06-14 13:06:36,978 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dc3cfca6105947a18af2', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=22308452}
+2022-06-14 13:06:37,990 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:06:38,025 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:06:38,033 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:06:38,046 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.807 seconds (JVM running for 3.43)
+2022-06-14 13:06:38,260 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:06:38,261 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:06:38,262 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:06:38,290 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:39}] to localhost:27017
+2022-06-14 13:06:44,925 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:06:44,925 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:06:44,925 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:06:44,925 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:06:44,925 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:06:52,126 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 13:06:52,162 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:39}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:07:17,576 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12644 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:07:17,578 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:07:17,578 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:07:18,220 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:07:18,256 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 31 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:07:18,731 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:07:18,739 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:07:18,740 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:07:18,740 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:07:18,823 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:07:18,823 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1213 ms
+2022-06-14 13:07:19,149 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:07:19,198 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8dc67b9af392205a3098d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:40}] to localhost:27017
+2022-06-14 13:07:19,199 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dc67b9af392205a3098d', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:41}] to localhost:27017
+2022-06-14 13:07:19,200 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dc67b9af392205a3098d', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=18929066}
+2022-06-14 13:07:20,503 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:07:20,557 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:07:20,566 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:07:20,581 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.45 seconds (JVM running for 4.242)
+2022-06-14 13:07:20,791 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:07:20,792 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:07:20,796 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 4 ms
+2022-06-14 13:07:20,809 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:42}] to localhost:27017
+2022-06-14 13:07:44,466 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 13:07:44,467 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:07:44,467 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:07:44,467 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:07:44,467 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:07:52,914 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] createAccount threw exception
+2022-06-14 13:09:49,912 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:42}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:09:53,630 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 12865 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:09:53,637 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:09:53,638 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:09:54,351 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:09:54,388 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 34 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:09:54,884 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:09:54,892 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:09:54,892 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:09:54,893 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:09:54,960 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:09:54,961 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1282 ms
+2022-06-14 13:09:55,319 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:09:55,374 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dd034094cd4b4196901e', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:44}] to localhost:27017
+2022-06-14 13:09:55,374 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8dd034094cd4b4196901e', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:43}] to localhost:27017
+2022-06-14 13:09:55,374 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8dd034094cd4b4196901e', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13102567}
+2022-06-14 13:09:56,632 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:09:56,675 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:09:56,685 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:09:56,699 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.492 seconds (JVM running for 4.288)
+2022-06-14 13:09:56,822 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:09:56,823 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:09:56,825 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 2 ms
+2022-06-14 13:09:56,846 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:45}] to localhost:27017
+2022-06-14 13:10:21,928 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:10:21,928 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:10:21,929 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:10:21,929 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:10:21,929 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:10:33,938 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] createAccount threw exception
+2022-06-14 13:10:35,974 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-14 13:10:35,975 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 13:10:35,975 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 13:10:35,976 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 13:10:35,976 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 13:16:38,844 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] createAccount threw exception
+2022-06-14 13:16:38,886 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:45}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:16:41,561 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13124 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:16:41,564 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:16:41,564 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:16:42,318 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:16:42,356 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 33 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:16:42,816 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:16:42,823 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:16:42,823 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:16:42,823 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:16:42,892 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:16:42,892 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1288 ms
+2022-06-14 13:16:43,224 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:16:43,269 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8de9b136bc062e7571301', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:47}] to localhost:27017
+2022-06-14 13:16:43,269 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8de9b136bc062e7571301', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13027872}
+2022-06-14 13:16:43,269 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8de9b136bc062e7571301', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:46}] to localhost:27017
+2022-06-14 13:16:44,508 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:16:44,550 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:16:44,560 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:16:44,573 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.413 seconds (JVM running for 4.024)
+2022-06-14 13:16:44,660 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(2)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:16:44,661 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:16:44,662 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(2)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:16:44,681 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(1)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:48}] to localhost:27017
+2022-06-14 13:16:53,718 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 13:16:53,718 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:16:53,719 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:16:53,719 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:16:53,719 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:18:22,348 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] createAccount threw exception
+2022-06-14 13:18:22,385 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:48}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:18:25,246 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13328 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:18:25,248 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:18:25,249 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:18:25,901 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:18:25,939 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 34 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:18:26,348 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:18:26,354 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:18:26,354 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:18:26,354 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:18:26,412 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:18:26,412 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1124 ms
+2022-06-14 13:18:26,727 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:18:26,770 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8df0245619a682d418e78', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:49}] to localhost:27017
+2022-06-14 13:18:26,770 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8df0245619a682d418e78', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:50}] to localhost:27017
+2022-06-14 13:18:26,772 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8df0245619a682d418e78', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=20074736}
+2022-06-14 13:18:27,922 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:18:27,960 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:18:27,974 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:18:27,987 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.128 seconds (JVM running for 3.878)
+2022-06-14 13:18:28,470 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:18:28,470 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:18:28,472 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:18:28,481 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:51}] to localhost:27017
+2022-06-14 13:18:31,452 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Post mapping triggered
+2022-06-14 13:18:31,453 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:18:31,453 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-1] Attempting CRT
+2022-06-14 13:18:31,453 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:18:31,453 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] Attempting createAccount
+2022-06-14 13:20:36,933 ERROR com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-1] createAccount threw exception
+2022-06-14 13:20:36,968 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:51}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:20:39,699 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13548 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:20:39,702 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:20:39,702 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:20:40,326 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:20:40,358 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 28 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:20:40,747 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:20:40,753 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:20:40,753 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:20:40,753 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:20:40,803 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:20:40,803 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1062 ms
+2022-06-14 13:20:41,092 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:20:41,123 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8df890601c864f1e9fb42', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:52}] to localhost:27017
+2022-06-14 13:20:41,123 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8df890601c864f1e9fb42', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10540317}
+2022-06-14 13:20:41,123 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8df890601c864f1e9fb42', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:53}] to localhost:27017
+2022-06-14 13:20:42,174 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:20:42,212 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:20:42,220 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:20:42,233 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.003 seconds (JVM running for 3.841)
+2022-06-14 13:20:42,388 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(3)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:20:42,393 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:20:42,395 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(3)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:20:42,405 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:54}] to localhost:27017
+2022-06-14 13:20:48,894 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:20:48,894 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:20:48,894 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:20:48,895 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:20:48,895 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:21:00,628 DEBUG com.hyperion.datalake.SqlInter [http-nio-6789-exec-2] running insert
+2022-06-14 13:21:08,957 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Post mapping triggered
+2022-06-14 13:21:08,958 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 13:21:08,958 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-3] Attempting CRT
+2022-06-14 13:21:08,958 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 13:21:08,959 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-3] Attempting createAccount
+2022-06-14 13:21:21,761 DEBUG com.hyperion.datalake.SqlInter [http-nio-6789-exec-3] running insert
+2022-06-14 13:21:53,480 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:54}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:32:15,500 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 13882 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:32:15,503 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:32:15,504 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:32:16,126 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:32:16,166 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 36 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:32:16,548 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:32:16,555 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:32:16,555 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:32:16,556 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:32:16,621 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:32:16,621 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1070 ms
+2022-06-14 13:32:16,926 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:32:16,977 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8e2407b66677480784209', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:55}] to localhost:27017
+2022-06-14 13:32:16,977 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8e2407b66677480784209', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:56}] to localhost:27017
+2022-06-14 13:32:16,978 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8e2407b66677480784209', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24708918}
+2022-06-14 13:32:18,108 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:32:18,150 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:32:18,158 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:32:18,172 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 3.107 seconds (JVM running for 3.615)
+2022-06-14 13:32:18,601 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:32:18,602 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:32:18,603 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:32:18,619 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(3)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:57}] to localhost:27017
+2022-06-14 13:32:21,561 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:32:21,562 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:32:21,562 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:32:21,562 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:32:21,563 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:33:04,781 DEBUG com.hyperion.datalake.SqlInter [http-nio-6789-exec-2] running insert
+2022-06-14 13:33:04,817 INFO com.mongodb.diagnostics.logging.SLF4JLogger [SpringApplicationShutdownHook] Closed connection [connectionId{localValue:3, serverValue:57}] to localhost:27017 because the pool has been closed.
+2022-06-14 13:37:11,572 INFO org.springframework.boot.StartupInfoLogger [main] Starting DataLakeApplication using Java 17.0.2 on CoffeeContainer with PID 14157 (/home/drich/gojenga/src/datalake/build/classes/java/main started by drich in /home/drich/gojenga/src/datalake)
+2022-06-14 13:37:11,574 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.5.6, Spring v5.3.12
+2022-06-14 13:37:11,575 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2022-06-14 13:37:12,141 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2022-06-14 13:37:12,173 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 29 ms. Found 2 MongoDB repository interfaces.
+2022-06-14 13:37:12,602 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 6789 (http)
+2022-06-14 13:37:12,608 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:37:12,608 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-06-14 13:37:12,608 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-06-14 13:37:12,670 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-06-14 13:37:12,670 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1066 ms
+2022-06-14 13:37:12,982 INFO com.mongodb.diagnostics.logging.SLF4JLogger [main] Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-06-14 13:37:13,022 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-rtt-ClusterId{value='62a8e3688afb2a1010dd0583', description='null'}-localhost:27017] Opened connection [connectionId{localValue:2, serverValue:58}] to localhost:27017
+2022-06-14 13:37:13,021 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8e3688afb2a1010dd0583', description='null'}-localhost:27017] Opened connection [connectionId{localValue:1, serverValue:59}] to localhost:27017
+2022-06-14 13:37:13,022 INFO com.mongodb.diagnostics.logging.SLF4JLogger [cluster-ClusterId{value='62a8e3688afb2a1010dd0583', description='null'}-localhost:27017] Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13183541}
+2022-06-14 13:37:14,121 INFO org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver [main] Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-06-14 13:37:14,158 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-6789"]
+2022-06-14 13:37:14,166 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 6789 (http) with context path ''
+2022-06-14 13:37:14,180 INFO org.springframework.boot.StartupInfoLogger [main] Started DataLakeApplication in 2.944 seconds (JVM running for 3.493)
+2022-06-14 13:37:14,513 INFO org.apache.juli.logging.DirectJDKLog [RMI TCP Connection(1)-127.0.0.1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-14 13:37:14,514 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Initializing Servlet 'dispatcherServlet'
+2022-06-14 13:37:14,515 INFO org.springframework.web.servlet.FrameworkServlet [RMI TCP Connection(1)-127.0.0.1] Completed initialization in 1 ms
+2022-06-14 13:37:14,540 INFO com.mongodb.diagnostics.logging.SLF4JLogger [RMI TCP Connection(2)-127.0.0.1] Opened connection [connectionId{localValue:3, serverValue:60}] to localhost:27017
+2022-06-14 13:37:18,258 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Post mapping triggered
+2022-06-14 13:37:18,259 DEBUG com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:37:18,259 INFO com.hyperion.datalake.BlockchainController [http-nio-6789-exec-2] Attempting CRT
+2022-06-14 13:37:18,259 DEBUG com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:37:18,259 INFO com.hyperion.datalake.BankingFuncs [http-nio-6789-exec-2] Attempting createAccount
+2022-06-14 13:37:55,992 DEBUG com.hyperion.datalake.SqlInter [http-nio-6789-exec-2] running insert
