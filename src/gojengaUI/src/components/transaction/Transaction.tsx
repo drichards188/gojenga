@@ -6,12 +6,6 @@ import {
     createUserAsync,
     selectBanking,
     selectBankingUser,
-    makeLogin,
-    createLoginAsync,
-    makeInfo,
-    createInfoAsync,
-    makeDeposit,
-    createDepositAsync,
     makeTransaction,
     createTransactionAsync,
 
@@ -23,12 +17,8 @@ export function Transaction() {
     const banking = useAppSelector(selectBanking);
     const bankingUser = useAppSelector(selectBankingUser)
     const dispatch = useAppDispatch();
-    const [username, setUsername] = useState('');
     const [amount, setStateAmount] = useState('0');
     const [destination, setDestination] = useState('');
-    const [display, setDisplay] = useState(true);
-    const [displayUserCreation, setUserCreation] = useState(false);
-    const [displayLoginCreation, setLoginCreation] = useState(false);
     const amountValue = Number(amount) || 0;
 
     let createTransactionElem =
@@ -39,6 +29,7 @@ export function Transaction() {
                     label="Destination"
                     variant="standard"
                     className={styles.textbox}
+                    autoFocus={true}
                     aria-label="Set User"
                     placeholder={"Destination Username"}
                     value={destination}
@@ -59,7 +50,7 @@ export function Transaction() {
             <button
                 className={styles.button}
 
-                onClick={() => createTransaction(dispatch, bankingUser, destination, amount)}
+                onClick={() => createTransaction(dispatch, bankingUser, destination, amount, setDestination, setStateAmount)}
             >
                 Pay
             </button>
@@ -74,9 +65,11 @@ export function Transaction() {
     );
 }
 
-function createTransaction(dispatch: any, account: string, destination: string, amount: string) {
+function createTransaction(dispatch: any, account: string, destination: string, amount: string, setDestination: any, setStateAmount: any) {
     dispatch(makeTransaction({destination, amount}))
     dispatch(createTransactionAsync({account, destination, amount}))
+    setDestination('')
+    setStateAmount('')
 }
 
 

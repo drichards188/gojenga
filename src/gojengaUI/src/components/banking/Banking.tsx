@@ -17,7 +17,7 @@ import {
     makeDelete,
     resetMessage,
     makeInfo,
-    createInfoAsync, createLoginAsync, selectToken, selectMessage, selectBalance, selectAmount
+    createInfoAsync, selectToken, selectMessage, selectBalance, selectAmount
 
 } from './BankingSlice';
 import styles from './Banking.module.css';
@@ -166,24 +166,6 @@ export function Banking() {
     );
 }
 
-function createTransaction(dispatch: any, account: string, destination: string, amount: string) {
-    dispatch(makeTransaction({destination, amount}))
-    dispatch(createTransactionAsync({account, destination, amount}))
-}
-
-function createDeposit(dispatch: any, account: string, amount: string, setStateAmount: any) {
-    dispatch(makeDeposit({account, amount}))
-    dispatch(createDepositAsync({account, amount}))
-    setStateAmount(0);
-}
-
-function createInfo(dispatch: any, account: string) {
-    dispatch(makeInfo({account}))
-    dispatch(createInfoAsync({account}))
-}
-
-
-
 function openTransactionCreation(setDisplay: any, setTransactionCreation: any) {
     setDisplay(false)
     setTransactionCreation(true)
@@ -197,7 +179,7 @@ function openDepositCreation(setDisplay: any, setDepositCreation: any) {
 function openInfoCreation(setDisplay: any, setInfoCreation: any, dispatch: any, username: string) {
     setDisplay(false)
     setInfoCreation(true)
-    createInfo(dispatch, username)
+    // createInfo(dispatch, username)
 }
 
 function closeTransactionCreation(setDisplay: any, setTransactionCreation: any, dispatch: any) {

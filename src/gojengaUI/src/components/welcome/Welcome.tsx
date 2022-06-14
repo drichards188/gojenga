@@ -59,6 +59,7 @@ export function Welcome() {
                             label="Username"
                             variant="standard"
                             className={styles.textbox}
+                            autoFocus={true}
                             aria-label="Set User"
                             placeholder={"Username"}
                             value={username}
@@ -111,6 +112,7 @@ export function Welcome() {
                         id="username"
                         label="Username"
                         variant="standard"
+                        autoFocus={true}
                         className={styles.textbox}
                         aria-label="Set User"
                         placeholder={"Username"}

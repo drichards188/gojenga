@@ -2,12 +2,9 @@ import React, {useState} from 'react';
 
 import {useAppSelector, useAppDispatch} from '../../app/hooks';
 import {
-    createUser,
-    createUserAsync,
     selectBanking,
     selectBankingUser,
-    makeLogin,
-    createLoginAsync, makeInfo, createInfoAsync, makeDeposit, createDepositAsync,
+    makeDeposit, createDepositAsync,
 
 } from '../banking/BankingSlice';
 import styles from '../banking/Banking.module.css';
@@ -19,10 +16,6 @@ export function Deposit() {
     const dispatch = useAppDispatch();
     const [username, setUsername] = useState('');
     const [amount, setStateAmount] = useState('0');
-    const [password, setPassword] = useState('');
-    const [display, setDisplay] = useState(true);
-    const [displayUserCreation, setUserCreation] = useState(false);
-    const [displayLoginCreation, setLoginCreation] = useState(false);
     const amountValue = Number(amount) || 0;
 
         let createDepositElem =
@@ -34,6 +27,7 @@ export function Deposit() {
                         variant="standard"
                         type="number"
                         inputMode="numeric"
+                        autoFocus={true}
                         className={styles.textbox}
                         aria-label="Deposit Amount"
                         value={amountValue}
