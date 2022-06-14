@@ -14,13 +14,15 @@ import java.util.List;
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Blockchain createAccount(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException {
+    public Blockchain createAccount(Traffic traffic) throws NoSuchAlgorithmException {
         Blockchain _blockchain = new Blockchain();
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
-            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getAccount(), blockchain.getAmount()));
-            hashLedger(blockchainRepository, hashRepository, blockchain);
+
+            SqlInter sqlInter = new SqlInter();
+            sqlInter.sqlHandler("INSERT", traffic);
+
             return _blockchain;
         } catch (Exception e) {
             logger.error("createAccount threw exception");

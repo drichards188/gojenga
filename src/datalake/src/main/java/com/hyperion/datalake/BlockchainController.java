@@ -29,7 +29,7 @@ public class BlockchainController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/crypto")
-    public ResponseEntity<Blockchain> handlePost(@RequestBody Blockchain blockchain) throws Exception {
+    public ResponseEntity<Blockchain> handlePost(@RequestBody Traffic blockchain) throws Exception {
         logger.debug("Post mapping triggered");
 
         try {
@@ -39,7 +39,7 @@ public class BlockchainController {
                     logger.info("Attempting CRT");
 
                     //createAccount also calls the hashing functions
-                    Blockchain response = bankingFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
+                    Blockchain response = bankingFuncs.createAccount(blockchain);
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }
                 case "ADD":
@@ -49,14 +49,14 @@ public class BlockchainController {
                     logger.debug("Attempting QUERY");
                     logger.info("Attempting QUERY");
                     
-                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getSourceAccount());
+                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getAccount());
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
                     
-                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getSourceAccount());
+                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getAccount());
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
             }

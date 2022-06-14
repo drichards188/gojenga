@@ -10,8 +10,8 @@ class BlockchainControllerTest {
     void testHandlePost() throws Exception {
         BlockchainController blockchainController = new BlockchainController();
 
-        Blockchain blockchain = new Blockchain();
-        blockchain.setSourceAccount("sheldon");
+        Traffic blockchain = new Traffic();
+        blockchain.setAccount("sheldon");
         blockchain.setAmount("200");
         blockchain.setVerb("CRT");
 

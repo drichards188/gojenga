@@ -7,7 +7,8 @@ public class Traffic {
     public String Name;
     public String Amount;
     public String Account;
-    public String Account2;
+    public String SourceAccount;
+    public String DestinationAccount;
     public String Verb;
     public String Role;
     public String Port;
@@ -19,6 +20,14 @@ public class Traffic {
 
     public void setAccount(String account) {
         Account = account;
+    }
+
+    public String getSource() {
+        return SourceAccount;
+    }
+
+    public void setSource(String source) {
+        SourceAccount = source;
     }
 
     public String getAmount() {
@@ -37,11 +46,19 @@ public class Traffic {
         Verb = verb;
     }
 
+    public String getDestinationAccount() {
+        return DestinationAccount;
+    }
+
+    public void setDestinationAccount(String destinationAccount) {
+        DestinationAccount = destinationAccount;
+    }
+
     public void clear() {
         this.Name = "";
         this.Amount = "";
-        this.Account = "";
-        this.Account2 = "";
+        this.SourceAccount = "";
+        this.DestinationAccount = "";
         this.Verb = "";
         this.Role = "";
         this.Port = "";
