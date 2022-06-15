@@ -13,16 +13,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class SqlInter {
-//TRAN
-//CRT
-//QUERY
-//DISCO
-//HASH
-//PING
-private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    public static void main() throws Exception {
 
-        SqlInter sqlInter = new SqlInter();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
+    public SqlInter() throws Exception {
+
+    }
+
+    public Traffic sqlHandler(String verb, Traffic traffic) {
         String url = "jdbc:mysql://localhost:3306/crypto?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String username = "david";
         String password = "password";
@@ -34,68 +33,99 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
             Statement stmt = connection.createStatement();
             System.out.println("Database connected!");
 
-            String[] data = {"hiya"};
-            sqlInter.sqlCommands(stmt, "UPDATE", data);
+            String tableName = "ledger";
+            String accountName = traffic.user.getAccount();
+
+            switch (verb) {
+                case "QUERY": {
+                    sqlQuery(stmt, traffic);
+                    break;
+                }
+                case "ALL": {
+                    sqlQueryAll(stmt, traffic);
+                    break;
+                }
+                case "CRT":
+                    sqlInsert(stmt, verb, traffic);
+                    break;
+                case "UPDATE": {
+                    String query = "UPDATE " + tableName + " SET amount=" + traffic.user.getAmount() + " WHERE account='" + accountName + "';";
+                    int rs = stmt.executeUpdate(query);
+                    logger.debug("running insert");
+                    break;
+                }
+                case "DELETE": {
+                    String query = "DELETE FROM " + tableName + " WHERE account='" + accountName + "';";
+                    int rs = stmt.executeUpdate(query);
+                    logger.debug("running insert");
+                    break;
+                }
+                case "CREATE":
+                    try {
+                        String query = "CREATE TABLE " + tableName + " ("
+                                + "idNo INT(64) NOT NULL AUTO_INCREMENT,"
+                                + "initials VARCHAR(2),"
+                                + "agentDate DATE,"
+                                + "agentCount INT(64), "
+                                + "PRIMARY KEY(idNo))";
+                        int rs = stmt.executeUpdate(query);
+                        logger.debug("running insert");
+                    } catch (Exception e) {
+                        logger.error("handlePost triggered exception: " + e);
+
+                    }
+                    break;
+            }
+
+            return traffic;
+
         } catch (SQLException e) {
             throw new IllegalStateException("Cannot connect the database!", e);
         }
-
-//        Server.createServer();
     }
 
-    public void sqlCommands(Statement stmt, String verb, String[] data) throws SQLException {
+    private Traffic sqlInsert(Statement stmt, String verb, Traffic traffic) throws SQLException {
         String tableName = "ledger";
-        String accountName = "tucker";
-        verb = "SELECT";
-        Integer amount = 200;
-        if (verb.equals("SELECT") ) {
-            String QUERY = "SELECT _id, account, amount FROM ledger;";
+        String accountName = traffic.user.getAccount();
 
-            ResultSet rs = stmt.executeQuery(QUERY);
+        String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + accountName + "', " + traffic.user.getAmount() + ");";
+        int rs = stmt.executeUpdate(query);
+        logger.debug("running insert");
+        return traffic;
+    }
 
-            while (rs.next()) {
-                // Retrieve by column name
-                System.out.print("ID: " + rs.getInt("_id"));
-                System.out.print(", Account: " + rs.getString("account"));
-                System.out.print(", Amount: " + rs.getString("amount"));
-            }
+    private Traffic sqlQuery(Statement stmt, Traffic traffic) throws SQLException {
+        String QUERY = "SELECT _id, account, amount FROM ledger WHERE account= '" + traffic.user.getAccount() + "'";
+        ResultSet rs = stmt.executeQuery(QUERY);
+
+        while (rs.next()) {
+            // Retrieve by column name
+            System.out.print("ID: " + rs.getInt("_id"));
+            traffic.setId(rs.getInt("_id"));
+            System.out.print(", Account: " + rs.getString("account"));
+            traffic.user.setAccount(rs.getString("account"));
+            System.out.print(", Amount: " + rs.getString("amount"));
+            traffic.user.setAmount(rs.getString("amount"));
         }
 
-        else if (verb.equals("INSERT")) {
+        return traffic;
+    }
 
-            String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + accountName + "', "+ amount +");";
-            int rs = stmt.executeUpdate(query);
-            logger.debug("running insert");
+    private Traffic sqlQueryAll(Statement stmt, Traffic traffic) throws SQLException {
+        String QUERY = "SELECT _id, account, amount FROM ledger;";
+        ResultSet rs = stmt.executeQuery(QUERY);
+
+        while (rs.next()) {
+            // Retrieve by column name
+            System.out.print("ID: " + rs.getInt("_id"));
+            traffic.setId(rs.getInt("_id"));
+            System.out.print(", Account: " + rs.getString("account"));
+            traffic.user.setAccount(rs.getString("account"));
+            System.out.print(", Amount: " + rs.getString("amount"));
+            traffic.user.setAmount(rs.getString("amount"));
         }
 
-        else if (verb.equals("UPDATE")) {
-            String query = "UPDATE " + tableName + " SET amount="+amount+" WHERE account='"+accountName+"';";
-            int rs = stmt.executeUpdate(query);
-            logger.debug("running insert");
-        }
-
-        else if (verb.equals("DELETE")) {
-            String query = "DELETE FROM " + tableName + " WHERE account='"+accountName+"';";
-            int rs = stmt.executeUpdate(query);
-            logger.debug("running insert");
-        }
-
-        else if (verb.equals("CREATE")) {
-            try {
-                String query = "CREATE TABLE " + tableName + " ("
-                        + "idNo INT(64) NOT NULL AUTO_INCREMENT,"
-                        + "initials VARCHAR(2),"
-                        + "agentDate DATE,"
-                        + "agentCount INT(64), "
-                        + "PRIMARY KEY(idNo))";
-                int rs = stmt.executeUpdate(query);
-                logger.debug("running insert");
-            }
-            catch (Exception e) {
-                logger.error("handlePost triggered exception: " + e);
-
-            }
-        }
+        return traffic;
     }
 }
 

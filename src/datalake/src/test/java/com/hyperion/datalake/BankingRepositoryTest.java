@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class BlockchainRepositoryTest {
+class BankingRepositoryTest {
     @Autowired
-    private BlockchainRepository blockchainRepository;
+    private BankingRepository bankingRepository;
 
     @Test
     void testRepositorySave() {
@@ -18,7 +18,7 @@ class BlockchainRepositoryTest {
         blockchain.setAmount("200");
         blockchain.setVerb("CRT");
 
-        assertEquals(blockchain, blockchainRepository.save(blockchain), "BlockchainRepository should work");
+        assertEquals(blockchain, bankingRepository.save(blockchain), "BlockchainRepository should work");
     }
 
     @Test

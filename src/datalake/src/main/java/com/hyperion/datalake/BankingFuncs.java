@@ -4,7 +4,6 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -14,115 +13,113 @@ import java.util.List;
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public Blockchain createAccount(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException {
-        Blockchain _blockchain = new Blockchain();
+    public Traffic createAccount(Traffic traffic) throws NoSuchAlgorithmException {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
-            _blockchain = blockchainRepository.save(new Blockchain(blockchain.getAccount(), blockchain.getAmount()));
-            hashLedger(blockchainRepository, hashRepository, blockchain);
-            return _blockchain;
+            SqlInter sqlInter = new SqlInter();
+            traffic = sqlInter.sqlHandler("CRT", traffic);
+
+            return traffic;
         } catch (Exception e) {
             logger.error("createAccount threw exception");
-            _blockchain.setMessage("createAccount failed");
-            return _blockchain;
+            traffic.setMessage("createAccount failed");
+            return traffic;
         }
     }
 
-    public Blockchain transaction(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
+    public Traffic transaction(Traffic traffic) throws Exception {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
+        SqlInter sqlInter = new SqlInter();
 
-        Blockchain sourceAccount = findAccount(blockchainRepository, blockchain.getSourceAccount());
-        Blockchain destinationAccount = findAccount(blockchainRepository, blockchain.getDestinationAccount());
-        Blockchain _blockchain = new Blockchain();
+        Traffic trafficMedium = new Traffic();
+        trafficMedium.setVerb(traffic.getVerb());
+        trafficMedium.user.setAccount(traffic.getSourceAccount());
+        Traffic sourceAccount = findAccount(trafficMedium);
 
-        Integer amount1 = Integer.parseInt(sourceAccount.getAmount()) - Integer.parseInt(blockchain.getAmount());
-        Integer amount2 = Integer.parseInt(destinationAccount.getAmount()) + Integer.parseInt(blockchain.getAmount());
+        trafficMedium.user.setAccount(traffic.getDestinationAccount());
+        Traffic destinationAccount = findAccount(trafficMedium);
 
-        sourceAccount.setAmount(amount1.toString());
-        destinationAccount.setAmount(amount2.toString());
+        Integer amount1 = null;
+        Integer amount2 = null;
 
-        blockchainRepository.deleteByAccount(blockchain.getSourceAccount());
-        blockchainRepository.deleteByAccount(blockchain.getDestinationAccount());
+        String cleanAmount = sourceAccount.user.amount.split("\\.", 2)[0];
+        String cleanAmount2 = destinationAccount.user.amount.split("\\.", 2)[0];
 
-        _blockchain = blockchainRepository.save(sourceAccount);
-        _blockchain = blockchainRepository.save(destinationAccount);
-        String hashResponse = hashLedger(blockchainRepository, hashRepository, blockchain);
+        sourceAccount.user.setAmount(cleanAmount);
+        destinationAccount.user.setAmount(cleanAmount2);
+
+        try {
+            amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
+            amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
+        } catch (Exception e) {
+            logger.debug(String.valueOf(e));
+        }
+
+        sourceAccount.user.setAmount(amount1.toString());
+        destinationAccount.user.setAmount(amount2.toString());
+
+        trafficMedium.setVerb(traffic.getVerb());
+        trafficMedium.user.setAccount(traffic.getSourceAccount());
+        trafficMedium.user.setAmount(amount1.toString());
+
+        sourceAccount = sqlInter.sqlHandler("UPDATE", trafficMedium);
+
+        trafficMedium.user.setAccount(traffic.getDestinationAccount());
+        trafficMedium.user.setAmount(amount2.toString());
+
+        sourceAccount = sqlInter.sqlHandler("UPDATE", trafficMedium);
+
+        String hashResponse = null;
         logger.info("tran hash response is --> " + hashResponse);
 
-        return _blockchain = _blockchain;
+        return traffic;
     }
 
-    public Blockchain findAccount(BlockchainRepository blockchainRepository, String Account) {
-        Blockchain _blockchain = new Blockchain();
+    public Traffic findAccount(Traffic traffic) {
         logger.debug("Attempting findAccount");
         logger.info("Attempting findAccount");
-        String amount = "";
         try {
-            List<Blockchain> blockchainData = blockchainRepository.findByAccount(Account);
-
-            if (!blockchainData.isEmpty()) {
-                _blockchain = blockchainData.get(0);
-                Account = _blockchain.getSourceAccount();
-                amount = _blockchain.getAmount();
-
-                return _blockchain;
-            }
-
-            else {
-                _blockchain.setMessage("No Results Found");
-                return _blockchain;
-            }
+            SqlInter sqlInter = new SqlInter();
+            traffic = sqlInter.sqlHandler("QUERY", traffic);
+            return traffic;
 
         } catch (Exception e) {
-            logger.error("findAccount threw exception");
-            _blockchain.setMessage("createAccount failed");
-            return _blockchain;
+            logger.error("createAccount threw exception");
+            traffic.setMessage("findAccount failed");
+            return traffic;
         }
     }
 
-    public Blockchain deleteAccount(BlockchainRepository blockchainRepository, String Account) {
-        Blockchain _blockchain = new Blockchain();
+    public Traffic deleteAccount(Traffic traffic) {
         logger.debug("Attempting deleteAccount");
         logger.info("Attempting deleteAccount");
         try {
-           Long tutorialData = blockchainRepository.deleteBySourceAccount(Account);
+            SqlInter sqlInter = new SqlInter();
 
-            _blockchain.setMessage("Account Delete Success");
-                return _blockchain;
+            sqlInter.sqlHandler("DELETE", traffic);
 
-//            if (!tutorialData.isEmpty()) {
-//                _tutorial = tutorialData.get(0);
-//                Account = _tutorial.getSourceAccount();
-//                amount = _tutorial.getAmount();
-//
-//                return _tutorial;
-//            }
-//
-//            else {
-//                _tutorial.setMessage("No Results Found");
-//                return _tutorial;
-//            }
+            traffic.setMessage("Account Delete Success");
+            return traffic;
 
         } catch (Exception e) {
             logger.error("deleteAccount threw an exception");
-            _blockchain.setMessage("createAccount failed");
-            return _blockchain;
+            traffic.setMessage("createAccount failed");
+            return traffic;
         }
     }
 
 
-
-    public String hashLedger(BlockchainRepository blockchainRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
+    public String hashLedger(BankingRepository bankingRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
         logger.debug("Attempting hashLedger");
         logger.info("Attempting hashLedger");
-        String results = getAllTutorials(blockchainRepository);
+        String results = getAllTutorials(bankingRepository);
         Hash hashStruc = new Hash();
         String prevHash = "";
 //        MessageDigest digest = MessageDigest.getInstance("SHA-1");
 //        byte[] hash = digest.digest(results.getBytes(StandardCharsets.UTF_8));
-        String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex( results );
+        String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex(results);
 
         hashStruc.setHash(hash);
 
@@ -167,20 +164,20 @@ public class BankingFuncs {
         return "Hash Complete";
     }
 
-    public String getAllTutorials(BlockchainRepository blockchainRepository) {
-            String result = "";
+    public String getAllTutorials(BankingRepository bankingRepository) {
+        String result = "";
 
-            List<Blockchain> blockchains = new ArrayList<Blockchain>();
-            Blockchain blockchain = new Blockchain();
+        List<Blockchain> blockchains = new ArrayList<Blockchain>();
+        Blockchain blockchain = new Blockchain();
 
-            blockchainRepository.findAll().forEach(blockchains::add);
+        bankingRepository.findAll().forEach(blockchains::add);
 
-            Integer i = 0;
-            while (i < blockchains.size()) {
-                Blockchain currentTut = blockchains.get(i);
-                result = result + currentTut.toHashString();
-                i+= 1;
-            }
+        Integer i = 0;
+        while (i < blockchains.size()) {
+            Blockchain currentTut = blockchains.get(i);
+            result = result + currentTut.toHashString();
+            i += 1;
+        }
 
         return result;
     }
@@ -194,16 +191,10 @@ public class BankingFuncs {
     }
 
     public String findHash(HashRepository hashRepository, Integer Iteration) {
-            Hash wholeHash = hashRepository.findByIteration(Iteration);
-            if (wholeHash == null) {
-                return "000000";
-            }
-            return wholeHash.getHash();
-    }
-
-    public String deleteAccount(BlockchainRepository blockchainRepository, Blockchain blockchain, String account) throws NoSuchAlgorithmException, ParseException {
-        blockchainRepository.deleteBySourceAccount(account);
-
-        return "account deleted";
+        Hash wholeHash = hashRepository.findByIteration(Iteration);
+        if (wholeHash == null) {
+            return "000000";
+        }
+        return wholeHash.getHash();
     }
 }

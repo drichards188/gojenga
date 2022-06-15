@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface BlockchainRepository extends MongoRepository<Blockchain, String> {
+public interface BankingRepository extends MongoRepository<Blockchain, String> {
 //    List<Tutorial> findByTitleContaining(String account);
 //    List<Tutorial> findByPublished(boolean published);
     List<Blockchain> findBySourceAccountContaining(String Account);

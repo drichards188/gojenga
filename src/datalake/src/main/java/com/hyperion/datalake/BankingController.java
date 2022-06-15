@@ -1,13 +1,10 @@
 package com.hyperion.datalake;
 
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/lake")
-public class BlockchainController {
+public class BankingController {
     @Autowired
-    BlockchainRepository blockchainRepository;
+    BankingRepository bankingRepository;
     @Autowired
     HashRepository hashRepository;
     BankingFuncs bankingFuncs = new BankingFuncs();
@@ -29,17 +26,17 @@ public class BlockchainController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/crypto")
-    public ResponseEntity<Blockchain> handlePost(@RequestBody Blockchain blockchain) throws Exception {
+    public ResponseEntity<Traffic> handlePost(@RequestBody Traffic traffic) throws Exception {
         logger.debug("Post mapping triggered");
 
         try {
-            switch (blockchain.getVerb()) {
+            switch (traffic.getVerb()) {
                 case "CRT": {
                     logger.debug("Attempting CRT");
                     logger.info("Attempting CRT");
 
                     //createAccount also calls the hashing functions
-                    Blockchain response = bankingFuncs.createAccount(blockchainRepository, hashRepository, blockchain);
+                    Traffic response = bankingFuncs.createAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }
                 case "ADD":
@@ -49,18 +46,20 @@ public class BlockchainController {
                     logger.debug("Attempting QUERY");
                     logger.info("Attempting QUERY");
                     
-                    Blockchain response = bankingFuncs.findAccount(blockchainRepository, blockchain.getSourceAccount());
+                    Traffic response = bankingFuncs.findAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
                     
-                    Blockchain response = bankingFuncs.deleteAccount(blockchainRepository, blockchain.getSourceAccount());
+//                    Traffic response = bankingFuncs.deleteAccount(blockchainRepository, traffic.getAccount());
+
+                    Traffic response = bankingFuncs.deleteAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
             }
-            Blockchain respMsg = null;
+            Traffic respMsg = null;
             respMsg.setMessage("Internal Failure");
 
             return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -72,17 +71,17 @@ public class BlockchainController {
     }
 
     @PutMapping("/crypto")
-    public ResponseEntity<Blockchain> handlePut(@RequestBody Blockchain blockchain) throws IOException, ParseException, NoSuchAlgorithmException {
-        String sourceAccount = blockchain.getSourceAccount();
+    public ResponseEntity<Traffic> handlePut(@RequestBody Traffic traffic) throws Exception {
+        String sourceAccount = traffic.getSourceAccount();
 
-        if (blockchain.getVerb().equals("TRAN")) {
+        if (traffic.getVerb().equals("TRAN")) {
             logger.debug("Attempting TRAN");
             logger.info("Attempting TRAN");
-            Blockchain response = bankingFuncs.transaction(blockchainRepository, hashRepository, blockchain);
+            Traffic response = bankingFuncs.transaction(traffic);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
-            Blockchain respMsg = null;
+            Traffic respMsg = null;
             respMsg.setMessage("Internal Failure");
             logger.error("TRAN caused error");
             return new ResponseEntity<>(respMsg, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -90,17 +89,17 @@ public class BlockchainController {
     }
 
     @GetMapping("/crypto")
-    public ResponseEntity<List<Blockchain>> getAllBlockchains(@RequestParam(required = false) String account) {
+    public ResponseEntity<List<Traffic>> getAllBlockchains(@RequestParam(required = false) String account) {
         try {
 
-            List<Blockchain> blockchains = new ArrayList<Blockchain>();
-            Blockchain blockchain = new Blockchain();
+            List<Traffic> blockchains = new ArrayList<Traffic>();
+            Traffic traffic = new Traffic();
 
-            if (account == null)
-                blockchainRepository.findAll().forEach(blockchains::add);
-            else
-                blockchain = bankingFuncs.findAccount(blockchainRepository, account);
-            blockchains.add(blockchain);
+//            if (account == null)
+//                blockchainRepository.findAll().forEach(blockchains::add);
+//            else
+//                blockchain = bankingFuncs.findAccount(blockchainRepository, account);
+//            blockchains.add(blockchain);
 //                blockchainRepository.findByAccountContaining(account).forEach(Blockchains::add);
 
 //            if (Blockchains.isEmpty()) {
@@ -116,7 +115,7 @@ public class BlockchainController {
 
     @GetMapping("/crypto/{id}")
     public ResponseEntity<Blockchain> getBlockchainById(@PathVariable("id") String id) {
-        Optional<Blockchain> BlockchainData = blockchainRepository.findById(id);
+        Optional<Blockchain> BlockchainData = bankingRepository.findById(id);
 
         if (BlockchainData.isPresent()) {
             return new ResponseEntity<>(BlockchainData.get(), HttpStatus.OK);
@@ -128,7 +127,7 @@ public class BlockchainController {
     @DeleteMapping("/crypto/{id}")
     public ResponseEntity<HttpStatus> deleteBlockchain(@PathVariable("id") String id) {
         try {
-            blockchainRepository.deleteById(id);
+            bankingRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -138,7 +137,7 @@ public class BlockchainController {
     @DeleteMapping("/crypto")
     public ResponseEntity<HttpStatus> deleteAllBlockchains() {
         try {
-            blockchainRepository.deleteAll();
+            bankingRepository.deleteAll();
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
