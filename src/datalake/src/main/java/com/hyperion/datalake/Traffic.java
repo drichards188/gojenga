@@ -4,64 +4,102 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Traffic {
-    public String Name;
-    public String Amount;
-    public String Account;
-    public String SourceAccount;
-    public String DestinationAccount;
-    public String Verb;
-    public String Role;
-    public String Port;
-    public String Payload;
-
-    public String getAccount() {
-        return Account;
+    public Traffic() {
+        this.user = new User();
     }
 
-    public void setAccount(String account) {
-        Account = account;
+    private Integer id;
+    public User user;
+    private String verb;
+    private String message;
+    private String role;
+    private String port;
+    private String payload;
+
+    private String sourceAccount;
+    private String destinationAccount;
+
+
+    public String getSourceAccount() {
+        return sourceAccount;
     }
 
-    public String getSource() {
-        return SourceAccount;
-    }
-
-    public void setSource(String source) {
-        SourceAccount = source;
-    }
-
-    public String getAmount() {
-        return Amount;
-    }
-
-    public void setAmount(String amount) {
-        Amount = amount;
-    }
-
-    public String getVerb() {
-        return Verb;
-    }
-
-    public void setVerb(String verb) {
-        Verb = verb;
+    public void setSourceAccount(String sourceAccount) {
+        this.sourceAccount = sourceAccount;
     }
 
     public String getDestinationAccount() {
-        return DestinationAccount;
+        return destinationAccount;
     }
 
     public void setDestinationAccount(String destinationAccount) {
-        DestinationAccount = destinationAccount;
+        this.destinationAccount = destinationAccount;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getVerb() {
+        return verb;
+    }
+
+    public void setVerb(String verb) {
+        this.verb = verb;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public String getPayload() {
+        return payload;
+    }
+
+    public void setPayload(String payload) {
+        this.payload = payload;
     }
 
     public void clear() {
-        this.Name = "";
-        this.Amount = "";
-        this.SourceAccount = "";
-        this.DestinationAccount = "";
-        this.Verb = "";
-        this.Role = "";
-        this.Port = "";
-        this.Payload = "";
+        this.message = "";
+        this.user = null;
+        this.role = "";
+        this.port = "";
+        this.payload = "";
+        this.sourceAccount = "";
+        this.destinationAccount = "";
     }
 }
+
+

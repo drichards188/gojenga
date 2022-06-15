@@ -4,18 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BlockchainControllerTest {
+class BankingControllerTest {
 
     @Test
     void testHandlePost() throws Exception {
-        BlockchainController blockchainController = new BlockchainController();
+        BankingController bankingController = new BankingController();
 
         Traffic blockchain = new Traffic();
-        blockchain.setAccount("sheldon");
-        blockchain.setAmount("200");
+        blockchain.user.setAccount("sheldon");
+        blockchain.user.setAmount("200");
         blockchain.setVerb("CRT");
 
-        assertEquals(blockchain, blockchainController.handlePost(blockchain), "handlePost should work");
+        assertEquals(blockchain, bankingController.handlePost(blockchain), "handlePost should work");
     }
 
     @Test
