@@ -55,7 +55,7 @@ public class BankingController {
                     
 //                    Traffic response = bankingFuncs.deleteAccount(blockchainRepository, traffic.getAccount());
 
-                    Traffic response = new Traffic();
+                    Traffic response = bankingFuncs.deleteAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
             }

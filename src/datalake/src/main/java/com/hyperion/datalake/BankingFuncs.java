@@ -92,28 +92,16 @@ public class BankingFuncs {
         }
     }
 
-    public Blockchain deleteAccount(BankingRepository bankingRepository, String Account) {
-        Blockchain traffic = new Blockchain();
+    public Traffic deleteAccount(Traffic traffic) {
         logger.debug("Attempting deleteAccount");
         logger.info("Attempting deleteAccount");
         try {
-            Long tutorialData = bankingRepository.deleteBySourceAccount(Account);
+            SqlInter sqlInter = new SqlInter();
+
+            sqlInter.sqlHandler("DELETE", traffic);
 
             traffic.setMessage("Account Delete Success");
             return traffic;
-
-//            if (!tutorialData.isEmpty()) {
-//                _tutorial = tutorialData.get(0);
-//                Account = _tutorial.getSourceAccount();
-//                amount = _tutorial.getAmount();
-//
-//                return _tutorial;
-//            }
-//
-//            else {
-//                _tutorial.setMessage("No Results Found");
-//                return _tutorial;
-//            }
 
         } catch (Exception e) {
             logger.error("deleteAccount threw an exception");
@@ -208,11 +196,5 @@ public class BankingFuncs {
             return "000000";
         }
         return wholeHash.getHash();
-    }
-
-    public String deleteAccount(BankingRepository bankingRepository, Blockchain blockchain, String account) throws NoSuchAlgorithmException, ParseException {
-        bankingRepository.deleteBySourceAccount(account);
-
-        return "account deleted";
     }
 }
