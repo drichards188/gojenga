@@ -45,7 +45,6 @@ public class SqlInter {
                 }
                 case "RECENT": {
                     sqlGetMostRecent(stmt, "ledger", traffic);
-
                     break;
                 }
                 case "ALL": {

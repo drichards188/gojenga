@@ -123,7 +123,27 @@ public class BankingFuncs {
 
         String results = String.valueOf(traffic);
 
+        Integer iteration = null;
+        if (traffic.hash.getIteration() != null) {
+            iteration = traffic.hash.getIteration();
+        } else {
+            iteration = 0;
+        }
+
+        traffic.hash.setIteration(iteration);
+
         String prevHash = "";
+        if (iteration != 0) {
+            prevHash = traffic.hash.getHash();
+            traffic.hash.setPreviousHash(prevHash);
+        } else {
+            prevHash = "00000";
+            traffic.hash.setPreviousHash(prevHash);
+        }
+
+        traffic.hash.setPreviousHash(prevHash);
+
+
         MessageDigest digest = MessageDigest.getInstance("SHA-1");
 //        byte[] hash = digest.digest(results.getBytes(StandardCharsets.UTF_8));
         String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex(results);
@@ -138,22 +158,6 @@ public class BankingFuncs {
 
         traffic.hash.setTimestamp(myTime);
 
-        Integer iteration = null;
-        if (traffic.hash.getIteration() != null) {
-            iteration = traffic.hash.getIteration();
-        } else {
-            iteration = 0;
-        }
-
-        traffic.hash.setIteration(iteration);
-
-        if (iteration != 0) {
-            prevHash = traffic.hash.getHash();
-        } else {
-            prevHash = "00000";
-        }
-
-        traffic.hash.setPreviousHash(prevHash);
 
         if (traffic.getVerb().equals("CRT")) {
             String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
