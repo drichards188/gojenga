@@ -1,6 +1,8 @@
 package com.hyperion.datalake;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +40,11 @@ public class SqlInter {
 
             switch (verb) {
                 case "QUERY": {
-                    sqlQuery(stmt, traffic);
+                    sqlQuery(stmt, "ledger", traffic);
+                    break;
+                }
+                case "RECENT": {
+                    sqlGetMostRecent(stmt, "ledger", traffic);
                     break;
                 }
                 case "ALL": {
@@ -46,18 +52,19 @@ public class SqlInter {
                     break;
                 }
                 case "CRT":
-                    sqlInsert(stmt, verb, traffic);
+                    sqlInsertLedger(stmt, "ledger", traffic);
+                    sqlInsertUser(stmt, "user", traffic);
                     break;
                 case "UPDATE": {
-                    String query = "UPDATE " + tableName + " SET amount=" + traffic.user.getAmount() + " WHERE account='" + accountName + "';";
-                    int rs = stmt.executeUpdate(query);
-                    logger.debug("running insert");
+                    sqlUpdate(stmt, "ledger", traffic);
+                    break;
+                }
+                case "HASH": {
+                    sqlInsertHash(stmt, "hashHistory", traffic);
                     break;
                 }
                 case "DELETE": {
-                    String query = "DELETE FROM " + tableName + " WHERE account='" + accountName + "';";
-                    int rs = stmt.executeUpdate(query);
-                    logger.debug("running insert");
+                    sqlDelete(stmt, "ledger", traffic);
                     break;
                 }
                 case "CREATE":
@@ -83,19 +90,38 @@ public class SqlInter {
             throw new IllegalStateException("Cannot connect the database!", e);
         }
     }
-
-    private Traffic sqlInsert(Statement stmt, String verb, Traffic traffic) throws SQLException {
-        String tableName = "ledger";
-        String accountName = traffic.user.getAccount();
-
-        String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + accountName + "', " + traffic.user.getAmount() + ");";
+    private Traffic sqlInsertLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running ledger insert");
+        String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + traffic.user.getAccount() + "', " + traffic.user.getAmount() + ");";
         int rs = stmt.executeUpdate(query);
-        logger.debug("running insert");
+
+        traffic.setMessage("insert successful");
+
         return traffic;
     }
 
-    private Traffic sqlQuery(Statement stmt, Traffic traffic) throws SQLException {
-        String QUERY = "SELECT _id, account, amount FROM ledger WHERE account= '" + traffic.user.getAccount() + "'";
+    private Traffic sqlInsertUser(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running user insert");
+        String query = "INSERT INTO " + tableName + " (account, password) VALUES ('" + traffic.user.getAccount() + "', '" + traffic.user.getPassword() + "');";
+        int rs = stmt.executeUpdate(query);
+
+        traffic.setMessage("insert successful");
+
+        return traffic;
+    }
+
+    private Traffic sqlInsertHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running user insert");
+        String query = "INSERT INTO " + tableName + " (timestamp, previousHash, hash, ledger) VALUES ('" + traffic.hash.getTimestamp() + "', '" + traffic.hash.getPreviousHash() + "', '" + traffic.hash.getHash() + "', '" + traffic.hash.getLedger() + "');";
+        int rs = stmt.executeUpdate(query);
+
+        traffic.setMessage("insert successful");
+
+        return traffic;
+    }
+
+    private Traffic sqlQuery(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        String QUERY = "SELECT _id, account, amount FROM " + tableName + "  WHERE account= '" + traffic.user.getAccount() + "'";
         ResultSet rs = stmt.executeQuery(QUERY);
 
         while (rs.next()) {
@@ -111,18 +137,64 @@ public class SqlInter {
         return traffic;
     }
 
-    private Traffic sqlQueryAll(Statement stmt, Traffic traffic) throws SQLException {
-        String QUERY = "SELECT _id, account, amount FROM ledger;";
+    private ArrayList<User> sqlQueryAll(Statement stmt, Traffic traffic) throws SQLException {
+//        String QUERY = "SELECT _id, account, amount FROM ledger;";
+//        ResultSet rs = stmt.executeQuery(QUERY);
+//
+//        ArrayList<User> userArrayList =
+//
+//        while (rs.next()) {
+//            // Retrieve by column name
+//            System.out.print("ID: " + rs.getInt("_id"));
+//            traffic.setId(rs.getInt("_id"));
+//            System.out.print(", Account: " + rs.getString("account"));
+//            traffic.user.setAccount(rs.getString("account"));
+//            System.out.print(", Amount: " + rs.getString("amount"));
+//            traffic.user.setAmount(rs.getString("amount"));
+//        }
+
+        ArrayList<User> userArrayList = new ArrayList<User>();
+        return userArrayList;
+    }
+
+    private Traffic sqlUpdate(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running insert");
+        String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
+        int rs = stmt.executeUpdate(query);
+        traffic.setMessage("insert successful");
+
+        return traffic;
+    }
+
+    private Traffic sqlDelete(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running delete");
+        String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
+        int rs = stmt.executeUpdate(query);
+        traffic.setMessage("delete successful");
+
+        return traffic;
+    }
+
+    private Traffic sqlGetMostRecent(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String myTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+
+        String QUERY = "SELECT previousHash, hash, iteration from hashHistory ORDER BY iteration DESC LIMIT 1;";
         ResultSet rs = stmt.executeQuery(QUERY);
 
-        while (rs.next()) {
-            // Retrieve by column name
-            System.out.print("ID: " + rs.getInt("_id"));
-            traffic.setId(rs.getInt("_id"));
-            System.out.print(", Account: " + rs.getString("account"));
-            traffic.user.setAccount(rs.getString("account"));
-            System.out.print(", Amount: " + rs.getString("amount"));
-            traffic.user.setAmount(rs.getString("amount"));
+        if (rs.next()) {
+//            while (rs.next()) {
+                // Retrieve by column name
+
+                System.out.print(", PreviousHash: " + rs.getString("previousHash"));
+                traffic.hash.setPreviousHash(rs.getString("previousHash"));
+                System.out.print(", Hash: " + rs.getString("hash"));
+                traffic.hash.setHash(rs.getString("hash"));
+                System.out.print(", Iteration: " + rs.getString("iteration"));
+                traffic.hash.setIteration(rs.getInt("iteration"));
+//            }
+        } else {
+            logger.info("sqlGetMostRecent result is empty");
         }
 
         return traffic;

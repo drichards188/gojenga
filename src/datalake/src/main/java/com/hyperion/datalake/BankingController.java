@@ -49,11 +49,16 @@ public class BankingController {
                     Traffic response = bankingFuncs.findAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
+                case "HASH": {
+                    logger.debug("Attempting HASH");
+                    logger.info("Attempting HASH");
+
+                    Traffic response = bankingFuncs.hashLedger(traffic);
+                    return new ResponseEntity<>(response, HttpStatus.OK);
+                }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
-                    
-//                    Traffic response = bankingFuncs.deleteAccount(blockchainRepository, traffic.getAccount());
 
                     Traffic response = bankingFuncs.deleteAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);

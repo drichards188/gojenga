@@ -6,10 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Traffic {
     public Traffic() {
         this.user = new User();
+        this.hash = new Hash();
     }
 
     private Integer id;
     public User user;
+    public Hash hash;
     private String verb;
     private String message;
     private String role;

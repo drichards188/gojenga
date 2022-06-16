@@ -4,23 +4,24 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     public Traffic createAccount(Traffic traffic) throws NoSuchAlgorithmException {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
             SqlInter sqlInter = new SqlInter();
-            traffic = sqlInter.sqlHandler("CRT", traffic);
+            Traffic trafficResponse = sqlInter.sqlHandler("CRT", traffic);
+            Traffic hashResponse = hashLedger(traffic);
 
-            return traffic;
+            return trafficResponse;
         } catch (Exception e) {
             logger.error("createAccount threw exception");
             traffic.setMessage("createAccount failed");
@@ -50,12 +51,8 @@ public class BankingFuncs {
         sourceAccount.user.setAmount(cleanAmount);
         destinationAccount.user.setAmount(cleanAmount2);
 
-        try {
-            amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
-            amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
-        } catch (Exception e) {
-            logger.debug(String.valueOf(e));
-        }
+        amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
+        amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
 
         sourceAccount.user.setAmount(amount1.toString());
         destinationAccount.user.setAmount(amount2.toString());
@@ -110,18 +107,24 @@ public class BankingFuncs {
         }
     }
 
-
-    public String hashLedger(BankingRepository bankingRepository, HashRepository hashRepository, Blockchain blockchain) throws NoSuchAlgorithmException, ParseException {
+    public Traffic hashLedger(Traffic traffic) throws Exception {
         logger.debug("Attempting hashLedger");
         logger.info("Attempting hashLedger");
-        String results = getAllTutorials(bankingRepository);
-        Hash hashStruc = new Hash();
+
+        SqlInter sqlInter = new SqlInter();
+
+        traffic.setVerb("HASH");
+
+        traffic = sqlInter.sqlHandler("RECENT", traffic);
+
+        String results = String.valueOf(traffic);
+
         String prevHash = "";
-//        MessageDigest digest = MessageDigest.getInstance("SHA-1");
+        MessageDigest digest = MessageDigest.getInstance("SHA-1");
 //        byte[] hash = digest.digest(results.getBytes(StandardCharsets.UTF_8));
         String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex(results);
 
-        hashStruc.setHash(hash);
+        traffic.hash.setHash(hash);
 
         System.out.println(hash);
 
@@ -129,39 +132,48 @@ public class BankingFuncs {
 
         String myTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
 
-        hashStruc.setTimestamp(myTime);
+        traffic.hash.setTimestamp(myTime);
 
-        Integer iteration = countDocs(hashRepository);
+        Integer iteration = null;
+        if (traffic.hash.getIteration() != null) {
+            iteration = traffic.hash.getIteration();
+        } else {
+            iteration = 0;
+        }
 
-        hashStruc.setIteration(iteration);
+        traffic.hash.setIteration(iteration);
 
         if (iteration != 0) {
-            prevHash = findHash(hashRepository, iteration - 1);
+            prevHash = traffic.hash.getHash();
         } else {
             prevHash = "00000";
         }
 
-        hashStruc.setPreviousHash(prevHash);
+        traffic.hash.setPreviousHash(prevHash);
 
-        if (blockchain.getVerb().equals("CRT")) {
-            String ledgerStr = blockchain.getAccount() + blockchain.getAmount();
+        if (traffic.getVerb().equals("CRT")) {
+            String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
 
-            hashStruc.setLedger(ledgerStr);
-        } else if (blockchain.getVerb().equals("TRAN")) {
-            String ledgerStr = blockchain.getAccount() + blockchain.getDestinationAccount() + blockchain.getAmount();
+            traffic.hash.setLedger(ledgerStr);
+        } else if (traffic.getVerb().equals("TRAN")) {
+            String ledgerStr = traffic.user.getAccount() + traffic.getDestinationAccount() + traffic.user.getAmount();
 
-            hashStruc.setLedger(ledgerStr);
+            traffic.hash.setLedger(ledgerStr);
+        } else if (traffic.getVerb().equals("HASH")) {
+            String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
+
+            traffic.hash.setLedger(ledgerStr);
         }
 
         try {
-            Hash saveResults = hashRepository.save(hashStruc);
-            logger.info("hash saveResults are --> " + saveResults);
+            Traffic hashResults = sqlInter.sqlHandler("HASH", traffic);
+            logger.info("hash saveResults are --> " + hashResults);
         } catch (Exception e) {
             logger.error("hashLedger threw an exception");
             System.out.println(e);
         }
 
-        return "Hash Complete";
+        return traffic;
     }
 
     public String getAllTutorials(BankingRepository bankingRepository) {

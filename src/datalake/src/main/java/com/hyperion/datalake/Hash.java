@@ -7,13 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Hash {
     @Id
     private String id;
-
     private Integer iteration;
     private String timestamp;
     private String hash;
     private String previousHash;
     private String ledger;
-
     private String account;
     private String amount;
     private String verb;
@@ -124,6 +122,6 @@ public class Hash {
 
 //    @Override
 //    public String toString() {
-//        return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+//        return "Tutorial [id=" + id + ", timestamp=" + timestamp + ", iter=" + description + ", published=" + published + "]";
 //    }
 }
