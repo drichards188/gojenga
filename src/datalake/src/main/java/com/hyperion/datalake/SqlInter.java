@@ -45,6 +45,7 @@ public class SqlInter {
                 }
                 case "RECENT": {
                     sqlGetMostRecent(stmt, "ledger", traffic);
+
                     break;
                 }
                 case "ALL": {
@@ -65,6 +66,7 @@ public class SqlInter {
                 }
                 case "DELETE": {
                     sqlDelete(stmt, "ledger", traffic);
+
                     break;
                 }
                 case "CREATE":
@@ -122,6 +124,7 @@ public class SqlInter {
 
     private Traffic sqlQuery(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         String QUERY = "SELECT _id, account, amount FROM " + tableName + "  WHERE account= '" + traffic.user.getAccount() + "'";
+
         ResultSet rs = stmt.executeQuery(QUERY);
 
         while (rs.next()) {

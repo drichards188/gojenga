@@ -60,6 +60,7 @@ public class BankingController {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
 
+
                     Traffic response = bankingFuncs.deleteAccount(traffic);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }

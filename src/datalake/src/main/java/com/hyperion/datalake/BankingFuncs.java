@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     public Traffic createAccount(Traffic traffic) throws NoSuchAlgorithmException {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
@@ -22,6 +24,7 @@ public class BankingFuncs {
             Traffic hashResponse = hashLedger(traffic);
 
             return trafficResponse;
+
         } catch (Exception e) {
             logger.error("createAccount threw exception");
             traffic.setMessage("createAccount failed");
@@ -53,6 +56,7 @@ public class BankingFuncs {
 
         amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
         amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
+
 
         sourceAccount.user.setAmount(amount1.toString());
         destinationAccount.user.setAmount(amount2.toString());

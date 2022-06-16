@@ -12,6 +12,7 @@ public class Traffic {
     private Integer id;
     public User user;
     public Hash hash;
+
     private String verb;
     private String message;
     private String role;
