@@ -10,6 +10,10 @@
 
 ## **Not Production Ready**
 
+### Sample Network Graph of users and transactions
+
+![](/home/drich/gojenga/docs/sampleGojengaGraph)
+
 ## Technologies
 -Golang 1.18
 
