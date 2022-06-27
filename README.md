@@ -10,6 +10,14 @@
 
 ## **Not Production Ready**
 
+### Sample Network graph
+Vertexes are users<br>
+Edges are transactions with direction<br>
+Created with Python and Networkx from Gojenga DBs
+Using Networkx enables value from the whole field of graph theory
+
+![my sample network graph](https://github.com/drichards188/gojenga/blob/master/docs/sampleGojengaGraph.png?raw=true)
+
 ## Technologies
 -Golang 1.18
 
