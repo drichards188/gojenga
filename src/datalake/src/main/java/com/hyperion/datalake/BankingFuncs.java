@@ -20,8 +20,10 @@ public class BankingFuncs {
         logger.info("Attempting createAccount");
         try {
             SqlInter sqlInter = new SqlInter();
+
             Traffic trafficResponse = sqlInter.sqlHandler("CRT", traffic);
             Traffic hashResponse = hashLedger(traffic);
+            Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
 
             return trafficResponse;
 
@@ -73,6 +75,9 @@ public class BankingFuncs {
         sourceAccount = sqlInter.sqlHandler("UPDATE", trafficMedium);
 
         String hashResponse = null;
+
+        Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
+
         logger.info("tran hash response is --> " + hashResponse);
 
         return traffic;
@@ -100,6 +105,7 @@ public class BankingFuncs {
             SqlInter sqlInter = new SqlInter();
 
             sqlInter.sqlHandler("DELETE", traffic);
+            Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
 
             traffic.setMessage("Account Delete Success");
             return traffic;
@@ -179,6 +185,21 @@ public class BankingFuncs {
         } catch (Exception e) {
             logger.error("hashLedger threw an exception");
             System.out.println(e);
+        }
+
+        return traffic;
+    }
+
+    public Traffic opLog(Traffic traffic) throws Exception {
+        logger.debug("Attempting opLog");
+        logger.info("Attempting opLog");
+
+        SqlInter sqlInter = new SqlInter();
+
+        try {
+            Traffic trafficResponse = sqlInter.sqlHandler("OPLOG", traffic);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         return traffic;

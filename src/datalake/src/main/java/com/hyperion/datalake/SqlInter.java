@@ -63,6 +63,10 @@ public class SqlInter {
                     sqlInsertHash(stmt, "hashHistory", traffic);
                     break;
                 }
+                case "OPLOG": {
+                    sqlInsertOplog(stmt, "opsLog", traffic);
+                    break;
+                }
                 case "DELETE": {
                     sqlDelete(stmt, "ledger", traffic);
 
@@ -114,6 +118,25 @@ public class SqlInter {
     private Traffic sqlInsertHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running user insert");
         String query = "INSERT INTO " + tableName + " (timestamp, previousHash, hash, ledger) VALUES ('" + traffic.hash.getTimestamp() + "', '" + traffic.hash.getPreviousHash() + "', '" + traffic.hash.getHash() + "', '" + traffic.hash.getLedger() + "');";
+        int rs = stmt.executeUpdate(query);
+
+        traffic.setMessage("insert successful");
+
+        return traffic;
+    }
+
+    private Traffic sqlInsertOplog(Statement stmt, String tableName, Traffic traffic) throws SQLException {
+        logger.debug("running user insert");
+
+        if (traffic.getSourceAccount() == null) {
+            traffic.setSourceAccount(traffic.user.getAccount());
+        }
+
+        if (traffic.getVerb().equals("HASH") || traffic.getVerb().equals("DLT")) {
+            traffic.user.setAmount("0");
+        }
+
+        String query = "INSERT INTO " + tableName + " (operation, source, destination, amount, fail) VALUES ('" + traffic.getVerb() + "', '" + traffic.getSourceAccount() + "', '" + traffic.getDestinationAccount() + "', '" + traffic.user.getAmount() + "', '" + 0 + "');";
         int rs = stmt.executeUpdate(query);
 
         traffic.setMessage("insert successful");
