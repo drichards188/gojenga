@@ -7,21 +7,38 @@ public class Traffic {
     public Traffic() {
         this.user = new User();
         this.hash = new Hash();
+        this.fail = false;
+        this.failMessage = "";
     }
 
     private Integer id;
     public User user;
     public Hash hash;
-
     private String verb;
     private String message;
     private String role;
     private String port;
     private String payload;
-
     private String sourceAccount;
     private String destinationAccount;
+    private Boolean fail;
+    private String failMessage;
 
+    public String getFailMessage() {
+        return failMessage;
+    }
+
+    public void setFailMessage(String failMessage) {
+        this.failMessage = failMessage;
+    }
+
+    public Boolean getFail() {
+        return fail;
+    }
+
+    public void setFail(Boolean fail) {
+        this.fail = fail;
+    }
 
     public String getSourceAccount() {
         return sourceAccount;
@@ -102,6 +119,8 @@ public class Traffic {
         this.payload = "";
         this.sourceAccount = "";
         this.destinationAccount = "";
+        this.fail = false;
+        this.failMessage = "";
     }
 }
 

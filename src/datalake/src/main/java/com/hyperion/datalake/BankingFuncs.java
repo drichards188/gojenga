@@ -15,15 +15,29 @@ import java.util.List;
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    enum Crud {
+        CREATE,
+        READ,
+        UPDATE,
+        DELETE
+    }
+    enum Datatypes {
+        LEDGER,
+        USER,
+        HASH,
+        OPLOG
+    }
+
     public Traffic createAccount(Traffic traffic) throws NoSuchAlgorithmException {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
         try {
             SqlInter sqlInter = new SqlInter();
 
-            Traffic trafficResponse = sqlInter.sqlHandler("CRT", traffic);
+            Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.USER, traffic);
+            trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.LEDGER, traffic);
+            Traffic oplogResponse = opLog(traffic);
             Traffic hashResponse = hashLedger(traffic);
-            Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
 
             return trafficResponse;
 
@@ -67,16 +81,15 @@ public class BankingFuncs {
         trafficMedium.user.setAccount(traffic.getSourceAccount());
         trafficMedium.user.setAmount(amount1.toString());
 
-        sourceAccount = sqlInter.sqlHandler("UPDATE", trafficMedium);
+        sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
 
         trafficMedium.user.setAccount(traffic.getDestinationAccount());
         trafficMedium.user.setAmount(amount2.toString());
 
-        sourceAccount = sqlInter.sqlHandler("UPDATE", trafficMedium);
+        sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
 
-        String hashResponse = null;
-
-        Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
+        Traffic hashResponse = hashLedger(traffic);
+        Traffic oplogResponse = opLog(traffic);
 
         logger.info("tran hash response is --> " + hashResponse);
 
@@ -88,7 +101,7 @@ public class BankingFuncs {
         logger.info("Attempting findAccount");
         try {
             SqlInter sqlInter = new SqlInter();
-            traffic = sqlInter.sqlHandler("QUERY", traffic);
+            traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.LEDGER, traffic);
             return traffic;
 
         } catch (Exception e) {
@@ -104,8 +117,9 @@ public class BankingFuncs {
         try {
             SqlInter sqlInter = new SqlInter();
 
-            sqlInter.sqlHandler("DELETE", traffic);
-            Traffic oplogResponse = sqlInter.sqlHandler("OPLOG", traffic);
+            sqlInter.sqlHandler(Crud.DELETE, Datatypes.LEDGER, traffic);
+            sqlInter.sqlHandler(Crud.DELETE, Datatypes.USER, traffic);
+            Traffic oplogResponse = opLog(traffic);
 
             traffic.setMessage("Account Delete Success");
             return traffic;
@@ -125,7 +139,7 @@ public class BankingFuncs {
 
         traffic.setVerb("HASH");
 
-        traffic = sqlInter.sqlHandler("RECENT", traffic);
+        traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.HASH, traffic);
 
         String results = String.valueOf(traffic);
 
@@ -180,7 +194,7 @@ public class BankingFuncs {
         }
 
         try {
-            Traffic hashResults = sqlInter.sqlHandler("HASH", traffic);
+            Traffic hashResults = sqlInter.sqlHandler(Crud.CREATE, Datatypes.HASH, traffic);
             logger.info("hash saveResults are --> " + hashResults);
         } catch (Exception e) {
             logger.error("hashLedger threw an exception");
@@ -197,7 +211,7 @@ public class BankingFuncs {
         SqlInter sqlInter = new SqlInter();
 
         try {
-            Traffic trafficResponse = sqlInter.sqlHandler("OPLOG", traffic);
+            Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.OPLOG, traffic);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
