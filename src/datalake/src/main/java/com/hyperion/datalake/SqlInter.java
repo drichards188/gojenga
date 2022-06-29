@@ -172,54 +172,6 @@ public class SqlInter {
                         }
                     }
                 }
-
-//                case "QUERY": {
-//                    sqlQuery(stmt, "ledger", traffic);
-//
-//                }
-//                case "RECENT": {
-//                    sqlGetMostRecent(stmt, "ledger", traffic);
-//
-//                }
-//                case "ALL": {
-//                    sqlQueryAll(stmt, traffic);
-//
-//                }
-//                case "CRT":
-//                    sqlInsertLedger(stmt, "ledger", traffic);
-//                    sqlInsertUser(stmt, "user", traffic);
-//
-//                case "UPDATE": {
-//                    sqlUpdate(stmt, "ledger", traffic);
-//
-//                }
-//                case "HASH": {
-//                    sqlInsertHash(stmt, "hashHistory", traffic);
-//
-//                }
-//                case "OPLOG": {
-//                    sqlInsertOplog(stmt, "opsLog", traffic);
-//
-//                }
-//                case "DELETE": {
-//                    sqlDelete(stmt, "ledger", traffic);
-//
-//                }
-//                case "CREATE":
-//                    try {
-//                        String query = "CREATE TABLE " + tableName + " ("
-//                                + "idNo INT(64) NOT NULL AUTO_INCREMENT,"
-//                                + "initials VARCHAR(2),"
-//                                + "agentDate DATE,"
-//                                + "agentCount INT(64), "
-//                                + "PRIMARY KEY(idNo))";
-//                        int rs = stmt.executeUpdate(query);
-//                        logger.debug("running insert");
-//                    } catch (Exception e) {
-//                        logger.error("handlePost triggered exception: " + e);
-//
-//                    }
-//
             }
 
             return traffic;
@@ -399,26 +351,6 @@ public class SqlInter {
         return traffic;
     }
 
-//    private ArrayList<User> sqlQueryAll(Statement stmt, Traffic traffic) throws SQLException {
-////        String QUERY = "SELECT _id, account, amount FROM ledger;";
-////        ResultSet rs = stmt.executeQuery(QUERY);
-////
-////        ArrayList<User> userArrayList =
-////
-////        while (rs.next()) {
-////            // Retrieve by column name
-////            System.out.print("ID: " + rs.getInt("_id"));
-////            traffic.setId(rs.getInt("_id"));
-////            System.out.print(", Account: " + rs.getString("account"));
-////            traffic.user.setAccount(rs.getString("account"));
-////            System.out.print(", Amount: " + rs.getString("amount"));
-////            traffic.user.setAmount(rs.getString("amount"));
-////        }
-//
-//        ArrayList<User> userArrayList = new ArrayList<User>();
-//        return userArrayList;
-//    }
-
     //the update methods
     private Traffic sqlUpdateLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
@@ -438,7 +370,7 @@ public class SqlInter {
 
     private Traffic sqlUpdateUser(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
-        String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
+        String query = "UPDATE " + tableName + "  SET password=" + traffic.user.getPassword() + " WHERE account='" + traffic.user.getAccount() + "';";
         int rs = stmt.executeUpdate(query);
 
         if (rs == 0) {
@@ -452,6 +384,7 @@ public class SqlInter {
         return traffic;
     }
 
+    //no use case
     private Traffic sqlUpdateHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
         String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
@@ -468,6 +401,7 @@ public class SqlInter {
         return traffic;
     }
 
+    //no use case
     private Traffic sqlUpdateOplog(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
         String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
@@ -519,7 +453,7 @@ public class SqlInter {
 
     private Traffic sqlDeleteHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
+        String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
         int rs = stmt.executeUpdate(query);
 
         if (rs == 0) {
@@ -535,7 +469,7 @@ public class SqlInter {
 
     private Traffic sqlDeleteOplog(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
+        String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
         int rs = stmt.executeUpdate(query);
 
         if (rs == 0) {
@@ -548,6 +482,26 @@ public class SqlInter {
 
         return traffic;
     }
+
+    //    private ArrayList<User> sqlQueryAll(Statement stmt, Traffic traffic) throws SQLException {
+////        String QUERY = "SELECT _id, account, amount FROM ledger;";
+////        ResultSet rs = stmt.executeQuery(QUERY);
+////
+////        ArrayList<User> userArrayList =
+////
+////        while (rs.next()) {
+////            // Retrieve by column name
+////            System.out.print("ID: " + rs.getInt("_id"));
+////            traffic.setId(rs.getInt("_id"));
+////            System.out.print(", Account: " + rs.getString("account"));
+////            traffic.user.setAccount(rs.getString("account"));
+////            System.out.print(", Amount: " + rs.getString("amount"));
+////            traffic.user.setAmount(rs.getString("amount"));
+////        }
+//
+//        ArrayList<User> userArrayList = new ArrayList<User>();
+//        return userArrayList;
+//    }
 
 //    private Traffic sqlGetMostRecent(Statement stmt, String tableName, Traffic traffic) throws SQLException {
 //        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
