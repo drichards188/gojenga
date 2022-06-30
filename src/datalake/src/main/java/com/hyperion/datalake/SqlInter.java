@@ -183,9 +183,16 @@ public class SqlInter {
 
     //the insert methods
     private Traffic sqlInsertLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
-        logger.debug("running ledger insert");
-        String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + traffic.user.getAccount() + "', " + traffic.user.getAmount() + ");";
-        int rs = stmt.executeUpdate(query);
+
+        int rs = 0;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            logger.debug("running ledger insert");
+            String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + traffic.user.getAccount() + "', " + traffic.user.getAmount() + ");";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -199,9 +206,15 @@ public class SqlInter {
     }
 
     private Traffic sqlInsertUser(Statement stmt, String tableName, Traffic traffic) throws SQLException {
-        logger.debug("running user insert");
-        String query = "INSERT INTO " + tableName + " (account, password) VALUES ('" + traffic.user.getAccount() + "', '" + traffic.user.getPassword() + "');";
-        int rs = stmt.executeUpdate(query);
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            logger.debug("running user insert");
+            String query = "INSERT INTO " + tableName + " (account, password) VALUES ('" + traffic.user.getAccount() + "', '" + traffic.user.getPassword() + "');";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -216,8 +229,14 @@ public class SqlInter {
 
     private Traffic sqlInsertHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running user insert");
-        String query = "INSERT INTO " + tableName + " (timestamp, previousHash, hash, ledger) VALUES ('" + traffic.hash.getTimestamp() + "', '" + traffic.hash.getPreviousHash() + "', '" + traffic.hash.getHash() + "', '" + traffic.hash.getLedger() + "');";
-        int rs = stmt.executeUpdate(query);
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "INSERT INTO " + tableName + " (timestamp, previousHash, hash, ledger) VALUES ('" + traffic.hash.getTimestamp() + "', '" + traffic.hash.getPreviousHash() + "', '" + traffic.hash.getHash() + "', '" + traffic.hash.getLedger() + "');";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
