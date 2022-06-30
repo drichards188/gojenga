@@ -183,9 +183,16 @@ public class SqlInter {
 
     //the insert methods
     private Traffic sqlInsertLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
-        logger.debug("running ledger insert");
-        String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + traffic.user.getAccount() + "', " + traffic.user.getAmount() + ");";
-        int rs = stmt.executeUpdate(query);
+
+        int rs = 0;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            logger.debug("running ledger insert");
+            String query = "INSERT INTO " + tableName + " (account, amount) VALUES ('" + traffic.user.getAccount() + "', " + traffic.user.getAmount() + ");";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
