@@ -33,7 +33,7 @@ public class BankingFuncs {
         logger.info("Attempting createAccount");
         try {
             SqlInter sqlInter = new SqlInter();
-
+            traffic.setRole("PROD");
             Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.USER, traffic);
             trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.LEDGER, traffic);
             Traffic oplogResponse = opLog(traffic);
@@ -52,7 +52,7 @@ public class BankingFuncs {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
         SqlInter sqlInter = new SqlInter();
-
+        traffic.setRole("PROD");
         Traffic trafficMedium = new Traffic();
         trafficMedium.setVerb(traffic.getVerb());
         trafficMedium.user.setAccount(traffic.getSourceAccount());
@@ -101,6 +101,7 @@ public class BankingFuncs {
         logger.info("Attempting findAccount");
         try {
             SqlInter sqlInter = new SqlInter();
+            traffic.setRole("PROD");
             traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.LEDGER, traffic);
             return traffic;
 
@@ -116,7 +117,7 @@ public class BankingFuncs {
         logger.info("Attempting deleteAccount");
         try {
             SqlInter sqlInter = new SqlInter();
-
+            traffic.setRole("PROD");
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.LEDGER, traffic);
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.USER, traffic);
             Traffic oplogResponse = opLog(traffic);
@@ -136,7 +137,7 @@ public class BankingFuncs {
         logger.info("Attempting hashLedger");
 
         SqlInter sqlInter = new SqlInter();
-
+        traffic.setRole("PROD");
         traffic.setVerb("HASH");
 
         traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.HASH, traffic);
@@ -209,7 +210,7 @@ public class BankingFuncs {
         logger.info("Attempting opLog");
 
         SqlInter sqlInter = new SqlInter();
-
+        traffic.setRole("PROD");
         try {
             Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.OPLOG, traffic);
         } catch (Exception e) {
