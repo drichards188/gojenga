@@ -54,6 +54,7 @@ class SqlInterTest {
         traffic.user.setPassword("mypassword");
 
         Traffic trafficResponse = sqlInter.sqlHandler(BankingFuncs.Crud.CREATE, BankingFuncs.Datatypes.HASH, traffic);
+
         assertEquals("insert successful", traffic.getMessage());
     }
 

@@ -60,6 +60,7 @@ public class BankingFuncs {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
         SqlInter sqlInter = new SqlInter();
+
         Traffic trafficMedium = new Traffic();
 
         if (test.equals(true)) {
@@ -127,7 +128,6 @@ public class BankingFuncs {
         }
 
         try {
-
             traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.LEDGER, traffic);
             return traffic;
 
@@ -151,7 +151,6 @@ public class BankingFuncs {
         }
 
         try {
-
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.LEDGER, traffic);
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.USER, traffic);
             Traffic oplogResponse = opLog(traffic, test);
@@ -171,9 +170,11 @@ public class BankingFuncs {
         logger.info("Attempting hashLedger");
 
         SqlInter sqlInter = new SqlInter();
-
         if (test.equals(true)) {
             traffic.setRole("TEST");
+
+        traffic.setVerb("HASH");
+
 
             try {
                 Traffic hashResults = sqlInter.sqlHandler(Crud.CREATE, Datatypes.HASH, traffic);
@@ -258,7 +259,6 @@ public class BankingFuncs {
         logger.info("Attempting opLog");
 
         SqlInter sqlInter = new SqlInter();
-
         if (test.equals(true)) {
             traffic.setRole("TEST");
         } else {
