@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class BankingController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping("/crypto")
-    public ResponseEntity<Traffic> handlePost(@RequestBody Traffic traffic) throws Exception {
+    public ResponseEntity<Traffic> handlePost(@RequestBody Traffic traffic) {
         logger.debug("Post mapping triggered");
 
         try {
@@ -36,7 +37,7 @@ public class BankingController {
                     logger.info("Attempting CRT");
 
                     //createAccount also calls the hashing functions
-                    Traffic response = bankingFuncs.createAccount(traffic);
+                    Traffic response = bankingFuncs.createAccount(traffic, false);
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }
                 case "ADD":
@@ -46,22 +47,21 @@ public class BankingController {
                     logger.debug("Attempting QUERY");
                     logger.info("Attempting QUERY");
                     
-                    Traffic response = bankingFuncs.findAccount(traffic);
+                    Traffic response = bankingFuncs.findAccount(traffic, false);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "HASH": {
                     logger.debug("Attempting HASH");
                     logger.info("Attempting HASH");
 
-                    Traffic response = bankingFuncs.hashLedger(traffic);
+                    Traffic response = bankingFuncs.hashLedger(traffic, false);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 case "DLT": {
                     logger.debug("Attempting DLT");
                     logger.info("Attempting DLT");
 
-
-                    Traffic response = bankingFuncs.deleteAccount(traffic);
+                    Traffic response = bankingFuncs.deleteAccount(traffic, false);
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 }
             }
@@ -77,13 +77,13 @@ public class BankingController {
     }
 
     @PutMapping("/crypto")
-    public ResponseEntity<Traffic> handlePut(@RequestBody Traffic traffic) throws Exception {
+    public ResponseEntity<Traffic> handlePut(@RequestBody Traffic traffic) throws NoSuchAlgorithmException {
         String sourceAccount = traffic.getSourceAccount();
 
         if (traffic.getVerb().equals("TRAN")) {
             logger.debug("Attempting TRAN");
             logger.info("Attempting TRAN");
-            Traffic response = bankingFuncs.transaction(traffic);
+            Traffic response = bankingFuncs.transaction(traffic, false);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {

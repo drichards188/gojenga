@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 public class BankingFuncs {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -21,6 +22,7 @@ public class BankingFuncs {
         UPDATE,
         DELETE
     }
+
     enum Datatypes {
         LEDGER,
         USER,
@@ -28,16 +30,22 @@ public class BankingFuncs {
         OPLOG
     }
 
-    public Traffic createAccount(Traffic traffic) throws NoSuchAlgorithmException {
+    public Traffic createAccount(Traffic traffic, Boolean test) throws NoSuchAlgorithmException {
         logger.debug("Attempting createAccount");
         logger.info("Attempting createAccount");
+
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
+        } else {
+            traffic.setRole("PROD");
+        }
+
         try {
             SqlInter sqlInter = new SqlInter();
-            traffic.setRole("PROD");
             Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.USER, traffic);
             trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.LEDGER, traffic);
-            Traffic oplogResponse = opLog(traffic);
-            Traffic hashResponse = hashLedger(traffic);
+            Traffic oplogResponse = opLog(traffic, test);
+            Traffic hashResponse = hashLedger(traffic, test);
 
             return trafficResponse;
 
@@ -48,60 +56,78 @@ public class BankingFuncs {
         }
     }
 
-    public Traffic transaction(Traffic traffic) throws Exception {
+    public Traffic transaction(Traffic traffic, Boolean test) throws NoSuchAlgorithmException {
         logger.debug("Attempting transaction");
         logger.info("Attempting transaction");
         SqlInter sqlInter = new SqlInter();
-        traffic.setRole("PROD");
+
         Traffic trafficMedium = new Traffic();
-        trafficMedium.setVerb(traffic.getVerb());
-        trafficMedium.user.setAccount(traffic.getSourceAccount());
-        Traffic sourceAccount = findAccount(trafficMedium);
 
-        trafficMedium.user.setAccount(traffic.getDestinationAccount());
-        Traffic destinationAccount = findAccount(trafficMedium);
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
 
-        Integer amount1 = null;
-        Integer amount2 = null;
+            Traffic sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, traffic);
 
-        String cleanAmount = sourceAccount.user.amount.split("\\.", 2)[0];
-        String cleanAmount2 = destinationAccount.user.amount.split("\\.", 2)[0];
+            Traffic hashResponse = hashLedger(traffic, test);
+            Traffic oplogResponse = opLog(traffic, test);
 
-        sourceAccount.user.setAmount(cleanAmount);
-        destinationAccount.user.setAmount(cleanAmount2);
+        } else {
+            trafficMedium.setRole("PROD");
 
-        amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
-        amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
+            trafficMedium.setVerb(traffic.getVerb());
+            trafficMedium.user.setAccount(traffic.getSourceAccount());
+            Traffic sourceAccount = findAccount(trafficMedium, test);
 
+            trafficMedium.user.setAccount(traffic.getDestinationAccount());
+            Traffic destinationAccount = findAccount(trafficMedium, test);
 
-        sourceAccount.user.setAmount(amount1.toString());
-        destinationAccount.user.setAmount(amount2.toString());
+            Integer amount1 = null;
+            Integer amount2 = null;
 
-        trafficMedium.setVerb(traffic.getVerb());
-        trafficMedium.user.setAccount(traffic.getSourceAccount());
-        trafficMedium.user.setAmount(amount1.toString());
+            String cleanAmount = sourceAccount.user.amount.split("\\.", 2)[0];
+            String cleanAmount2 = destinationAccount.user.amount.split("\\.", 2)[0];
 
-        sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
+            sourceAccount.user.setAmount(cleanAmount);
+            destinationAccount.user.setAmount(cleanAmount2);
 
-        trafficMedium.user.setAccount(traffic.getDestinationAccount());
-        trafficMedium.user.setAmount(amount2.toString());
+            amount1 = Integer.parseInt(sourceAccount.user.getAmount()) - Integer.parseInt(traffic.user.getAmount());
+            amount2 = Integer.parseInt(destinationAccount.user.getAmount()) + Integer.parseInt(traffic.user.getAmount());
 
-        sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
+            sourceAccount.user.setAmount(amount1.toString());
+            destinationAccount.user.setAmount(amount2.toString());
 
-        Traffic hashResponse = hashLedger(traffic);
-        Traffic oplogResponse = opLog(traffic);
+            trafficMedium.setVerb(traffic.getVerb());
+            trafficMedium.user.setAccount(traffic.getSourceAccount());
+            trafficMedium.user.setAmount(amount1.toString());
 
-        logger.info("tran hash response is --> " + hashResponse);
+            sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
+
+            trafficMedium.user.setAccount(traffic.getDestinationAccount());
+            trafficMedium.user.setAmount(amount2.toString());
+
+            sourceAccount = sqlInter.sqlHandler(Crud.UPDATE, Datatypes.LEDGER, trafficMedium);
+
+            Traffic hashResponse = hashLedger(traffic, test);
+            Traffic oplogResponse = opLog(traffic, test);
+
+            logger.info("tran hash response is --> " + hashResponse);
+        }
 
         return traffic;
     }
 
-    public Traffic findAccount(Traffic traffic) {
+    public Traffic findAccount(Traffic traffic, Boolean test) {
         logger.debug("Attempting findAccount");
         logger.info("Attempting findAccount");
-        try {
-            SqlInter sqlInter = new SqlInter();
+
+        SqlInter sqlInter = new SqlInter();
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
+        } else {
             traffic.setRole("PROD");
+        }
+
+        try {
             traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.LEDGER, traffic);
             return traffic;
 
@@ -112,15 +138,22 @@ public class BankingFuncs {
         }
     }
 
-    public Traffic deleteAccount(Traffic traffic) {
+    public Traffic deleteAccount(Traffic traffic, Boolean test) {
         logger.debug("Attempting deleteAccount");
         logger.info("Attempting deleteAccount");
-        try {
-            SqlInter sqlInter = new SqlInter();
+
+        SqlInter sqlInter = new SqlInter();
+
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
+        } else {
             traffic.setRole("PROD");
+        }
+
+        try {
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.LEDGER, traffic);
             sqlInter.sqlHandler(Crud.DELETE, Datatypes.USER, traffic);
-            Traffic oplogResponse = opLog(traffic);
+            Traffic oplogResponse = opLog(traffic, test);
 
             traffic.setMessage("Account Delete Success");
             return traffic;
@@ -132,85 +165,106 @@ public class BankingFuncs {
         }
     }
 
-    public Traffic hashLedger(Traffic traffic) throws Exception {
+    public Traffic hashLedger(Traffic traffic, Boolean test) throws NoSuchAlgorithmException {
         logger.debug("Attempting hashLedger");
         logger.info("Attempting hashLedger");
 
         SqlInter sqlInter = new SqlInter();
-        traffic.setRole("PROD");
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
+
         traffic.setVerb("HASH");
 
-        traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.HASH, traffic);
 
-        String results = String.valueOf(traffic);
-
-        Integer iteration = null;
-        if (traffic.hash.getIteration() != null) {
-            iteration = traffic.hash.getIteration();
+            try {
+                Traffic hashResults = sqlInter.sqlHandler(Crud.CREATE, Datatypes.HASH, traffic);
+                logger.info("hash saveResults are --> " + hashResults);
+            } catch (Exception e) {
+                logger.error("hashLedger threw an exception");
+                System.out.println(e);
+            }
         } else {
-            iteration = 0;
-        }
+            traffic.setRole("PROD");
 
-        traffic.hash.setIteration(iteration);
 
-        String prevHash = "";
-        if (iteration != 0) {
-            prevHash = traffic.hash.getHash();
+            traffic.setVerb("HASH");
+
+            traffic = sqlInter.sqlHandler(Crud.READ, Datatypes.HASH, traffic);
+
+            String results = String.valueOf(traffic);
+
+            Integer iteration = null;
+            if (traffic.hash.getIteration() != null) {
+                iteration = traffic.hash.getIteration();
+            } else {
+                iteration = 0;
+            }
+
+            traffic.hash.setIteration(iteration);
+
+            String prevHash = "";
+            if (iteration != 0) {
+                prevHash = traffic.hash.getHash();
+                traffic.hash.setPreviousHash(prevHash);
+            } else {
+                prevHash = "00000";
+                traffic.hash.setPreviousHash(prevHash);
+            }
+
             traffic.hash.setPreviousHash(prevHash);
-        } else {
-            prevHash = "00000";
-            traffic.hash.setPreviousHash(prevHash);
-        }
 
-        traffic.hash.setPreviousHash(prevHash);
-
-
-        MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
 //        byte[] hash = digest.digest(results.getBytes(StandardCharsets.UTF_8));
-        String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex(results);
+            String hash = org.apache.commons.codec.digest.DigestUtils.sha1Hex(results);
 
-        traffic.hash.setHash(hash);
+            traffic.hash.setHash(hash);
 
-        System.out.println(hash);
+            System.out.println(hash);
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        String myTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
+            String myTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
 
-        traffic.hash.setTimestamp(myTime);
+            traffic.hash.setTimestamp(myTime);
 
 
-        if (traffic.getVerb().equals("CRT")) {
-            String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
+            if (traffic.getVerb().equals("CRT")) {
+                String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
 
-            traffic.hash.setLedger(ledgerStr);
-        } else if (traffic.getVerb().equals("TRAN")) {
-            String ledgerStr = traffic.user.getAccount() + traffic.getDestinationAccount() + traffic.user.getAmount();
+                traffic.hash.setLedger(ledgerStr);
+            } else if (traffic.getVerb().equals("TRAN")) {
+                String ledgerStr = traffic.user.getAccount() + traffic.getDestinationAccount() + traffic.user.getAmount();
 
-            traffic.hash.setLedger(ledgerStr);
-        } else if (traffic.getVerb().equals("HASH")) {
-            String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
+                traffic.hash.setLedger(ledgerStr);
+            } else if (traffic.getVerb().equals("HASH")) {
+                String ledgerStr = traffic.user.getAccount() + traffic.user.getAmount();
 
-            traffic.hash.setLedger(ledgerStr);
-        }
+                traffic.hash.setLedger(ledgerStr);
+            }
 
-        try {
-            Traffic hashResults = sqlInter.sqlHandler(Crud.CREATE, Datatypes.HASH, traffic);
-            logger.info("hash saveResults are --> " + hashResults);
-        } catch (Exception e) {
-            logger.error("hashLedger threw an exception");
-            System.out.println(e);
+            try {
+                Traffic hashResults = sqlInter.sqlHandler(Crud.CREATE, Datatypes.HASH, traffic);
+                logger.info("hash saveResults are --> " + hashResults);
+            } catch (Exception e) {
+                logger.error("hashLedger threw an exception");
+                System.out.println(e);
+            }
         }
 
         return traffic;
     }
 
-    public Traffic opLog(Traffic traffic) throws Exception {
+    public Traffic opLog(Traffic traffic, Boolean test) {
         logger.debug("Attempting opLog");
         logger.info("Attempting opLog");
 
         SqlInter sqlInter = new SqlInter();
-        traffic.setRole("PROD");
+        if (test.equals(true)) {
+            traffic.setRole("TEST");
+        } else {
+            traffic.setRole("PROD");
+        }
+
         try {
             Traffic trafficResponse = sqlInter.sqlHandler(Crud.CREATE, Datatypes.OPLOG, traffic);
         } catch (Exception e) {

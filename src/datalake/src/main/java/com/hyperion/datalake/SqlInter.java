@@ -15,17 +15,27 @@ public class SqlInter {
     }
 
     public Traffic sqlHandler(BankingFuncs.Crud verb, BankingFuncs.Datatypes datatype, Traffic traffic) {
-        String url = "jdbc:mysql://localhost:3306/crypto?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String username = "david";
-        String password = "password";
+        Statement stmt = null;
 
-        System.out.println("Connecting database...");
+        if (traffic.getRole().equals("TEST")) {
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+        } else {
+            String url = "jdbc:mysql://localhost:3306/crypto?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+            String username = "david";
+            String password = "password";
 
-            Statement stmt = connection.createStatement();
-            System.out.println("Database connected!");
+            System.out.println("Connecting database...");
 
+            try (Connection connection = DriverManager.getConnection(url, username, password)) {
+
+                stmt = connection.createStatement();
+                System.out.println("Database connected!");
+            } catch (SQLException e) {
+                throw new IllegalStateException("Cannot connect the database!", e);
+            }
+        }
+
+        try {
             switch (verb) {
                 case CREATE -> {
                     switch (datatype) {
@@ -173,17 +183,17 @@ public class SqlInter {
                     }
                 }
             }
-
-            return traffic;
-
         } catch (SQLException e) {
-            throw new IllegalStateException("Cannot connect the database!", e);
+            throw new RuntimeException(e);
         }
+
+        return traffic;
+
     }
+
 
     //the insert methods
     private Traffic sqlInsertLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
-
         int rs = 0;
         if (traffic.getRole().equals("TEST")) {
             //todo mock sql response
@@ -260,8 +270,16 @@ public class SqlInter {
             traffic.user.setAmount("0");
         }
 
-        String query = "INSERT INTO " + tableName + " (operation, source, destination, amount, fail) VALUES ('" + traffic.getVerb() + "', '" + traffic.getSourceAccount() + "', '" + traffic.getDestinationAccount() + "', '" + traffic.user.getAmount() + "', '" + 0 + "');";
-        int rs = stmt.executeUpdate(query);
+        int rs = 0;
+        if (traffic.getRole().equals("TEST")) {
+            if (traffic.getRole().equals("TEST")) {
+                //todo mock sql response
+                rs = 1;
+            }
+        } else {
+            String query = "INSERT INTO " + tableName + " (operation, source, destination, amount, fail) VALUES ('" + traffic.getVerb() + "', '" + traffic.getSourceAccount() + "', '" + traffic.getDestinationAccount() + "', '" + traffic.user.getAmount() + "', '" + 0 + "');";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -373,8 +391,15 @@ public class SqlInter {
     //the update methods
     private Traffic sqlUpdateLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
-        String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -389,8 +414,15 @@ public class SqlInter {
 
     private Traffic sqlUpdateUser(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
-        String query = "UPDATE " + tableName + "  SET password=" + traffic.user.getPassword() + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "UPDATE " + tableName + "  SET password=" + traffic.user.getPassword() + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -406,8 +438,15 @@ public class SqlInter {
     //no use case
     private Traffic sqlUpdateHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
-        String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -423,8 +462,15 @@ public class SqlInter {
     //no use case
     private Traffic sqlUpdateOplog(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running insert");
-        String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "UPDATE " + tableName + "  SET amount=" + traffic.user.getAmount() + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -440,8 +486,15 @@ public class SqlInter {
     //the delete methods
     private Traffic sqlDeleteLedger(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -456,8 +509,15 @@ public class SqlInter {
 
     private Traffic sqlDeleteUser(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "DELETE FROM " + tableName + " WHERE account='" + traffic.user.getAccount() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -472,8 +532,15 @@ public class SqlInter {
 
     private Traffic sqlDeleteHash(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
@@ -488,8 +555,15 @@ public class SqlInter {
 
     private Traffic sqlDeleteOplog(Statement stmt, String tableName, Traffic traffic) throws SQLException {
         logger.debug("running delete");
-        String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
-        int rs = stmt.executeUpdate(query);
+
+        int rs;
+        if (traffic.getRole().equals("TEST")) {
+            //todo mock sql response
+            rs = 1;
+        } else {
+            String query = "DELETE FROM " + tableName + " WHERE iteration='" + traffic.hash.getIteration() + "';";
+            rs = stmt.executeUpdate(query);
+        }
 
         if (rs == 0) {
             traffic.setFail(true);
