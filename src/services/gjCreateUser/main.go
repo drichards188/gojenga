@@ -28,6 +28,7 @@ const (
 	version     = "1.0.11"
 )
 
+//charset is to generate random passwords and usernames for testing
 const charset = "abcdefghijklmnopqrstuvwxyz" +
 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
