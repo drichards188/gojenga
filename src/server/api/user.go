@@ -8,9 +8,6 @@ import (
 	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
-	"io"
-	"log"
-	"net/http"
 )
 
 func testingFunc() (throwError bool) {
@@ -28,60 +25,6 @@ func testingFunc() (throwError bool) {
 	logger.Debug(fmt.Sprintf("gjDeposit test returned: %s", resp))
 
 	return false
-}
-
-func main() {
-	logger = gjLib.InitializeLogger()
-	ctx := context.Background()
-
-	config := gjLib.Config{
-		Service:     service,
-		Environment: environment,
-		Id:          id,
-		Version:     version,
-	}
-
-	//ctx, cancelCtx := context.WithCancel(ctx)
-	gjLib.StartServer("8070", config, crypto, ctx)
-	//time.Sleep(time.Second * 2)
-	//cancelCtx()
-}
-
-func crypto(w http.ResponseWriter, req *http.Request) {
-	ctx := context.Background()
-	w.WriteHeader(http.StatusOK)
-	results := handleCrypto(req, ctx)
-	_, err := w.Write([]byte(`{"response":` + results + `}`))
-	if err != nil {
-		logger.Debug(fmt.Sprintf("--> %s", err))
-		return
-	}
-}
-
-func handleCrypto(req *http.Request, ctx context.Context) (results string) {
-	var jsonResponse gjLib.Traffic
-
-	body, err := io.ReadAll(req.Body)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	err = json.Unmarshal([]byte(body), &jsonResponse)
-	if err != nil {
-		logger.Debug(fmt.Sprintf("--> %s", err))
-		return fmt.Sprintf("PUT unmarshal error: %s", err)
-	}
-
-	if jsonResponse.Verb == "USER" {
-		results, err := FindUserAccount(jsonResponse, ctx)
-		if err != nil {
-			log.Println(err)
-			return "CRT error"
-		}
-		return results
-	}
-
-	return "crypto error"
 }
 
 func FindUserAccount(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {

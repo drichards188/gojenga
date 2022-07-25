@@ -7,6 +7,7 @@ import (
 	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 	"io"
 	"log"
 	"net/http"
@@ -14,6 +15,11 @@ import (
 
 func HandlePost(req *http.Request, ctx context.Context) (results string) {
 	var jsonResponse Traffic
+
+	tr := otel.Tracer("crypto-called")
+	_, span := tr.Start(ctx, "handle-post")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
@@ -30,6 +36,8 @@ func HandlePost(req *http.Request, ctx context.Context) (results string) {
 		results, err := CreateUser(gjLib.Traffic(jsonResponse), ctx)
 		if err != nil {
 			log.Println(err)
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return "CRT error"
 		}
 		return results

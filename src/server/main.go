@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.uber.org/zap"
@@ -75,7 +76,6 @@ func TracerProvider(url string) (*tracesdk.TracerProvider, error) {
 //the main worker function. called when node gets an http request
 func crypto(w http.ResponseWriter, req *http.Request) {
 
-	//tracerProvider gets trace info to Jaeger. One per node but I'm not sure if it matters
 	myTp, err := TracerProvider("http://localhost:14268/api/traces")
 	if err != nil {
 		log.Fatal(err)
@@ -115,6 +115,8 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		_, err := w.Write([]byte(`{"response":` + results + `}`))
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return
 		}
 		//POST does create account and runs the discovery command for the master or GET does
@@ -124,10 +126,14 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		span.SetAttributes(attribute.Key("testset").String("value"))
 		defer span.End()
 		w.WriteHeader(http.StatusCreated)
+
 		results := api.HandlePost(req, ctx)
 		_, err := w.Write([]byte(`{"response":` + results + `}`))
+
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return
 		}
 		//PUT handles most commands particularly gjTransaction

@@ -48,23 +48,6 @@ func GenRanString(length int) string {
 //	return false
 //}
 
-func main() {
-	logger = gjLib.InitializeLogger()
-	ctx := context.Background()
-
-	config := gjLib.Config{
-		Service:     service,
-		Environment: environment,
-		Id:          id,
-		Version:     version,
-	}
-
-	//ctx, cancelCtx := context.WithCancel(ctx)
-	gjLib.StartServer("8070", config, crypto, ctx)
-	//time.Sleep(time.Second * 2)
-	//cancelCtx()
-}
-
 func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "createUser")
