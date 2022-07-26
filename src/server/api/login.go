@@ -3,16 +3,15 @@ package api
 import (
 	"context"
 	"errors"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 )
 
 //func testingFunc() (throwError bool) {
-//	logger = gjLib.InitializeLogger()
+//	logger = InitializeLogger()
 //	ctx := context.Background()
 //
-//	traffic := gjLib.Traffic{SourceAccount: "david", Password: "54321", Table: "dynamoTest"}
+//	traffic := Traffic{SourceAccount: "david", Password: "54321", Table: "dynamoTest"}
 //	resp, err := Login(traffic, ctx)
 //	if err != nil {
 //		logger.Warn(fmt.Sprintf("gjLogin test error: %s", err))
@@ -24,7 +23,7 @@ import (
 //	return false
 //}
 
-func Login(jsonResponse gjLib.Traffic, ctx context.Context) (results string, err error) {
+func Login(jsonResponse Traffic, ctx context.Context) (results string, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "gjLogin")
 	span.SetAttributes(attribute.Key("testset").String("value"))
@@ -36,7 +35,7 @@ func Login(jsonResponse gjLib.Traffic, ctx context.Context) (results string, err
 
 	jsonResponse.Role = "USER"
 
-	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
+	resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
 		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
 	}

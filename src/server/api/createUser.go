@@ -3,8 +3,6 @@ package api
 import (
 	"context"
 	"errors"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
-
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"math/rand"
@@ -31,11 +29,11 @@ func GenRanString(length int) string {
 }
 
 //func testingFunc() (throwError bool) {
-//	logger = gjLib.InitializeLogger()
+//	logger = InitializeLogger()
 //	ctx := context.Background()
 //	randAccount := GenRanString(6)
 //
-//	traffic := gjLib.Traffic{SourceAccount: randAccount, Table: "dynamoTest", Role: "test"}
+//	traffic := Traffic{SourceAccount: randAccount, Table: "dynamoTest", Role: "test"}
 //
 //	resp, err := CreateUser(traffic, ctx)
 //	if err != nil {
@@ -48,31 +46,33 @@ func GenRanString(length int) string {
 //	return false
 //}
 
-func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "createUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
 	if jsonResponse.Role == "test" {
-		r, err := gjLib.RunDynamoCreateItem(jsonResponse.Table, gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 		return r["msg"], nil
 	}
 
-	r, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
+	jsonResponse.Table = "users"
+
+	r, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
 	if err == nil {
 		return "--> User already exists", errors.New("--> User already exists")
 	}
 
-	r, err = gjLib.RunDynamoCreateItem("users", gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
+	r, err = RunDynamoCreateItem("users", User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
-	r, err = gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
@@ -80,25 +80,25 @@ func CreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error)
 	return r["msg"], nil
 }
 
-func RollbackCreateUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+func RollbackCreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "rollbackCreateUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
 	if jsonResponse.Role == "test" {
-		r, err := gjLib.RunDynamoCreateItem(jsonResponse.Table, gjLib.User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 		return r["msg"], nil
 	} else {
-		r, err := gjLib.RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+		r, err := RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 
-		r, err = gjLib.RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+		r, err = RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}

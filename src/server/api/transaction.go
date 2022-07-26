@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"strconv"
@@ -12,10 +11,10 @@ import (
 )
 
 //func testingFunc() (throwError bool) {
-//	logger = gjLib.InitializeLogger()
+//	logger = InitializeLogger()
 //	ctx := context.Background()
 //
-//	traffic := gjLib.Traffic{SourceAccount: "david", DestinationAccount: "allie", Table: "dynamoTest", Role: "test", Amount: "12"}
+//	traffic := Traffic{SourceAccount: "david", DestinationAccount: "allie", Table: "dynamoTest", Role: "test", Amount: "12"}
 //
 //	resp, err := Transaction(traffic, ctx)
 //	if err != nil {
@@ -28,12 +27,12 @@ import (
 //	return false
 //}
 
-func Transaction(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
-	user1, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
+	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
-	user2, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
+	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
 	if err != nil {
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
@@ -77,11 +76,11 @@ func Transaction(jsonResponse gjLib.Traffic, ctx context.Context) (string, error
 
 	//hashLedger(data)
 
-	r, err := gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: Account, Amount: intFinalAmount1})
+	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
-	r, err = gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: Account2, Amount: intFinalAmount2})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
@@ -89,12 +88,12 @@ func Transaction(jsonResponse gjLib.Traffic, ctx context.Context) (string, error
 	return "Transaction Successful", nil
 }
 
-func TransactionRollback(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
-	user1, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, error) {
+	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
-	user2, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
+	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
 	if err != nil {
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
@@ -138,11 +137,11 @@ func TransactionRollback(jsonResponse gjLib.Traffic, ctx context.Context) (strin
 
 	//hashLedger(data)
 
-	r, err := gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: Account, Amount: intFinalAmount1})
+	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
-	r, err = gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: Account2, Amount: intFinalAmount2})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2})
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}

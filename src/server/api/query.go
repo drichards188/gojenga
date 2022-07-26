@@ -5,16 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 )
 
 //func testingFunc() (throwError bool) {
-//	logger = gjLib.InitializeLogger()
+//	logger = InitializeLogger()
 //	ctx := context.Background()
 //
-//	traffic := gjLib.Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test"}
+//	traffic := Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test"}
 //
 //	resp, err := FindUser(traffic, ctx)
 //	if err != nil {
@@ -27,7 +26,7 @@ import (
 //	return false
 //}
 
-func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	Account := jsonResponse.SourceAccount
 
@@ -37,7 +36,7 @@ func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	defer span.End()
 
 	//mongoResult := queryMongo(traffic)
-	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: Account})
+	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: Account})
 	if err != nil {
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}

@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"strconv"
@@ -12,10 +11,10 @@ import (
 )
 
 //func testingFunc() (throwError bool) {
-//	logger = gjLib.InitializeLogger()
+//	logger = InitializeLogger()
 //	ctx := context.Background()
 //
-//	traffic := gjLib.Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test", Amount: "12"}
+//	traffic := Traffic{SourceAccount: "david", Table: "dynamoTest", Role: "test", Amount: "12"}
 //
 //	resp, err := Deposit(traffic, ctx)
 //	if err != nil {
@@ -28,7 +27,7 @@ import (
 //	return false
 //}
 
-func Deposit(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
+func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	var results string
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "createUser")
@@ -40,7 +39,7 @@ func Deposit(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	//return response
 
 	//mongoResult := queryMongo(jsonResponse)
-	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
 	if err != nil {
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
@@ -64,7 +63,7 @@ func Deposit(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	intFinalAmount1 := strconv.Itoa(finalAmount1)
 
 	//hashLedger(data)
-	resp, err := gjLib.RunDynamoCreateItem("ledger", gjLib.Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1})
+	resp, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1})
 	if err != nil {
 		return "--> " + resp["msg"], errors.New("--> " + resp["msg"])
 	}

@@ -108,7 +108,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 	case "GET":
 		tr := otel.Tracer("mempool-trace")
 		ctx, span := tr.Start(ctx, "got-get")
-		span.SetAttributes(attribute.Key("testset").String("value"))
+		span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 		defer span.End()
 		w.WriteHeader(http.StatusOK)
 		results := api.HandleGet(req, ctx)
@@ -123,12 +123,24 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 	case "POST":
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-post")
-		span.SetAttributes(attribute.Key("testset").String("value"))
+		span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 		defer span.End()
 		w.WriteHeader(http.StatusCreated)
 
-		results := api.HandlePost(req, ctx)
-		_, err := w.Write([]byte(`{"response":` + results + `}`))
+		results, err := api.HandlePost(req, ctx)
+		if err != nil {
+			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+			return
+		}
+
+		_, err = w.Write([]byte(`{"response":` + results + `}`))
+		if err != nil {
+			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+		}
 
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
@@ -140,7 +152,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 	case "PUT":
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-put")
-		span.SetAttributes(attribute.Key("testset").String("value"))
+		span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 		defer span.End()
 		w.WriteHeader(http.StatusAccepted)
 		results := api.HandlePut(req, ctx)
@@ -153,7 +165,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 	case "DELETE":
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-gjDelete")
-		span.SetAttributes(attribute.Key("testset").String("value"))
+		span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 		defer span.End()
 		w.WriteHeader(http.StatusOK)
 		results := api.HandleDelete(req, ctx)

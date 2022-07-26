@@ -3,8 +3,8 @@ package api
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/drichards188/gojenga/src/lib/gjLib"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
@@ -13,45 +13,50 @@ import (
 	"net/http"
 )
 
-func HandlePost(req *http.Request, ctx context.Context) (results string) {
+func HandlePost(req *http.Request, ctx context.Context) (results string, err error) {
 	var jsonResponse Traffic
 
 	tr := otel.Tracer("crypto-called")
-	_, span := tr.Start(ctx, "handle-post")
-	span.SetAttributes(attribute.Key("testset").String("value"))
+	ctx, span := tr.Start(ctx, "handle-post")
+	span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 	defer span.End()
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
-		log.Fatalln(err)
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
+		return "", errors.New("POST ReadAll Error")
 	}
 
 	err = json.Unmarshal([]byte(body), &jsonResponse)
 	if err != nil {
 		logger.Debug(fmt.Sprintf("--> %s", err))
-		return ""
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
+		return "", errors.New("POST Unmarshal error")
 	}
 
 	if jsonResponse.Verb == "CRT" {
-		results, err := CreateUser(gjLib.Traffic(jsonResponse), ctx)
+		results, err := CreateUser(Traffic(jsonResponse), ctx)
 		if err != nil {
-			log.Println(err)
+			logger.Debug(fmt.Sprintf("--> %s", err))
 			span.RecordError(err)
 			span.SetStatus(codes.Error, err.Error())
-			return "CRT error"
+			return "", errors.New("CRT error")
 		}
-		return results
+		return results, nil
 	}
 
-	return "POST failed"
+	return "", errors.New("POST failed")
 }
 
 func HandleGet(req *http.Request, ctx context.Context) (results string) {
-	var jsonResponse gjLib.Traffic
+	var jsonResponse Traffic
 
 	tr := otel.Tracer("mempool-trace")
 	ctx, span := tr.Start(ctx, "handle-get")
-	span.SetAttributes(attribute.Key("testset").String("value"))
+	span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
 	defer span.End()
 
 	body, err := io.ReadAll(req.Body)
@@ -77,7 +82,7 @@ func HandleGet(req *http.Request, ctx context.Context) (results string) {
 }
 
 func HandlePut(req *http.Request, ctx context.Context) (results string) {
-	var jsonResponse gjLib.Traffic
+	var jsonResponse Traffic
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
@@ -138,7 +143,7 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 }
 
 func HandleDelete(req *http.Request, ctx context.Context) (results string) {
-	var traffic gjLib.Traffic
+	var traffic Traffic
 
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
