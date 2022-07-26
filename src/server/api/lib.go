@@ -1,4 +1,4 @@
-package gjLib
+package api
 
 import (
 	"context"
@@ -23,6 +23,13 @@ import (
 
 var tp *trace.TracerProvider
 var logger *zap.Logger
+
+const (
+	service     = "api"
+	environment = "alpha"
+	id          = 3
+	version     = "1.0.10"
+)
 
 type Traffic struct {
 	Name               string
