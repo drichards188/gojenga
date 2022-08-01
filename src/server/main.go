@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/api"
 	"context"
 	"fmt"
 	"github.com/drichards188/gojenga/src/lib/gjLib"
@@ -12,7 +13,6 @@ import (
 	"go.uber.org/zap"
 	"log"
 	"net/http"
-	"server/api"
 	"time"
 
 	_ "bytes"
@@ -121,9 +121,11 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		}
 		//POST does create account and runs the discovery command for the master or GET does
 	case "POST":
+		attrJson := `{"version":"version num goes here","second info":"my second info is here"}`
+
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-post")
-		span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
+		span.SetAttributes(attribute.Key("my-version").String(attrJson))
 		defer span.End()
 		w.WriteHeader(http.StatusCreated)
 

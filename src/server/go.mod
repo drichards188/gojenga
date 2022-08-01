@@ -1,4 +1,4 @@
-module server
+module api
 
 go 1.18
 
@@ -19,4 +19,5 @@ require (
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
+	gopkg.in/validator.v2 v2.0.1 // indirect
 )

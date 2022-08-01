@@ -16,6 +16,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	_ "gopkg.in/validator.v2"
 	"log"
 	"net/http"
 	"os"
@@ -40,7 +41,7 @@ type Traffic struct {
 	Role               string
 	Port               string
 	Payload            string
-	Password           string
+	Password           string `validator:"min=2"`
 	Table              string
 }
 
