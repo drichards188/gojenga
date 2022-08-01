@@ -1,7 +1,6 @@
 package main
 
 import (
-	"api/api"
 	"context"
 	"fmt"
 	"github.com/drichards188/gojenga/src/lib/gjLib"
@@ -13,6 +12,7 @@ import (
 	"go.uber.org/zap"
 	"log"
 	"net/http"
+	"server/api"
 	"time"
 
 	_ "bytes"
@@ -126,6 +126,7 @@ func crypto(w http.ResponseWriter, req *http.Request) {
 		tr := otel.Tracer("crypto-called")
 		ctx, span := tr.Start(ctx, "got-post")
 		span.SetAttributes(attribute.Key("my-version").String(attrJson))
+
 		defer span.End()
 		w.WriteHeader(http.StatusCreated)
 
