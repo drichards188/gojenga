@@ -84,14 +84,23 @@ func HandleGet(req *http.Request, ctx context.Context) (results string) {
 func HandlePut(req *http.Request, ctx context.Context) (results string) {
 	var jsonResponse Traffic
 
+	tr := otel.Tracer("crypto-called")
+	ctx, span := tr.Start(ctx, "handle-put")
+	span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
+	defer span.End()
+
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		log.Fatalln(err)
 	}
 
 	err = json.Unmarshal([]byte(body), &jsonResponse)
 	if err != nil {
 		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return fmt.Sprintf("PUT unmarshal error: %s", err)
 	}
 
@@ -99,6 +108,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := Transaction(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("TRAN error: %s", err)
 		}
 		return results
@@ -106,6 +117,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := Deposit(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("CRT error: %s", err)
 		}
 		return results
@@ -113,6 +126,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := Login(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("ADD error: %s", err)
 		}
 		return results
@@ -120,6 +135,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := FindUser(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("QUERY error: %s", err)
 		}
 		return results
@@ -127,6 +144,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := FindUserAccount(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("USER error: %s", err)
 		}
 		return results
@@ -134,6 +153,8 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 		results, err := DeleteUser(jsonResponse, ctx)
 		if err != nil {
 			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
 			return fmt.Sprintf("DLT error: %s", err)
 		}
 		return results
