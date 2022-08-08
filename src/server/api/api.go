@@ -166,6 +166,11 @@ func HandlePut(req *http.Request, ctx context.Context) (results string) {
 func HandleDelete(req *http.Request, ctx context.Context) (results string) {
 	var traffic Traffic
 
+	tr := otel.Tracer("crypto-called")
+	ctx, span := tr.Start(ctx, "handle-delete")
+	span.SetAttributes(attribute.Key("my-version").String("1,0,1"))
+	defer span.End()
+
 	body, err := io.ReadAll(req.Body)
 	if err != nil {
 		log.Fatalln(err)
@@ -175,12 +180,16 @@ func HandleDelete(req *http.Request, ctx context.Context) (results string) {
 	err = json.Unmarshal([]byte(body), &traffic)
 	if err != nil {
 		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return fmt.Sprintf("DLT error: %s", err)
 	}
 
 	_, err = DeleteUser(traffic, ctx)
 	if err != nil {
 		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return fmt.Sprintf("DLT error: %s", err)
 	}
 
