@@ -76,11 +76,11 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	//hashLedger(data)
 
-	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1})
+	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
-	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
@@ -137,11 +137,11 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 
 	//hashLedger(data)
 
-	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1})
+	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
-	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
