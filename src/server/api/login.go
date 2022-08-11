@@ -35,7 +35,7 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 
 	jsonResponse.Role = "USER"
 
-	resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
+	resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
 	}

@@ -53,7 +53,7 @@ func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	defer span.End()
 
 	if jsonResponse.Role == "test" {
-		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
@@ -62,17 +62,17 @@ func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	jsonResponse.Table = "users"
 
-	r, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount})
+	r, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err == nil {
 		return "--> User already exists", errors.New("--> User already exists")
 	}
 
-	r, err = RunDynamoCreateItem("users", User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password})
+	r, err = RunDynamoCreateItem("users", User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
-	r, err = RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount})
+	r, err = RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount}, ctx)
 	if err != nil {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
@@ -87,18 +87,18 @@ func RollbackCreateUser(jsonResponse Traffic, ctx context.Context) (string, erro
 	defer span.End()
 
 	if jsonResponse.Role == "test" {
-		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount})
+		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 		return r["msg"], nil
 	} else {
-		r, err := RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+		r, err := RunDynamoDeleteItem("users", jsonResponse.SourceAccount, ctx)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
 
-		r, err = RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+		r, err = RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount, ctx)
 		if err != nil {
 			return "--> " + r["msg"], errors.New("--> " + r["msg"])
 		}
