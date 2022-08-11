@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
 	"go.opentelemetry.io/otel/sdk/resource"
@@ -257,7 +258,12 @@ type Query struct {
 	Value     string
 }
 
-func RunDynamoCreateItem[T any](tableName string, item T) (resp map[string]string, err error) {
+func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (resp map[string]string, err error) {
+	tr := otel.Tracer("crypto-trace")
+	ctx, span := tr.Start(ctx, "RunDynamoCreateItem")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
 	// Initialize a session in us-west-2 that the SDK will use to load
 	// credentials from the shared credentials file ~/.aws/credentials.
 	sess, err := session.NewSession(&aws.Config{
