@@ -261,6 +261,7 @@ type Query struct {
 func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (resp map[string]string, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "RunDynamoCreateItem")
+
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
