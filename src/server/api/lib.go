@@ -260,7 +260,8 @@ type Query struct {
 
 func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (resp map[string]string, err error) {
 	tr := otel.Tracer("crypto-trace")
-	ctx, span := tr.Start(ctx, "RunDynamoCreateItem")
+	_, span := tr.Start(ctx, "RunDynamoCreateItem")
+
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
@@ -311,7 +312,12 @@ func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (
 	return r, nil
 }
 
-func RunDynamoGetItem(query Query) (resp map[string]string, err error) {
+func RunDynamoGetItem(query Query, ctx context.Context) (resp map[string]string, err error) {
+	tr := otel.Tracer("crypto-trace")
+	_, span := tr.Start(ctx, "RunDynamoGetItem")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
 	// Initialize a session in us-west-2 that the SDK will use to load
 	// credentials from the shared credentials file ~/.aws/credentials.
 	sess, err := session.NewSession(&aws.Config{
@@ -365,7 +371,12 @@ func RunDynamoGetItem(query Query) (resp map[string]string, err error) {
 	return r, nil
 }
 
-func RunDynamoDeleteItem(tableName string, value string) (resp map[string]string, err error) {
+func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (resp map[string]string, err error) {
+	tr := otel.Tracer("crypto-trace")
+	_, span := tr.Start(ctx, "RunDynamoDeleteItem")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
 	// Initialize a session in us-west-2 that the SDK will use to load
 	// credentials from the shared credentials file ~/.aws/credentials.
 	sess, err := session.NewSession(&aws.Config{

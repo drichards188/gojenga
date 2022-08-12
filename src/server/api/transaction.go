@@ -28,11 +28,11 @@ import (
 //}
 
 func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
-	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
-	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
+	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
@@ -89,11 +89,11 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 }
 
 func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, error) {
-	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
-	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount})
+	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}

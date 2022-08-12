@@ -18,14 +18,14 @@ func DeleteUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	ctx, span := tr.Start(ctx, "deleteUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
-	r, err := RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount)
+	r, err := RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount, ctx)
 	if err != nil {
 		fmt.Println("error in DeleteUser")
 	}
 	if r["code"] == "1" {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
-	RunDynamoDeleteItem("users", jsonResponse.SourceAccount)
+	RunDynamoDeleteItem("users", jsonResponse.SourceAccount, ctx)
 	if r["code"] == "1" {
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}

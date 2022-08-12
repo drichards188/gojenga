@@ -39,7 +39,7 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//return response
 
 	//mongoResult := queryMongo(jsonResponse)
-	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount})
+	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
@@ -63,7 +63,7 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	intFinalAmount1 := strconv.Itoa(finalAmount1)
 
 	//hashLedger(data)
-	resp, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1})
+	resp, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1}, ctx)
 	if err != nil {
 		return "--> " + resp["msg"], errors.New("--> " + resp["msg"])
 	}

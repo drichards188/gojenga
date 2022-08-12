@@ -38,7 +38,7 @@ func FindUserAccount(jsonResponse Traffic, ctx context.Context) (string, error) 
 	//traffic := Traffic{Account: Account, Role: "USER"}
 
 	//mongoResult := queryMongo(traffic)
-	resultMap, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: Account})
+	resultMap, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: Account}, ctx)
 	if err != nil {
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
