@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 )
 
 //func testingFunc() (throwError bool) {
@@ -15,11 +16,15 @@ import (
 
 func DeleteUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	tr := otel.Tracer("crypto-trace")
-	ctx, span := tr.Start(ctx, "deleteUser")
+	_, span := tr.Start(ctx, "deleteUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+
 	r, err := RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println("error in DeleteUser")
 	}
 	if r["code"] == "1" {

@@ -32,6 +32,7 @@ func FindUserAccount(jsonResponse Traffic, ctx context.Context) (string, error) 
 	ctx, span := tr.Start(ctx, "findUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+
 	//response := lakeFindUser(Account, ctx)
 	//fmt.Println("-->data ping results: " + results)
 	//return response

@@ -30,9 +30,10 @@ import (
 func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	var results string
 	tr := otel.Tracer("crypto-trace")
-	_, span := tr.Start(ctx, "createUser")
+	ctx, span := tr.Start(ctx, "createUser")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
+
 	//response := lakeCreateUser(jsonResponse.SourceAccount)
 	//response := acceptCreateUser(jsonResponse)
 	fmt.Println("-->data ping results: " + results)
