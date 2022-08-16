@@ -28,6 +28,11 @@ import (
 //}
 
 func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
+	tr := otel.Tracer("crypto-trace")
+	ctx, span := tr.Start(ctx, "handle-gjTransaction")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
 	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
@@ -66,10 +71,7 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 	intFinalAmount2 := strconv.Itoa(finalAmount2)
 
 	//data := Account + Account2 + Amount
-	tr := otel.Tracer("crypto-trace")
-	ctx, span := tr.Start(ctx, "handle-gjTransaction")
-	span.SetAttributes(attribute.Key("testset").String("value"))
-	defer span.End()
+
 	//lakeResponse := acceptTransaction(jsonResponse, ctx)
 	////lakeResponse := lakeTransaction(jsonResponse)
 	//return lakeResponse
@@ -89,6 +91,11 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 }
 
 func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, error) {
+	tr := otel.Tracer("crypto-trace")
+	ctx, span := tr.Start(ctx, "handle-gjTransaction")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
+
 	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
@@ -127,10 +134,7 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 	intFinalAmount2 := strconv.Itoa(finalAmount2)
 
 	//data := Account + Account2 + Amount
-	tr := otel.Tracer("crypto-trace")
-	ctx, span := tr.Start(ctx, "handle-gjTransaction")
-	span.SetAttributes(attribute.Key("testset").String("value"))
-	defer span.End()
+
 	//lakeResponse := acceptTransaction(jsonResponse, ctx)
 	////lakeResponse := lakeTransaction(jsonResponse)
 	//return lakeResponse

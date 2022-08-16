@@ -25,7 +25,7 @@ import (
 
 func Login(jsonResponse Traffic, ctx context.Context) (results string, err error) {
 	tr := otel.Tracer("crypto-trace")
-	_, span := tr.Start(ctx, "gjLogin")
+	ctx, span := tr.Start(ctx, "gjLogin")
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 	//response := lakeCreateUser(jsonResponse.Account)
