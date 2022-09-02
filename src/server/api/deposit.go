@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 	"strconv"
 	"time"
 )
@@ -42,6 +43,9 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//mongoResult := queryMongo(jsonResponse)
 	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
 

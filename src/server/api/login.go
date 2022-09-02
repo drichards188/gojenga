@@ -3,8 +3,10 @@ package api
 import (
 	"context"
 	"errors"
+	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 )
 
 //func testingFunc() (throwError bool) {
@@ -37,6 +39,9 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 
 	resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
 	}
 

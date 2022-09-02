@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 )
 
 //func testingFunc() (throwError bool) {
@@ -38,6 +39,9 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//mongoResult := queryMongo(traffic)
 	resultMap, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: Account}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
 
@@ -52,6 +56,10 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	msg := resultMap["message"]
 	if msg == "No Match" {
+		err = errors.New("No User Match")
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "Account Not Found", errors.New("Account Not Found")
 	}
 

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 	"strconv"
 	"time"
 )
@@ -35,10 +36,16 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
 	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
 
@@ -54,14 +61,23 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//resultMap2 := mongoResult2.Map()
 	finalAmount, err := strconv.Atoi(Amount)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	Amount1, err := strconv.Atoi(user1["Amount"])
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	Amount2, err := strconv.Atoi(user2["Amount"])
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	finalAmount1 := Amount1 - finalAmount
@@ -80,10 +96,16 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
@@ -98,10 +120,16 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 
 	user1, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user1["msg"], errors.New("--> " + user1["msg"])
 	}
 	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user2["msg"], errors.New("--> " + user1["msg"])
 	}
 
@@ -117,14 +145,23 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 	//resultMap2 := mongoResult2.Map()
 	finalAmount, err := strconv.Atoi(Amount)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	Amount1, err := strconv.Atoi(user1["Amount"])
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	Amount2, err := strconv.Atoi(user2["Amount"])
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		fmt.Println(err)
 	}
 	finalAmount1 := Amount1 + finalAmount
@@ -143,10 +180,16 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 
 	r, err := RunDynamoCreateItem("ledger", Ledger{Account: Account, Amount: intFinalAmount1}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
+		logger.Debug(fmt.Sprintf("--> %s", err))
+		span.RecordError(err)
+		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r["msg"], errors.New("--> " + r["msg"])
 	}
 
