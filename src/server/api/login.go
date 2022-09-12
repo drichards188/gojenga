@@ -35,6 +35,7 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 	//logger.Debug("-->data ping results: " + results)
 	//return response
 
+	jsonResponse.Table = "users"
 	jsonResponse.Role = "USER"
 
 	resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
@@ -43,6 +44,12 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
+	}
+
+	if val, ok := resultMap["0"]; ok {
+		if val != "1" {
+			fmt.Println("--> got here")
+		}
 	}
 
 	if resultMap["code"] != "1" {
