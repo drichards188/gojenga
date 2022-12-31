@@ -41,7 +41,7 @@ func FindUserAccount(jsonResponse Traffic, ctx context.Context) (string, error) 
 	//mongoResult := queryMongo(traffic)
 	resultMap, err := RunDynamoGetItem(Query{TableName: "users", Key: "Account", Value: Account}, ctx)
 	if err != nil {
-		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
+		return "--> " + resultMap.msg, errors.New("--> " + resultMap.msg)
 	}
 
 	//if mongoResult["message"] == "No Match" {
@@ -53,13 +53,13 @@ func FindUserAccount(jsonResponse Traffic, ctx context.Context) (string, error) 
 	//
 	//resultMap = mongoResult.Map()
 
-	msg := resultMap["message"]
+	msg := resultMap.msg
 	if msg == "No Match" {
 		return "Account Not Found", errors.New("Account Not Found")
 	}
 
-	theAccount := resultMap["Account"]
-	theAmount := resultMap["Password"]
+	theAccount := resultMap.data["Account"]
+	theAmount := resultMap.data["Password"]
 
 	mapD := map[string]string{"Account": theAccount, "Password": theAmount}
 	mapB, _ := json.Marshal(mapD)

@@ -46,7 +46,7 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 		logger.Debug(fmt.Sprintf("--> %s", err))
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
-		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
+		return "--> " + resultMap.msg, errors.New("--> " + resultMap.msg)
 	}
 
 	//if resultMap["message"] != "No Match" {
@@ -59,7 +59,7 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	Amount1, err := strconv.Atoi(resultMap["Amount"])
+	Amount1, err := strconv.Atoi(resultMap.data["Amount"])
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -70,7 +70,7 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//hashLedger(data)
 	resp, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1}, ctx)
 	if err != nil {
-		return "--> " + resp["msg"], errors.New("--> " + resp["msg"])
+		return "--> " + resp.msg, errors.New("--> " + resp.msg)
 	}
 	//updateMongo(jsonResponse.SourceAccount, intFinalAmount1)
 	//writeToMongo("ledger", jsonResponse.SourceAccount, jsonResponse.Amount)

@@ -46,15 +46,13 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 		return "--> User does not exist login fail", errors.New("--> User does not exist login fail")
 	}
 
-	if val, ok := resultMap["0"]; ok {
-		if val != "1" {
-			fmt.Println("--> got here")
-		}
+	if resultMap.code == false {
+		fmt.Println("got here")
 	}
 
-	if resultMap["code"] != "1" {
+	if resultMap.code != true {
 
-		if jsonResponse.SourceAccount == resultMap["Account"] && jsonResponse.Password == resultMap["Password"] {
+		if jsonResponse.SourceAccount == resultMap.data["Account"] && jsonResponse.Password == resultMap.data["Password"] {
 			rMap := make(map[string]string)
 
 			rMap["token"] = "thisisthetoken"

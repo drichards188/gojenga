@@ -55,9 +55,9 @@ func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	if jsonResponse.Role == "test" {
 		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
 		if err != nil {
-			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+			return "--> " + r.msg, errors.New("--> " + r.msg)
 		}
-		return r["msg"], nil
+		return r.msg, nil
 	}
 
 	jsonResponse.Table = "users"
@@ -69,15 +69,15 @@ func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 
 	r, err = RunDynamoCreateItem("users", User{Account: jsonResponse.SourceAccount, Password: jsonResponse.Password}, ctx)
 	if err != nil {
-		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		return "--> " + r.msg, errors.New("--> " + r.msg)
 	}
 
 	r, err = RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: jsonResponse.Amount}, ctx)
 	if err != nil {
-		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+		return "--> " + r.msg, errors.New("--> " + r.msg)
 	}
 
-	return r["msg"], nil
+	return r.msg, nil
 }
 
 func RollbackCreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
@@ -89,18 +89,18 @@ func RollbackCreateUser(jsonResponse Traffic, ctx context.Context) (string, erro
 	if jsonResponse.Role == "test" {
 		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
 		if err != nil {
-			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+			return "--> " + r.msg, errors.New("--> " + r.msg)
 		}
-		return r["msg"], nil
+		return r.msg, nil
 	} else {
 		r, err := RunDynamoDeleteItem("users", jsonResponse.SourceAccount, ctx)
 		if err != nil {
-			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+			return "--> " + r.msg, errors.New("--> " + r.msg)
 		}
 
 		r, err = RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount, ctx)
 		if err != nil {
-			return "--> " + r["msg"], errors.New("--> " + r["msg"])
+			return "--> " + r.msg, errors.New("--> " + r.msg)
 		}
 	}
 

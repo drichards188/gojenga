@@ -49,7 +49,7 @@ Using Networkx enables value from the whole field of graph theory
 -Redux
 
 ## **Roadmap**<br>
-[0] - Impliment Saga Orchestration for transaction completion and rollbacks
+[0] - Implement Saga Orchestration for transaction completion and rollbacks
 
 [1] - Making the system Zillow production compliant
 
