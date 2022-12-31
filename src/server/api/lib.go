@@ -53,6 +53,49 @@ type Config struct {
 	Version     string
 }
 
+// Create structs to hold info about new item
+type ItemInfo struct {
+	Plot   string  `json:"plot"`
+	Rating float64 `json:"rating"`
+}
+
+type Item struct {
+	Year  int      `json:"year"`
+	Title string   `json:"title"`
+	Info  ItemInfo `json:"info"`
+}
+
+type Hash struct {
+	Iteration    int    `json:"iteration"`
+	Timestamp    string `json:"timestamp"`
+	Hash         string `json:"hash"`
+	PreviousHash string `json:"previousHash"`
+	Ledger       string `json:"ledger"`
+}
+
+type User struct {
+	Password string `json:"password"`
+	Account  string `json:"account"`
+	//Info  ItemInfo `json:"info"`
+}
+
+type Ledger struct {
+	Account string `json:"account"`
+	Amount  string `json:"amount"`
+}
+
+type Query struct {
+	TableName string `json:"tableName"`
+	Key       string `json:"key"`
+	Value     string `json:"value"`
+}
+
+type GjResp struct {
+	msg  string
+	code bool
+	data map[any]string
+}
+
 func TracerProvider(url string, config Config) (*tracesdk.TracerProvider, error) {
 	// Create the Jaeger exporter
 	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(url)))
@@ -221,44 +264,7 @@ func RunDynamoCreateTable(tableName string) {
 	fmt.Println("Created the table in us-east-2")
 }
 
-// Create structs to hold info about new item
-type ItemInfo struct {
-	Plot   string  `json:"plot"`
-	Rating float64 `json:"rating"`
-}
-
-type Item struct {
-	Year  int      `json:"year"`
-	Title string   `json:"title"`
-	Info  ItemInfo `json:"info"`
-}
-
-type Hash struct {
-	Iteration    int
-	Timestamp    string
-	Hash         string
-	PreviousHash string
-	Ledger       string
-}
-
-type User struct {
-	Password string
-	Account  string
-	//Info  ItemInfo `json:"info"`
-}
-
-type Ledger struct {
-	Account string
-	Amount  string
-}
-
-type Query struct {
-	TableName string
-	Key       string
-	Value     string
-}
-
-func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (resp map[string]string, err error) {
+func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (r *GjResp, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "RunDynamoCreateItem")
 
@@ -270,7 +276,7 @@ func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (
 	sess, err := session.NewSession(&aws.Config{
 		Region: aws.String("us-east-2")},
 	)
-	r := make(map[string]string)
+	r = &GjResp{}
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
@@ -299,20 +305,20 @@ func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (
 		fmt.Println("Got error calling PutItem:")
 		fmt.Println(err.Error())
 
-		r["msg"] = "-->Could not create: " + tableName
-		r["code"] = "1"
+		r.msg = "-->Could not create: " + tableName
+		r.code = true
 		return r, errors.New("error calling PutItem")
 
 	}
 
 	fmt.Println("Successfully added item")
 
-	r["msg"] = "RunDynamoCreateItem finished"
+	r.msg = "RunDynamoCreateItem finished"
 
 	return r, nil
 }
 
-func RunDynamoGetItem(query Query, ctx context.Context) (resp map[string]string, err error) {
+func RunDynamoGetItem(query Query, ctx context.Context) (r *GjResp, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "RunDynamoGetItem")
 	span.SetAttributes(attribute.Key("testset").String("value"))
@@ -327,7 +333,7 @@ func RunDynamoGetItem(query Query, ctx context.Context) (resp map[string]string,
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
-	r := make(map[string]string)
+	r = &GjResp{}
 
 	var result *dynamodb.GetItemOutput
 
@@ -357,21 +363,21 @@ func RunDynamoGetItem(query Query, ctx context.Context) (resp map[string]string,
 		}
 	}
 
-	err = dynamodbattribute.UnmarshalMap(result.Item, &r)
+	err = dynamodbattribute.UnmarshalMap(result.Item, &r.data)
 
 	if result.Item == nil {
-		r["msg"] = "-->Could not find: " + query.Value
-		r["code"] = "1"
+		r.msg = "-->Could not find: " + query.Value
+		r.code = true
 		return r, errors.New("-->Could not find: " + query.Value)
 	}
 
-	r["msg"] = "RunDynamoGetItem finished"
-	r["code"] = "0"
+	r.msg = "RunDynamoGetItem finished"
+	r.code = false
 
 	return r, nil
 }
 
-func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (resp map[string]string, err error) {
+func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r *GjResp, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "RunDynamoDeleteItem")
 	span.SetAttributes(attribute.Key("testset").String("value"))
@@ -383,7 +389,7 @@ func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r
 		Region: aws.String("us-east-2")},
 	)
 
-	r := make(map[string]string)
+	r = &GjResp{}
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
@@ -403,8 +409,8 @@ func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r
 	if err != nil {
 		fmt.Println("Got error marshalling map:")
 		fmt.Println(err.Error())
-		r["msg"] = "-->Could not gjDelete: " + value
-		r["code"] = "1"
+		r.msg = "-->Could not gjDelete: " + value
+		r.code = true
 		return r, errors.New("-->Could not get gjDelete " + value)
 	}
 
@@ -421,7 +427,7 @@ func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r
 	}
 
 	fmt.Println("Delete complete")
-	r["msg"] = "-->Completed gjDelete: " + value
-	r["code"] = "0"
+	r.msg = "-->Completed gjDelete: " + value
+	r.code = false
 	return r, nil
 }

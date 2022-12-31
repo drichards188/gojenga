@@ -27,12 +27,12 @@ func DeleteUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.SetStatus(codes.Error, err.Error())
 		fmt.Println("error in DeleteUser")
 	}
-	if r["code"] == "1" {
-		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	if r.code == true {
+		return "--> " + r.msg, errors.New("--> " + r.msg)
 	}
 	RunDynamoDeleteItem("users", jsonResponse.SourceAccount, ctx)
-	if r["code"] == "1" {
-		return "--> " + r["msg"], errors.New("--> " + r["msg"])
+	if r.code == true {
+		return "--> " + r.msg, errors.New("--> " + r.msg)
 	}
 
 	//deleteMongo(jsonResponse, ctx)

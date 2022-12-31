@@ -42,7 +42,8 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 		logger.Debug(fmt.Sprintf("--> %s", err))
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
-		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
+		return "--> " + resultMap.msg, errors.New("--> " + resultMap.msg)
+
 	}
 
 	//if mongoResult["message"] == "No Match" {
@@ -54,7 +55,7 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	//
 	//resultMap = mongoResult.Map()
 
-	msg := resultMap["message"]
+	msg := resultMap.msg
 	if msg == "No Match" {
 		err = errors.New("No User Match")
 		logger.Debug(fmt.Sprintf("--> %s", err))
@@ -63,10 +64,10 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 		return "Account Not Found", errors.New("Account Not Found")
 	}
 
-	theAccount := resultMap["Account"]
-	theAmount := resultMap["Amount"]
+	theAccount := resultMap.data["Account"]
+	theAmount := resultMap.data["Amount"]
 
-	mapD := map[string]string{"Account": theAccount, "Amount": theAmount}
+	mapD := map[string]string{"Account": string(theAccount), "Amount": theAmount}
 	mapB, _ := json.Marshal(mapD)
 
 	fmt.Println(string(mapB))
