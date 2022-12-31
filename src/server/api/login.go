@@ -52,7 +52,6 @@ func Login(jsonResponse Traffic, ctx context.Context) (results string, err error
 
 	if resultMap.code != true {
 
-
 		if jsonResponse.SourceAccount == resultMap.data["Account"] && jsonResponse.Password == resultMap.data["Password"] {
 			rMap := make(map[string]string)
 

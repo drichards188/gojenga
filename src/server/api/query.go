@@ -43,7 +43,6 @@ func FindUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + resultMap.msg, errors.New("--> " + resultMap.msg)
-
 	}
 
 	//if mongoResult["message"] == "No Match" {

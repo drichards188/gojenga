@@ -35,8 +35,5 @@ func DeleteUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 		return "--> " + r.msg, errors.New("--> " + r.msg)
 	}
 
-	//deleteMongo(jsonResponse, ctx)
-	//jsonResponse.Role = "USER"
-	//deleteMongo(jsonResponse, ctx)
 	return "Delete Succesful", errors.New("Delete Succesful")
 }
