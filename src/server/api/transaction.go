@@ -40,6 +40,7 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user1.msg, errors.New("--> " + user1.msg)
+
 	}
 	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
@@ -47,6 +48,7 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user2.msg, errors.New("--> " + user1.msg)
+
 	}
 
 	Account := jsonResponse.SourceAccount
@@ -100,6 +102,7 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r.msg, errors.New("--> " + r.msg)
+
 	}
 	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
@@ -107,6 +110,7 @@ func Transaction(jsonResponse Traffic, ctx context.Context) (string, error) {
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r.msg, errors.New("--> " + r.msg)
+
 	}
 
 	return "Transaction Successful", nil
@@ -124,6 +128,7 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user1.msg, errors.New("--> " + user1.msg)
+
 	}
 	user2, err := RunDynamoGetItem(Query{TableName: "ledger", Key: "Account", Value: jsonResponse.DestinationAccount}, ctx)
 	if err != nil {
@@ -131,6 +136,7 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + user2.msg, errors.New("--> " + user1.msg)
+
 	}
 
 	Account := jsonResponse.SourceAccount
@@ -184,6 +190,7 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r.msg, errors.New("--> " + r.msg)
+
 	}
 	r, err = RunDynamoCreateItem("ledger", Ledger{Account: Account2, Amount: intFinalAmount2}, ctx)
 	if err != nil {
@@ -191,6 +198,7 @@ func TransactionRollback(jsonResponse Traffic, ctx context.Context) (string, err
 		span.RecordError(err)
 		span.SetStatus(codes.Error, err.Error())
 		return "--> " + r.msg, errors.New("--> " + r.msg)
+
 	}
 
 	return "Transaction Rollback Successful", nil
