@@ -103,20 +103,12 @@ func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
-	//mongoResult := queryMongo(traffic)
 	resultMap, err := gjLib.RunDynamoGetItem(gjLib.Query{TableName: "ledger", Key: "Account", Value: Account})
 	if err != nil {
 		return "--> " + resultMap["msg"], errors.New("--> " + resultMap["msg"])
 	}
 
-	//if mongoResult["message"] == "No Match" {
-	//	return "Account Not Found"
-	//}
-
 	fmt.Print("Your gjQuery result ")
-	//var resultMap primitive.M
-	//
-	//resultMap = mongoResult.Map()
 
 	msg := resultMap["message"]
 	if msg == "No Match" {
@@ -130,8 +122,6 @@ func FindUser(jsonResponse gjLib.Traffic, ctx context.Context) (string, error) {
 	mapB, _ := json.Marshal(mapD)
 
 	fmt.Println(string(mapB))
-
-	//c.Write([]byte(mapB))
 
 	fmt.Println(theAccount)
 

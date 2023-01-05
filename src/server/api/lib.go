@@ -66,28 +66,28 @@ type Item struct {
 }
 
 type Hash struct {
-	Iteration    int    `json:"iteration"`
-	Timestamp    string `json:"timestamp"`
-	Hash         string `json:"hash"`
-	PreviousHash string `json:"previousHash"`
-	Ledger       string `json:"ledger"`
+	Iteration    int
+	Timestamp    string
+	Hash         string
+	PreviousHash string
+	Ledger       string
 }
 
 type User struct {
-	Password string `json:"password"`
-	Account  string `json:"account"`
+	Password string
+	Account  string
 	//Info  ItemInfo `json:"info"`
 }
 
 type Ledger struct {
-	Account string `json:"account"`
-	Amount  string `json:"amount"`
+	Account string
+	Amount  string
 }
 
 type Query struct {
-	TableName string `json:"tableName"`
-	Key       string `json:"key"`
-	Value     string `json:"value"`
+	TableName string
+	Key       string
+	Value     string
 }
 
 type GjResp struct {
@@ -280,11 +280,6 @@ func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
-	//info := ItemInfo{
-	//	Plot:   "Nothing happens at all.",
-	//	Rating: 0.0,
-	//}
-
 	av, err := dynamodbattribute.MarshalMap(item)
 
 	if err != nil {
@@ -311,7 +306,7 @@ func RunDynamoCreateItem[T any](tableName string, item T, ctx context.Context) (
 
 	}
 
-	fmt.Println("Successfully added item")
+	fmt.Printf("Successfully added item to %s\n", tableName)
 
 	r.msg = "RunDynamoCreateItem finished"
 
@@ -363,7 +358,11 @@ func RunDynamoGetItem(query Query, ctx context.Context) (r *GjResp, err error) {
 		}
 	}
 
-	err = dynamodbattribute.UnmarshalMap(result.Item, &r.data)
+	resp := &Ledger{}
+
+	err = dynamodbattribute.UnmarshalMap(result.Item, &resp)
+
+	r.data = map[any]string{"Account": resp.Account, "Amount": resp.Amount}
 
 	if result.Item == nil {
 		r.msg = "-->Could not find: " + query.Value
@@ -375,6 +374,11 @@ func RunDynamoGetItem(query Query, ctx context.Context) (r *GjResp, err error) {
 	r.code = false
 
 	return r, nil
+}
+
+type DynamoGetResp struct {
+	Account string
+	Amount  float32
 }
 
 func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r *GjResp, err error) {
