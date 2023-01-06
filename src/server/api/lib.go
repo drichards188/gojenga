@@ -40,6 +40,7 @@ type Traffic struct {
 	DestinationAccount string
 	Verb               string
 	Role               string
+	Test               bool
 	Port               string
 	Payload            string
 	Password           string
@@ -376,11 +377,6 @@ func RunDynamoGetItem(query Query, ctx context.Context) (r *GjResp, err error) {
 	return r, nil
 }
 
-type DynamoGetResp struct {
-	Account string
-	Amount  float32
-}
-
 func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r *GjResp, err error) {
 	tr := otel.Tracer("crypto-trace")
 	_, span := tr.Start(ctx, "RunDynamoDeleteItem")
@@ -397,13 +393,9 @@ func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
-	//item := User{
-	//	Account: "david",
-	//}
-
 	m := make(map[string]any)
 
-	if tableName == "users" || tableName == "ledger" || tableName == "dynamoTest" {
+	if tableName == "users" || tableName == "ledger" || tableName == "dynamoTest" || tableName == "usersTest" || tableName == "ledgerTest" {
 		m["Account"] = value
 	} else if tableName == "hashHistory" {
 		m["Iteration"] = value

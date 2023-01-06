@@ -3,8 +3,10 @@ package api
 import (
 	"context"
 	"errors"
+	"fmt"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/codes"
 	"math/rand"
 	"time"
 )
@@ -52,7 +54,19 @@ func CreateUser(jsonResponse Traffic, ctx context.Context) (string, error) {
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
-	if jsonResponse.Role == "test" {
+	if jsonResponse.Role == "ROLL" {
+		resp, err := RollbackCreateUser(jsonResponse, ctx)
+
+		if err != nil {
+			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+			return "", errors.New("CRT error")
+		}
+		return resp, nil
+	}
+
+	if jsonResponse.Test == true {
 		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
 		if err != nil {
 			return "--> " + r.msg, errors.New("--> " + r.msg)
@@ -86,8 +100,14 @@ func RollbackCreateUser(jsonResponse Traffic, ctx context.Context) (string, erro
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
-	if jsonResponse.Role == "test" {
+	if jsonResponse.Test == true {
+		jsonResponse.Table = "usersTest"
 		r, err := RunDynamoCreateItem(jsonResponse.Table, User{Account: jsonResponse.SourceAccount, Password: jsonResponse.SourceAccount}, ctx)
+		if err != nil {
+			return "--> " + r.msg, errors.New("--> " + r.msg)
+		}
+
+		r, err = RunDynamoDeleteItem(jsonResponse.Table, jsonResponse.SourceAccount, ctx)
 		if err != nil {
 			return "--> " + r.msg, errors.New("--> " + r.msg)
 		}
