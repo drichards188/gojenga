@@ -40,6 +40,7 @@ type Traffic struct {
 	DestinationAccount string
 	Verb               string
 	Role               string
+	Test               bool
 	Port               string
 	Payload            string
 	Password           string
@@ -397,13 +398,9 @@ func RunDynamoDeleteItem(tableName string, value string, ctx context.Context) (r
 	// Create DynamoDB client
 	svc := dynamodb.New(sess)
 
-	//item := User{
-	//	Account: "david",
-	//}
-
 	m := make(map[string]any)
 
-	if tableName == "users" || tableName == "ledger" || tableName == "dynamoTest" {
+	if tableName == "users" || tableName == "ledger" || tableName == "dynamoTest" || tableName == "usersTest" || tableName == "ledgerTest" {
 		m["Account"] = value
 	} else if tableName == "hashHistory" {
 		m["Iteration"] = value
