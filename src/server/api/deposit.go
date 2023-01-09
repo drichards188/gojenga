@@ -35,6 +35,16 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	span.SetAttributes(attribute.Key("testset").String("value"))
 	defer span.End()
 
+	if jsonResponse.Role == "ROLL" {
+		resp, err := RollbackDeposit(jsonResponse, ctx)
+		if err != nil {
+			logger.Debug(fmt.Sprintf("--> %s", err))
+			span.RecordError(err)
+			span.SetStatus(codes.Error, err.Error())
+			return "--> " + resp, errors.New("--> " + resp)
+		}
+	}
+
 	//response := lakeCreateUser(jsonResponse.SourceAccount)
 	//response := acceptCreateUser(jsonResponse)
 	fmt.Println("-->data ping results: " + results)
@@ -80,6 +90,60 @@ func Deposit(jsonResponse Traffic, ctx context.Context) (string, error) {
 	return "Account not found", errors.New("Account not found")
 }
 
-func RollbackDeposit() {
+func RollbackDeposit(jsonResponse Traffic, ctx context.Context) (string, error) {
+	tr := otel.Tracer("crypto-trace")
+	_, span := tr.Start(ctx, "rollbackCreateUser")
+	span.SetAttributes(attribute.Key("testset").String("value"))
+	defer span.End()
 
+	intFinalAmount1 := "10"
+
+	r := &GjResp{}
+
+	if jsonResponse.Test == true {
+		jsonResponse.Table = "ledgerTest"
+		resultMap, err := RunDynamoGetItem(Query{TableName: jsonResponse.Table, Key: "Account", Value: jsonResponse.SourceAccount}, ctx)
+
+		fmt.Println(resultMap)
+
+		if err != nil {
+			r, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: "190"}, ctx)
+			if err != nil {
+				return "--> " + r.msg, errors.New("--> " + r.msg)
+			}
+
+			r, err = RunDynamoDeleteItem(jsonResponse.Table, jsonResponse.SourceAccount, ctx)
+			if err != nil {
+				return "--> " + r.msg, errors.New("--> " + r.msg)
+			}
+
+			r.msg = "ran deposit without existing account"
+		} else {
+			r, err := RunDynamoCreateItem("ledger", Ledger{Account: jsonResponse.SourceAccount, Amount: intFinalAmount1}, ctx)
+			if err != nil {
+				return "--> " + r.msg, errors.New("--> " + r.msg)
+			}
+
+			r, err = RunDynamoDeleteItem(jsonResponse.Table, jsonResponse.SourceAccount, ctx)
+			if err != nil {
+				return "--> " + r.msg, errors.New("--> " + r.msg)
+			}
+
+			r.msg = "ran deposit with existing account"
+		}
+
+		return r.msg, nil
+	} else {
+		r, err := RunDynamoDeleteItem("users", jsonResponse.SourceAccount, ctx)
+		if err != nil {
+			return "--> " + r.msg, errors.New("--> " + r.msg)
+		}
+
+		r, err = RunDynamoDeleteItem("ledger", jsonResponse.SourceAccount, ctx)
+		if err != nil {
+			return "--> " + r.msg, errors.New("--> " + r.msg)
+		}
+	}
+
+	return "rollback createUser complete", nil
 }

@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/emirpasic/gods/sets/hashset"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/jaeger"
@@ -46,6 +47,8 @@ type Traffic struct {
 	Password           string
 	Table              string
 }
+
+var accountKeySet = hashset.New("users", "ledger", "usersTest", "ledgerTest")
 
 type Config struct {
 	Service     string
@@ -345,7 +348,7 @@ func RunDynamoGetItem(query Query, ctx context.Context) (r *GjResp, err error) {
 		if err != nil {
 			log.Fatalf("Got error calling GetItem: %s", err)
 		}
-	} else if query.TableName == "users" || query.TableName == "ledger" || query.TableName == "dynamoTest" {
+	} else if accountKeySet.Contains(query.TableName) {
 		result, err = svc.GetItem(&dynamodb.GetItemInput{
 			TableName: aws.String(query.TableName),
 			Key: map[string]*dynamodb.AttributeValue{

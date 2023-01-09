@@ -1,6 +1,4 @@
-
 module server
-
 
 go 1.18
 
@@ -15,6 +13,7 @@ require (
 )
 
 require (
+	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
